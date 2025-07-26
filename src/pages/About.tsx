@@ -80,13 +80,13 @@ const About = () => {
         <footer className="py-16 px-4 border-t border-border bg-card/30 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
             <p className="text-muted-foreground">
-              © 2024 ScienceGlimpse. Made with curiosity by students, for students.
+              © 2025 ScienceGlimpse. Made with curiosity by students, for students.
             </p>
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
               <a href="#" className="hover:text-primary transition-colors">Newsletter</a>
               <a href="#" className="hover:text-primary transition-colors">Workshops</a>
-              <a href="/submission" className="hover:text-primary transition-colors">Apply to Write</a>
-              <a href="#" className="hover:text-primary transition-colors">Contact</a>
+              <a href="#/submission" className="hover:text-primary transition-colors">Apply to Write</a>
+              <a href="#/contact" className="hover:text-primary transition-colors">Contact</a>
             </div>
           </div>
         </footer>

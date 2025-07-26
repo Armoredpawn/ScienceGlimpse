@@ -113,7 +113,7 @@ const Articles = () => {
                       <span>{article.author}</span>
                     </div>
                     
-                    <Button size="sm" variant="outline" onClick={() => window.location.href = `/article?id=${article.id}`}>
+                    <Button size="sm" variant="outline" onClick={() => window.location.href = `#/article?id=${article.id}`}>
                       Read More →
                     </Button>
                   </div>

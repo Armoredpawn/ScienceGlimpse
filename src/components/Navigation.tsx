@@ -10,8 +10,8 @@ const Navigation = () => {
   
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'GlimpseArticles', href: '/articles' },
-    { label: 'About', href: '/about' }
+    { label: 'GlimpseArticles', href: '#/articles' },
+    { label: 'About', href: '#/about' }
   ];
   return <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,13 +45,13 @@ const Navigation = () => {
               </button>
               {showGetInvolvedDropdown && (
                 <div className="absolute top-full mt-2 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[120px] z-50">
-                  <a href="/submission" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
+                  <a href="#/submission" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Publish
                   </a>
-                  <a href="/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
+                  <a href="#/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Donate
                   </a>
-                  <a href="/contact" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
+                  <a href="#/contact" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Contact
                   </a>
                 </div>
@@ -78,13 +78,13 @@ const Navigation = () => {
               ))}
               <div className="border-t border-border pt-3 mt-3">
                 <p className="text-sm font-medium text-muted-foreground mb-2">Get Involved</p>
-                <a href="/submission" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
+                <a href="#/submission" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
                   Publish
                 </a>
-                <a href="/donate" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
+                <a href="#/donate" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
                   Donate
                 </a>
-                <a href="/contact" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
+                <a href="#/contact" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
                   Contact
                 </a>
               </div>

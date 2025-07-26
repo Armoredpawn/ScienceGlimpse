@@ -80,7 +80,7 @@ const ArticleFeed = () => {
                       variant="ghost"
                       size="sm"
                       className="group-hover:text-primary"
-                      onClick={() => (window.location.href = `/article?id=${article.id}`)}
+                      onClick={() => (window.location.href = `#/article?id=${article.id}`)}
                     >
                       Read Now
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />

@@ -43,7 +43,7 @@ const Index = () => {
               ].map((item) => (
                 <button
                   key={item.tag}
-                  onClick={() => (window.location.href = `/articles?category=${item.tag}`)}
+                  onClick={() => (window.location.href = `#/articles?category=${item.tag}`)}
                   className="aspect-square flex flex-col items-center justify-center bg-card/60 border border-border backdrop-blur-md rounded-2xl p-4 text-center hover:bg-card/80 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.05] transition-all duration-300 group"
                 >
                   <div className="text-4xl mb-2 group-hover:animate-bounce">{item.icon}</div>
@@ -67,9 +67,9 @@ const Index = () => {
             </p>
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
               <a href="#" className="hover:text-primary transition-colors">Donate</a>
-              <a href="/about" className="hover:text-primary transition-colors">About</a>
-              <a href="/submission" className="hover:text-primary transition-colors">Apply to Write</a>
-              <a href="#" className="hover:text-primary transition-colors">Contact</a>
+              <a href="#/about" className="hover:text-primary transition-colors">About</a>
+              <a href="#/submission" className="hover:text-primary transition-colors">Apply to Write</a>
+              <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
             </div>
           </div>
         </footer>

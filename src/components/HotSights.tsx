@@ -81,7 +81,7 @@ const HotSights = () => {
                       variant="ghost"
                       size="sm"
                       className="group-hover:text-primary"
-                      onClick={() => (window.location.href = `/article?id=${article.id}`)}
+                      onClick={() => (window.location.href = `#/article?id=${article.id}`)}
                   >
                       Read Now
                   </Button>

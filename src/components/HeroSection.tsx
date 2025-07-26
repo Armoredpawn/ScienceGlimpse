@@ -20,13 +20,13 @@ const HeroSection = () => {
 
         {/* Action Buttons */}
         <div className="pt-8 flex flex-wrap justify-center gap-4">
-          <Button variant="default" size="lg" onClick={() => window.location.href = '/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
+          <Button variant="default" size="lg" onClick={() => window.location.href = '#/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
             Submit Your Article →
           </Button>
-          <Button variant="outline" size="lg" onClick={() => window.location.href = '/about'} className="text-lg">
+          <Button variant="outline" size="lg" onClick={() => window.location.href = '#/about'} className="text-lg">
             Team
           </Button>
-          <Button variant="default" size="lg" onClick={() => window.location.href = '/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
+          <Button variant="default" size="lg" onClick={() => window.location.href = '#/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
             Vote Article →
           </Button>
         </div>
