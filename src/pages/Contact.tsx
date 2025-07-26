@@ -57,7 +57,7 @@ const Contact = () => {
                   <span>📸</span>
                   <span>Instagram (@ScienceGlimpse)</span>
                 </a>
-                <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
+                <a href="https://www.youtube.com/channel/UChziIqWZasnGmBC1TrA1jNQ" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
                   <span>🎥</span>
                   <span>YouTube (ScienceGlimpse Shorts)</span>
                 </a>
