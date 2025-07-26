@@ -63,20 +63,6 @@ const HotSights = () => {
                     <User className="w-3 h-3" />
                     <span>{article.author}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => handlePreference('like', article.id)}
-                      className="w-4 h-4 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-200"
-                    >
-                      <Heart className="w-4 h-4 text-pink-500" />
-                    </button>
-                    <button 
-                      onClick={() => handlePreference('dislike', article.id)}
-                      className="w-4 h-4 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-200"
-                    >
-                      <X className="w-4 h-4 text-slate-400" />
-                    </button> 
-                  </div>
                   <Button
                       variant="ghost"
                       size="sm"
