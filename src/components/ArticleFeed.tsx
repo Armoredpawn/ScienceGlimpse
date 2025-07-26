@@ -68,14 +68,6 @@ const ArticleFeed = () => {
                   </div>
 
                   <div className="flex items-center justify-between pt-4">
-                    <div className="flex items-center space-x-2">
-                      <Button variant="ghost" size="sm" className="hover:text-primary">
-                        <Heart className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" className="hover:text-primary">
-                        <Bookmark className="w-4 h-4" />
-                      </Button>
-                    </div>
                     <Button
                       variant="ghost"
                       size="sm"
