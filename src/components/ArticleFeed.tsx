@@ -90,7 +90,7 @@ const ArticleFeed = () => {
             variant="quantum"
             size="lg"
             className="px-8"
-            onClick={() => (window.location.href = '/articles')}
+            onClick={() => (window.location.href = '#/articles')}
           >
             Explore More Science
             <ArrowRight className="w-5 h-5 ml-2" />
