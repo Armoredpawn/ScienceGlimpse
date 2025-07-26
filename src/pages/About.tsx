@@ -33,7 +33,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Our Impact */}
+        {/* Our Impact
         <section className="py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-molecule to-neuron bg-clip-text text-transparent mb-12 text-center">
@@ -71,7 +71,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Team Section */}
         <FoundersSection />
