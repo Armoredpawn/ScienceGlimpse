@@ -127,13 +127,13 @@ const FoundersSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 className="bg-transparent border border-border px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-muted/50"
-                onClick={() => window.location.href = '/submission'}
+                onClick={() => window.location.href = '#/submission'}
               >
                 Apply to Write
               </button>
               <button 
                 className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
-                onClick={() => window.location.href = '/contact'}
+                onClick={() => window.location.href = '#/contact'}
               >
                 Get Involved
               </button>
