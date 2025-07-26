@@ -32,14 +32,14 @@ const Index = () => {
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
               {[
-                { field: 'Physics', icon: '⚛️', tag: 'physics' },
-                { field: 'Biology', icon: '🧬', tag: 'biology' },
-                { field: 'Chemistry', icon: '🧪', tag: 'chemistry' },
-                { field: 'Astronomy', icon: '🌌', tag: 'astronomy' },
-                { field: 'Medicine', icon: '🩺', tag: 'medicine' },
-                { field: 'Technology', icon: '💻', tag: 'technology' },
-                { field: 'Earth Science', icon: '🌍', tag: 'earth-science' },
-                { field: 'Engineering', icon: '⚙️', tag: 'engineering' },
+                { field: 'Physics', icon: '⚛️', tag: 'Physics' },
+                { field: 'Biology', icon: '🧬', tag: 'Biology' },
+                { field: 'Chemistry', icon: '🧪', tag: 'Chemistry' },
+                { field: 'Astronomy', icon: '🌌', tag: 'Astronomy' },
+                { field: 'Medicine', icon: '🩺', tag: 'Medicine' },
+                { field: 'Technology', icon: '💻', tag: 'Technology' },
+                { field: 'Earth Science', icon: '🌍', tag: 'Earth-science' },
+                { field: 'Engineering', icon: '⚙️', tag: 'Engineering' },
               ].map((item) => (
                 <button
                   key={item.tag}
