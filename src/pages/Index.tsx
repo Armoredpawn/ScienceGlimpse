@@ -66,10 +66,10 @@ const Index = () => {
               © 2025 ScienceGlimpse. Made with curiosity by students, for students.
             </p>
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-primary transition-colors">Donate</a>
+              <a href="#/donate" className="hover:text-primary transition-colors">Donate</a>
               <a href="#/about" className="hover:text-primary transition-colors">About</a>
               <a href="#/submission" className="hover:text-primary transition-colors">Apply to Write</a>
-              <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+              <a href="#/contact" className="hover:text-primary transition-colors">Contact</a>
             </div>
           </div>
         </footer>
