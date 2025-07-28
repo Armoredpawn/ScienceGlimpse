@@ -16,7 +16,7 @@ const About = () => {
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-quantum to-cosmic bg-clip-text text-transparent mb-8">
-              About ScienceGlimpses:
+              About ScienceGlimpse:
             </h1>
           </div>
         </section>
