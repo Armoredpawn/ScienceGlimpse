@@ -24,7 +24,7 @@ const HeroSection = () => {
             Submit Your Article →
           </Button>
           <Button variant="outline" size="lg" onClick={() => window.location.href = '#/about'} className="text-lg">
-            Team
+            About Us
           </Button>
           <Button variant="default" size="lg" onClick={() => window.location.href = '#/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
             Vote Article →
