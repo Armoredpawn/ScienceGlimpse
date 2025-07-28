@@ -1,4 +1,4 @@
-ol[
+[
     {
         "id": 1,
         "title": "Quantum Tunneling Changes Everything",
@@ -61,8 +61,8 @@ ol[
     },
     {
         "id": 7,
-        "title": "Machine Learning in Our Lives",
-        "excerpt": "Machine learning is a subset of artificial intelligence that is able to learn patterns and correlations in data.",
+        "title": "ML: The Best Data Analyzer",
+        "excerpt": "Machine learning (ML) is a subset of artificial intelligence that is able to learn patterns and correlations in data.",
         "category": "Technology",
         "author": "Ayush Srivastava",
         "readTime": "6 min",
