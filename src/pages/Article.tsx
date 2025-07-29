@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
-import AnimatedBackground from '@/components/AnimatedBackground';
+// import AnimatedBackground from '@/components/AnimatedBackground';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import articles from '../data/articles.json'; // 👈 adjust path if needed
@@ -22,7 +22,7 @@ const Article = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
-      <AnimatedBackground />
+{/*       <AnimatedBackground /> */}
       <Navigation />
 
       <main className="relative z-10 pt-20 max-w-3xl mx-auto px-4 py-8">
