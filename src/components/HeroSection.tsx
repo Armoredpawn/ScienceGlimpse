@@ -26,7 +26,7 @@ const HeroSection = () => {
           <Button variant="outline" size="lg" onClick={() => window.location.href = '#/about'} className="text-lg">
             Our Mission
           </Button>
-          <Button variant="default" size="lg" onClick={() => window.location.href = '#/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
+          <Button variant="default" size="lg" onClick={() => window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSdXWxqo9fR7gXag4xP43M1rQIsc1Bdn9SlktHivOLNJyn4OXQ/viewform?usp=dialog'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
             Vote Article →
           </Button>
         </div>
