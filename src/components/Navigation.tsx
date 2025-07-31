@@ -64,9 +64,9 @@ const Navigation = () => {
                   <a href="#/submission" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Publish
                   </a>
-                  <a href="#/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
+                  {/* <a href="#/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Donate
-                  </a>
+                  </a> */}
                   <a href="#/contact" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Contact
                   </a>
