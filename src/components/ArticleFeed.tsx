@@ -30,7 +30,7 @@ const ArticleFeed = () => {
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[2, 5, 6] // ← Your chosen article IDs
+          {[7, 5, 6] // ← Your chosen article IDs
           .map(id => articles.find(article => article.id === id))
           .filter(Boolean) // Removes undefined in case ID not found
           .map((article) => (
@@ -68,14 +68,6 @@ const ArticleFeed = () => {
                   </div>
 
                   <div className="flex items-center justify-between pt-4">
-                    <div className="flex items-center space-x-2">
-                      <Button variant="ghost" size="sm" className="hover:text-primary">
-                        <Heart className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" className="hover:text-primary">
-                        <Bookmark className="w-4 h-4" />
-                      </Button>
-                    </div>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -98,7 +90,7 @@ const ArticleFeed = () => {
             variant="quantum"
             size="lg"
             className="px-8"
-            onClick={() => (window.location.href = '/articles')}
+            onClick={() => (window.location.href = '#/articles')}
           >
             Explore More Science
             <ArrowRight className="w-5 h-5 ml-2" />

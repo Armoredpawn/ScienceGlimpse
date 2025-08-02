@@ -41,7 +41,7 @@ const Submission = () => {
             <Button 
               size="lg" 
               className="px-8 py-3"
-              onClick={() => window.open('https://forms.google.com/your-form-link', '_blank')}
+              onClick={() => window.open('https://forms.gle/KZuFAtVpyVGfQarCA', '_blank')}
             >
               <ExternalLink className="w-5 h-5 mr-2" />
               Submit Your Article

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react'; // Import useRef
 import { Button } from './ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import ScienceEyeLogo from './ScienceEyeLogo';
@@ -6,14 +6,31 @@ import ScienceEyeLogo from './ScienceEyeLogo';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showGetInvolvedDropdown, setShowGetInvolvedDropdown] = useState(false);
-  
-  
+  const dropdownHideTimeout = useRef(null); // Create a ref to store the timeout ID
+
+  const handleMouseEnter = () => {
+    // Clear any existing timeout to prevent it from closing if re-entered quickly
+    if (dropdownHideTimeout.current) {
+      clearTimeout(dropdownHideTimeout.current);
+    }
+    setShowGetInvolvedDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Set a timeout to hide the dropdown after a delay (e.g., 300ms)
+    dropdownHideTimeout.current = setTimeout(() => {
+      setShowGetInvolvedDropdown(false);
+    }, 300); // Adjust this value (in milliseconds) for longer delay
+  };
+
   const navItems = [
-    { label: 'Home', href: '/' },
+    { label: 'Home', href: '#/' },
     { label: 'GlimpseArticles', href: '#/articles' },
     { label: 'About', href: '#/about' }
   ];
-  return <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand */}
@@ -21,7 +38,6 @@ const Navigation = () => {
             <ScienceEyeLogo className="w-10 h-10" />
             <div className="flex flex-col">
               <h1 className="text-xl font-bold text-foreground">ScienceGlimpse</h1>
-              
             </div>
           </div>
 
@@ -32,12 +48,12 @@ const Navigation = () => {
                 {item.label}
               </a>
             ))}
-            
+
             {/* Get Involved Dropdown */}
-            <div 
+            <div
               className="relative"
-              onMouseEnter={() => setShowGetInvolvedDropdown(true)}
-              onMouseLeave={() => setShowGetInvolvedDropdown(false)}
+              onMouseEnter={handleMouseEnter} // Use the new handler
+              onMouseLeave={handleMouseLeave} // Use the new handler
             >
               <button className="text-foreground hover:text-primary transition-colors duration-300 hover:scale-105 transform flex items-center gap-1">
                 Get Involved
@@ -48,9 +64,9 @@ const Navigation = () => {
                   <a href="#/submission" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Publish
                   </a>
-                  <a href="#/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
+                  {/* <a href="#/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Donate
-                  </a>
+                  </a> */}
                   <a href="#/contact" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
                     Contact
                   </a>
@@ -92,6 +108,8 @@ const Navigation = () => {
           </div>
         )}
       </div>
-    </nav>;
+    </nav>
+  );
 };
+
 export default Navigation;

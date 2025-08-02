@@ -25,15 +25,14 @@ const Articles = () => {
   });
 
   const categoryNames = {
-    physics: 'Physics',
-    biology: 'Biology', 
-    chemistry: 'Chemistry',
-    astronomy: 'Astronomy',
-    neuroscience: 'Neuroscience',
-    medicine: 'Medicine',
-    technology: 'Technology',
-    engineering: 'Engineering',
-    'earth-science': 'Earth Science'
+    Physics: 'Physics',
+    Biology: 'Biology', 
+    Chemistry: 'Chemistry',
+    Astronomy: 'Astronomy',
+    Medicine: 'Medicine',
+    Technology: 'Technology',
+    Engineering: 'Engineering',
+    'Earth-science': 'Earth Science'
   };
 
   return (

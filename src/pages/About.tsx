@@ -16,7 +16,7 @@ const About = () => {
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-quantum to-cosmic bg-clip-text text-transparent mb-8">
-              About ScienceGlimpses:
+              About ScienceGlimpse:
             </h1>
           </div>
         </section>
@@ -28,12 +28,13 @@ const About = () => {
               Our Mission
             </h2>
             <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8">
-              <p className="text-2xl text-foreground leading-relaxed text-center font-semibold">Our mission is to educate and inspire by making science accessible, engaging, and relevant to everyday life. We explore a wide range of scientific topics to spark curiosity and empower the next generation of thinkers, innovators, and world-changers. Through creative storytelling and interactive learning, we believe that understanding how the world around us works is key to shaping a better future—for everyone.</p>
+              {/* <p className="text-2xl text-foreground leading-relaxed text-center font-semibold">Our mission is to educate and inspire by making science accessible, engaging, and relevant to everyday life. We explore a wide range of scientific topics to spark curiosity and empower the next generation of thinkers, innovators, and world-changers. Through creative storytelling and interactive learning, we believe that understanding how the world around us works is key to shaping a better future—for everyone.</p> */}
+              <p className="text-2xl text-foreground leading-relaxed text-center font-semibold">Our mission is to educate and inspire by making science <span className="text-quantum">accessible</span>, <span className="text-neuron">engaging</span>, and <span className="text-cosmic">relevant to everyday life</span>. We explore a wide range of scientific topics to spark curiosity and <span className="text-neuron">empower the next generation</span> of thinkers, innovators, and world-changers. <br></br><br></br>Through <span className="text-cosmic">creative storytelling and interactive learning</span>, we believe that understanding how the world around us works is key to <span className="text-neuron">shaping a better future</span> for everyone.</p>
             </div>
           </div>
         </section>
 
-        {/* Our Impact */}
+        {/* Our Impact
         <section className="py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-molecule to-neuron bg-clip-text text-transparent mb-12 text-center">
@@ -71,7 +72,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Team Section */}
         <FoundersSection />
