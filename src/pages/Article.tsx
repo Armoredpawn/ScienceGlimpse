@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 // import AnimatedBackground from '@/components/AnimatedBackground';
@@ -7,6 +7,11 @@ import { ArrowLeft } from 'lucide-react';
 import articles from '../data/articles.json'; // 👈 adjust path if needed
 
 const Article = () => {
+  // Add this useEffect hook
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [searchParams] = useSearchParams();
   const id = Number(searchParams.get('id'));
   const article = articles.find(a => Number(a.id) === id);
@@ -22,7 +27,7 @@ const Article = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
-{/*       <AnimatedBackground /> */}
+      {/* <AnimatedBackground /> */}
       <Navigation />
 
       <main className="relative z-10 pt-20 max-w-3xl mx-auto px-4 py-8">
