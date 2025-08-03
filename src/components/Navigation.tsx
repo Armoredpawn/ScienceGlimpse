@@ -26,7 +26,8 @@ const Navigation = () => {
   const navItems = [
     { label: 'Home', href: '#/' },
     { label: 'GlimpseArticles', href: '#/articles' },
-    { label: 'About', href: '#/about' }
+    { label: 'About', href: '#/about' },
+    { label: 'Themes', href: '#/themes' }
   ];
 
   return (

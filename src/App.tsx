@@ -11,6 +11,9 @@ import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 import Article from './pages/Article';
+import Themes from "./pages/Themes";
+import CreatureProfile from "./pages/Creatureprofile"
+import CreatureArticle from "./pages/Creaturearticle"
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,9 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="/themes" element={<Themes />} />
+          <Route path="/creatureprofile" element={<CreatureProfile />} />
+          <Route path="/creaturearticle" element={<CreatureArticle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
