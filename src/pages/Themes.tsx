@@ -22,8 +22,9 @@ const Index = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
               {[
                 { field: 'Creature Profile', icon: '⚛️', to: '/creatureprofile' }, 
-                { field: 'Junior', icon: '🧬', to: '/biology' },
-                { field: 'Debunked', icon: '🧪', to: '/chemistry' },
+                { field: 'Junior', icon: '🧬', to: '/juniorarticles' },
+                { field: 'Debunked', icon: '🧪', to: '/debunkedarticles' },
+                { field: 'What If?', icon: '🧪', to: '/whatifarticles' },
               ].map((item) => (
                 // Use the Link component instead of a button with a click handler
                 <Link
