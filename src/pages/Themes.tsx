@@ -1,9 +1,55 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // 👈 Import the Link component
+import { Link } from 'react-router-dom';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
+import { Button } from '@/components/ui/button';
+import { Clock, User, ArrowRight } from 'lucide-react';
 
 const Index = () => {
+  // Define your themes data
+  const themes = [
+    {
+      id: 'creature',
+      field: 'Creature Profile',
+      emoji: '⚛️',
+      to: '/creatureprofile',
+      gradient: 'from-blue-500 to-indigo-600',
+      category: 'Living Beings',
+      readTime: '5 min',
+      excerpt: 'Fascinating facts about real-life animals, past and present.',
+    },
+    {
+      id: 'junior',
+      field: 'Junior',
+      emoji: '🧬',
+      to: '/juniorarticles',
+      gradient: 'from-blue-500 to-indigo-600',
+      category: 'Junior Education',
+      readTime: '5 min',
+      excerpt: 'Fun, kid-friendly science stories made easy to understand.',
+    },
+    {
+      id: 'debunked',
+      field: 'Debunked',
+      emoji: '🧪',
+      to: '/debunkedarticles',
+      gradient: 'from-blue-500 to-indigo-600',
+      category: 'Myth Busting',
+      readTime: '5 min',
+      excerpt: 'Unraveling popular science myths with real facts and evidence.',
+    },
+    {
+      id: 'whatif',
+      field: 'What If?',
+      emoji: '🤔',
+      to: '/whatifarticles',
+      gradient: 'from-blue-500 to-indigo-600',
+      category: 'Curiosity',
+      readTime: '5 min',
+      excerpt: 'Exploring wild science questions and imaginative scenarios.',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       {/* Animated Science Background */}
@@ -19,24 +65,55 @@ const Index = () => {
             <h2 className="text-3xl bg-gradient-to-r from-quantum to-cosmic bg-clip-text mb-8 py-[15px] px-0 text-[#5910d9] md:text-4xl font-bold">
               Explore Our Themes!
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
-              {[
-                { field: 'Creature Profile', icon: '⚛️', to: '/creatureprofile' }, 
-                { field: 'Junior', icon: '🧬', to: '/juniorarticles' },
-                { field: 'Debunked', icon: '🧪', to: '/debunkedarticles' },
-                { field: 'What If?', icon: '🧪', to: '/whatifarticles' },
-              ].map((item) => (
-                // Use the Link component instead of a button with a click handler
-                <Link
-                  key={item.field}
-                  to={item.to} // 👈 Use the 'to' prop here
-                  className="aspect-square flex flex-col items-center justify-center bg-card/60 border border-border backdrop-blur-md rounded-2xl p-4 text-center hover:bg-card/80 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.05] transition-all duration-300 group"
-                >
-                  <div className="text-4xl mb-2 group-hover:animate-bounce">{item.icon}</div>
-                  <div className="text-sm font-semibold text-foreground bg-gray-700 rounded-full px-4 py-1">
-                    {item.field}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {themes.map((theme) => (
+                <div key={theme.id} className="group">
+                  <div className="card-glow h-full p-6 rounded-xl relative overflow-hidden">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}
+                    />
+                    <div className="relative z-10 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                          {theme.category}
+                        </span>
+                        <span className="text-3xl group-hover:animate-bounce hover:scale-110 transition-transform duration-300">
+                          {theme.emoji}
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl font-extrabold transition-colors duration-300 text-slate-50 bg-gradient-to-r from-purple-400 to-blue-600 bg-clip-text text-transparent">
+                        {theme.field}
+                      </h3>
+
+                      <div className="border border-border p-4 rounded-lg bg-background/50">
+                        <p className="text-muted-foreground leading-relaxed">
+                          {theme.excerpt}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="flex items-center space-x-2">
+                          <Clock className="w-4 h-4" />
+                          <span>{theme.readTime}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-4">
+                        <Link to={theme.to}>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="group-hover:text-primary"
+                          >
+                            Explore Now
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -59,4 +136,5 @@ const Index = () => {
     </div>
   );
 };
+
 export default Index;

@@ -54,11 +54,11 @@ const Articles = () => {
             </Button>
             
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-4">
-              {category ? `${categoryNames[category as keyof typeof categoryNames]} Articles` : 'All Articles'}
+              {category ? `${categoryNames[category as keyof typeof categoryNames]} Articles` : 'Debunked Articles'}
             </h1>
             
             <p className="text-xl text-muted-foreground mb-6">
-              Discover the latest insights and breakthroughs in science
+              A collection of articles that expose and correct common scientific myths and misconceptions. Each piece examines false claims, presents verified scientific evidence, and explains why the myth doesn’t hold up under scrutiny.
             </p>
 
             {/* Search Bar */}

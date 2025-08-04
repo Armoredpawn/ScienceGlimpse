@@ -54,11 +54,11 @@ const Articles = () => {
             </Button>
             
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-4">
-              {category ? `${categoryNames[category as keyof typeof categoryNames]} Articles` : 'All Articles'}
+              {category ? `${categoryNames[category as keyof typeof categoryNames]} Articles` : 'Junior Articles'}
             </h1>
             
             <p className="text-xl text-muted-foreground mb-6">
-              Discover the latest insights and breakthroughs in science
+              Fun, simple science articles made for curious young minds. These stories break down big ideas into easy-to-read facts, helping kids explore how the world works—from animals and space to cool experiments and everyday science.
             </p>
 
             {/* Search Bar */}

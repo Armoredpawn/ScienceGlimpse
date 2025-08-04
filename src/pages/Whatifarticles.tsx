@@ -54,11 +54,11 @@ const Articles = () => {
             </Button>
             
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-4">
-              {category ? `${categoryNames[category as keyof typeof categoryNames]} Articles` : 'All Articles'}
+              {category ? `${categoryNames[category as keyof typeof categoryNames]} Articles` : 'What If? Articles'}
             </h1>
             
             <p className="text-xl text-muted-foreground mb-6">
-              Discover the latest insights and breakthroughs in science
+              Imaginative science stories that explore wild questions and fascinating scenarios—like “What if the Moon disappeared?” or “What if humans could breathe underwater?” Backed by real science, these articles dive into what could happen, even if it’s not likely.
             </p>
 
             {/* Search Bar */}
