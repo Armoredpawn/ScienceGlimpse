@@ -18,7 +18,7 @@ const HotSights = () => {
   };
 
   // Select which article IDs to show here:
-  const hotArticleIds = [7, 2, 3, 4];
+  const hotArticleIds = [1, 2, 3, 4];
   const hotArticles = articles.filter(article => hotArticleIds.includes(article.id));
 
   return (

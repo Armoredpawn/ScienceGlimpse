@@ -30,7 +30,7 @@ const ArticleFeed = () => {
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[7, 5, 6] // ← Your chosen article IDs
+          {[1, 2, 3] // ← Your chosen article IDs
           .map(id => articles.find(article => article.id === id))
           .filter(Boolean) // Removes undefined in case ID not found
           .map((article) => (
