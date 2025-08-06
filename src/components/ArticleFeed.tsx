@@ -21,7 +21,7 @@ const ArticleFeed = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum to-molecule bg-clip-text text-transparent mb-6">
-            Discover Your Next Scientific Adventure
+            Discover Your Next Scientific Adventure gayat
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Each article is crafted to take 5 minutes — Perfect for curious minds on the go.
