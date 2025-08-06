@@ -41,7 +41,7 @@ const Submission = () => {
             <Button 
               size="lg" 
               className="px-8 py-3"
-              onClick={() => window.open('https://forms.gle/tWk63kJMsK561p4g9', '_blank')}
+              onClick={() => window.open('https://forms.gle/sTmMboMnpGJeJPNHA', '_blank')}
             >
               <ExternalLink className="w-5 h-5 mr-2" />
               Submit Your Article
@@ -102,6 +102,10 @@ const Submission = () => {
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
                   Unique perspective or insight
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  Engaging and unique hook to introduce topic
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
