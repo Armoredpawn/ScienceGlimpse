@@ -30,9 +30,9 @@ const Contact = () => {
               </div>
               <div className="space-y-4">
                 <p className="text-foreground">
-                  <a href="mailto:ScienceGlimpse25@gmail.com" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
+                  <a href="mailto:ScienceGlimpse09@gmail.com" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
                     <span>✉</span>
-                    <span>ScienceGlimpse25@gmail.com</span>
+                    <span>ScienceGlimpse09@gmail.com</span>
                   </a>
                 </p>
                 <div>
