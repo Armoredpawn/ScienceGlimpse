@@ -1,3 +1,4 @@
+// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -5,11 +6,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // The 'base' option is crucial for GitHub Pages deployments.
-  // It specifies the base public path when your application is served.
-  // If your GitHub repository is named 'ScienceGlimpse' (e.g., username.github.io/ScienceGlimpse/),
-  // then '/ScienceGlimpse/' is the correct base path.
-  base: "/ScienceGlimpse/",
+  // IMPORTANT: For custom domains, set the base to "/"
+  // GitHub Pages will serve your repository's content from the root of your custom domain.
+  base: "/", // ✨ Changed this line ✨
 
   // Server configuration for local development
   server: {

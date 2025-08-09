@@ -7,7 +7,7 @@ const HeroSection = () => {
         {/* Main Brand */}
         <div className="space-y-6">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent leading-tight">
-            ScienceGlimpse
+            ScienceGlimpse 
           </h1>
           
           <h2 className="text-2xl md:text-4xl text-foreground/90 leading-tight font-extralight lg:text-4xl">

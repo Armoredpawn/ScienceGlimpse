@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://armoredpawn.github.io/ScienceGlimpse",
+  "homepage": "https://scienceglimpse.org/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
