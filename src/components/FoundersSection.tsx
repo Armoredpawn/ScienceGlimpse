@@ -33,9 +33,9 @@ const FoundersSection = () => {
   }, {
     name: 'Ayush Srivastava',
     role: 'Co-Founder: Head Developer & Lead Technical Programmer',
-    mission: 'To engineer a seamless digital frontier where discovery feels intuitive and every click is a step deeper into curiosity.',
+    mission: 'The future belongs to those who question the present.',
     favoriteFields: ['⚙️', '💻', '⚗️'],
-    quote: 'Build the system, and curiosity will follow.',
+    quote: 'The future belongs to those who question the present.',
     gradient: 'from-cosmic to-quantum'
   }, {
     name: 'Kavin Puri',

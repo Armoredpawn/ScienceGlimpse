@@ -98,9 +98,6 @@ const Navigation = () => {
                 <a href="#/submission" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
                   Publish
                 </a>
-                <a href="#/donate" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
-                  Donate
-                </a>
                 <a href="#/contact" className="block text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted ml-4" onClick={() => setIsMenuOpen(false)}>
                   Contact
                 </a>
