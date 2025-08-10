@@ -19,7 +19,8 @@ import Debunked from "./pages/Debunked";
 import WhatifArticles from "./pages/Whatifarticles";
 import Whatif from "./pages/Whatif";
 import JuniorArticles from "./pages/Juniorarticles";
-import Junior from "./pages/Junior"
+import Junior from "./pages/Junior";
+import AnalyticsTracker from "./AnalyticsTracker"
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <HashRouter> 
+      <HashRouter>
+        <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/articles" element={<Articles />} />
