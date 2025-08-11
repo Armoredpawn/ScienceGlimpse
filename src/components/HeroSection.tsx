@@ -19,20 +19,44 @@ const HeroSection = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-8 flex flex-wrap justify-center gap-4">
-          <Button variant="default" size="lg" onClick={() => window.location.href = '#/submission'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
-            Submit Your Article →
-          </Button>
-          <Button variant="outline" size="lg" onClick={() => window.location.href = '#/about'} className="text-lg">
-            Our Mission
-          </Button>
-          <Button variant="default" size="lg" onClick={() => window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSdXWxqo9fR7gXag4xP43M1rQIsc1Bdn9SlktHivOLNJyn4OXQ/viewform?usp=dialog'} className="bg-purple-600 hover:bg-purple-700 text-white text-lg">
-            Vote Article →
-          </Button>
-          <Button variant="outline" size="lg" onClick={() => window.location.href = '#/themes'} className="text-lg">
-            Themes
-          </Button>
-        </div>
+{/* Action Buttons */}
+<div className="pt-8 flex flex-col items-center gap-4 w-full max-w-xl mx-auto">
+  <div className="flex flex-row w-full gap-4">
+    <Button
+      variant="default"
+      size="lg"
+      onClick={() => window.location.href = '#/submission'}
+      className="bg-purple-600 hover:bg-purple-700 text-white text-lg flex-1 py-5"
+    >
+      Submit Your Article →
+    </Button>
+    <Button
+      variant="outline"
+      size="lg"
+      onClick={() => window.location.href = '#/about'}
+      className="text-lg flex-1 py-5"
+    >
+      Our Mission
+    </Button>
+    <Button
+      variant="default"
+      size="lg"
+      onClick={() => window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSdXWxqo9fR7gXag4xP43M1rQIsc1Bdn9SlktHivOLNJyn4OXQ/viewform?usp=dialog'}
+      className="bg-purple-600 hover:bg-purple-700 text-white text-lg flex-1 py-5"
+    >
+      Vote Article →
+    </Button>
+  </div>
+  <Button
+    variant="default"
+    size="lg"
+    onClick={() => window.location.href = '#/themes'}
+    className="w-full bg-green-600 text-white text-lg py-6 relative overflow-hidden"
+  >
+    Themes
+    <span className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 animate-pulse-glow">✨</span>
+  </Button>
+</div>
 
         {/* Stats or Quote */}
         <div className="pt-8">

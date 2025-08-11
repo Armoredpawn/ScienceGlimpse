@@ -14,7 +14,7 @@ const FoundersSection = () => {
     role: 'Co-Founder: Executive Director & Head of Logistics',
     mission: 'Making complex quantum concepts accessible to every curious mind.',
     favoriteFields: ['⚛️', '🧠', '🌌'],
-    quote: 'Science isn\'t about memorizing — it\'s about glimpsing the truth behind the universe\'s most beautiful mysteries.',
+    quote: 'Science isn\'t about memorizing gayat— it\'s about glimpsing the truth behind the universe\'s most beautiful mysteries.',
     gradient: 'from-quantum to-cosmic'
   }, {
     name: 'Ansh Sharma',
