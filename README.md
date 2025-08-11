@@ -1,1 +1,1 @@
-View website here: https://armoredpawn.github.io/ScienceGlimpse
+View website here: https://scienceglimpse.org
