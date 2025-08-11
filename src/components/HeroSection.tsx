@@ -22,7 +22,7 @@ const HeroSection = () => {
 
         {/* Action Buttons */}
         <div className="pt-8 flex justify-center w-full max-w-2xl mx-auto">
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <Button
               variant="default"
               size="lg"
