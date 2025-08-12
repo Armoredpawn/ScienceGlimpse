@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import articlesData from '@/data/Creaturearticles.json';
+import articlesData from '@/data/Juniorarticles.json';
 
 const Articles = () => {
   const [searchParams] = useSearchParams();
