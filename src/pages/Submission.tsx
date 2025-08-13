@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ExternalLink, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 
 const Submission = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       <AnimatedBackground />

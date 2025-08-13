@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
 import FoundersSection from '@/components/FoundersSection';
 const About = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
   return <div className="min-h-screen bg-background relative overflow-x-hidden">
       {/* Animated Science Background */}
       <AnimatedBackground />

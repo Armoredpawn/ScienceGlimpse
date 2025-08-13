@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { Mail, Users, HelpCircle } from 'lucide-react';
 
 const Contact = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       <AnimatedBackground />

@@ -5,9 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import articlesData from '@/data/Articles.json';
+import articlesData from '@/data/articles.json'
 
 const Articles = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
   const [searchTerm, setSearchTerm] = useState('');
