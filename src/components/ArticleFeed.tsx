@@ -1,7 +1,7 @@
 import React from 'react';
 import articles from '../data/articles.json';
 import { Button } from './ui/button';
-import { Clock, User, ArrowRight, Heart, Bookmark } from 'lucide-react';
+import { Clock, User, ArrowRight } from 'lucide-react';
 
 interface Article {
   id: string | number;
@@ -30,58 +30,61 @@ const ArticleFeed = () => {
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3] // ← Your chosen article IDs
-          .map(id => articles.find(article => article.id === id))
-          .filter(Boolean) // Removes undefined in case ID not found
-          .map((article) => (
-            <div key={article.id} className="group">
-              <div className="card-glow h-full p-6 rounded-xl relative overflow-hidden">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${article.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}
-                />
-                <div className="relative z-10 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      {article.category}
-                    </span>
-                    <span className="text-3xl group-hover:animate-bounce hover:scale-110 transition-transform duration-300">
-                      {article.emoji}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold transition-colors duration-300 text-slate-50">
-                    {article.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {article.excerpt}
-                  </p>
-
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-2">
-                      <User className="w-4 h-4" />
-                      <span>{article.author}</span>
+          {[1, 2, 3] // Your chosen article IDs
+            .map(id => articles.find(article => article.id === id))
+            .filter(Boolean)
+            .map((article) => (
+              <a
+                key={article.id}
+                href={`#/article?id=${article.id}`}
+                className="group block"
+              >
+                <div className="card-glow h-full p-6 rounded-xl relative overflow-hidden">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${article.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}
+                  />
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                        {article.category}
+                      </span>
+                      <span className="text-3xl group-hover:animate-bounce hover:scale-110 transition-transform duration-300">
+                        {article.emoji}
+                      </span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-4 h-4" />
-                      <span>{article.readTime}</span>
-                    </div>
-                  </div>
 
-                  <div className="flex items-center justify-between pt-4">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="group-hover:text-primary"
-                      onClick={() => (window.location.href = `#/article?id=${article.id}`)}
-                    >
-                      Read Now
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Button>
+                    <h3 className="text-xl font-bold transition-colors duration-300 text-slate-50">
+                      {article.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center space-x-2">
+                        <User className="w-4 h-4" />
+                        <span>{article.author}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Clock className="w-4 h-4" />
+                        <span>{article.readTime}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="group-hover:text-primary"
+                      >
+                        Read Now
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </a>
+            ))}
         </div>
 
         {/* Load more */}
