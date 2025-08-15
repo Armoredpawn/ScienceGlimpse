@@ -57,13 +57,13 @@ const Index = () => {
         </section>
         
         {/* Founders Section */}
-        <FoundersSection />
+        {/* <FoundersSection /> */}
         
         {/* Footer placeholder for future expansion */}
         <footer className="py-16 px-4 border-t border-border bg-card/30 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
             <p className="text-muted-foreground">
-              © 2025 ScienceGlimpse. Made with curiosity by students, for students.
+              © 2025 ScienceGlimpse. Made with curiosity by students, for everyone.
             </p>
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
               {/* <a href="#/donate" className="hover:text-primary transition-colors">Donate</a> */}
