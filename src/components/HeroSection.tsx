@@ -34,25 +34,6 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => (window.location.href = '#/about')}
-              className="text-lg py-4"
-            >
-              Our Mission
-            </Button>
-            <Button
-              variant="default"
-              size="lg"
-              onClick={() =>
-                (window.location.href =
-                  'https://docs.google.com/forms/d/e/1FAIpQLSdXWxqo9fR7gXag4xP43M1rQIsc1Bdn9SlktHivOLNJyn4OXQ/viewform?usp=dialog')
-              }
-              className="bg-purple-600 hover:bg-purple-700 text-white text-lg py-4"
-            >
-              Vote Article →
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
               onClick={() => (window.location.href = '#/themes')}
               className="text-lg py-4"
             >
