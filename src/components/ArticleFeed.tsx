@@ -95,7 +95,7 @@ const ArticleFeed = () => {
             className="px-8"
             onClick={() => (window.location.href = '#/articles')}
           >
-            Explore More Science
+            Explore More Articles
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </div>
