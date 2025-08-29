@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation';
 // import AnimatedBackground from '@/components/AnimatedBackground';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import articles from '@/data/Creaturearticles.json';
+import articles from '@/data/Debunkedarticles.json';
 
 const Article = () => {
   // Add this useEffect hook

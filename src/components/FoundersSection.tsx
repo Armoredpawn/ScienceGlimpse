@@ -14,44 +14,53 @@ const FoundersSection = () => {
     role: 'Co-Founder: Executive Director & Head of Logistics',
     mission: 'Making complex quantum concepts accessible to every curious mind.',
     favoriteFields: ['⚛️', '🧠', '🌌'],
-    quote: 'Science isn\'t about memorizing — it\'s about glimpsing the truth behind the universe\'s most beautiful mysteries.',
+    quote: 'Science isn\'t about memorizing — it\'s about glimpsing the truth behind the universe\'s most beautiful and facinating mysteries.',
     gradient: 'from-quantum to-cosmic'
   }, {
     name: 'Ansh Sharma',
     role: 'Co-Founder: Director of Strategy & Lead Task Manager',
     mission: 'Blending storytelling with clarity to make research irresistible.',
     favoriteFields: ['⚛️', '🌌', '🔬'],
-    quote: 'We don\'t simplify science. We clarify it. There\'s a difference — and it changes everything.',
+    quote: 'We don\'t simplify science. We clarify it. There\'s a huge difference between the two — and it changes everything.',
     gradient: 'from-molecule to-neuron'
   }, {
     name: 'Aarav Madan',
     role: 'Co-Founder: Director of Media & Creative Innovation',
     mission: 'To craft visual and narrative experiences that bring science to life—capturing wonder, curiosity, and design in every frame.',
     favoriteFields: ['⚙️', '💻', '🌍'],
-    quote: 'Creativity is the science of seeing differently—then building it.',
+    quote: 'Creativity is the science of seeing differently than your peers—then actually making it real.',
     gradient: 'from-neuron to-cosmic'
   }, {
     name: 'Ayush Srivastava',
-    role: 'Co-Founder: Head Developer & Lead Technical Programmer',
-    mission: 'The future belongs to those who question the present.',
-    favoriteFields: ['⚙️', '💻', '⚗️'],
-    quote: 'The future belongs to those who question the present.',
+    role: 'Co-Founder: Head Programmer & Lead Technical Coder',
+    mission: 'The future belongs to those who question the present and construct the programming of tomorrow.',
+    favoriteFields: ['⚙️', '💻', '🧪'],
+    quote: 'Good code is what makes a website clear and functional. Great code is what makes a website unforgettable.',
     gradient: 'from-cosmic to-quantum'
   }, {
     name: 'Kavin Puri',
     role: 'Co-Founder: Head Developer & Lead Science Content Advisor',
-    mission: 'To fuse elegant design with smart backend logic—creating a site that evolves as fast as the science it represents.',
+    mission: 'To fuse elegant design with clear information & talented members and channel a universe of scientific innovation.',
     favoriteFields: ['🧬', '💻', '🩺'],
-    quote: 'Structure powers discovery. Good code? That\'s the skeleton of understanding.',
+    quote: 'Every great team needs a great leader and developer to bring their vision to life & build towards the future of scientific collaboration.',
     gradient: 'from-quantum to-molecule'
   }, {
     name: 'Saanvi Palagani',
-    role: 'Co-Founder: Chief Editor and Publicity Director',
-    mission: 'To shape and amplify voices that turn raw ideas into crystal-clear narratives—making science accessible, bold, and beautiful.',
+    role: 'Co-Founder: Chief Editor & Publicity Director',
+    mission: 'To amplify voices that turn raw ideas into crystal-clear narratives—making science accessible, bold, and beautiful.',
     favoriteFields: ['🧬', '🧠', '⚗️'],
     quote: 'Define Science.',
     gradient: 'from-molecule to-neuron'
-  }];
+  },{
+    name: 'Mihir Harinath',
+    role: 'Lead Advisor & Event Organizer',
+    mission: 'To orchestrate spaces where people connect and visions take teams with passion to create meaningful experiences.',
+    favoriteFields: ['⚙️', '💻', '🌎'],
+    quote: 'STEM is the key to the future.',
+    gradient: 'from-neuron to-cosmic'    
+  }
+
+];
   return <section className="py-20 px-4 bg-muted/30" id="team">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
