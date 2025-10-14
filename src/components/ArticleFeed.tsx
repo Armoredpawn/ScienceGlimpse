@@ -27,9 +27,9 @@ const titleGlow = [
 ];
 
 const buttonGlow = [
-  'group-hover:shadow-[0_0_16px_4px_rgba(59,130,246,0.5)] group-hover:text-blue-400',
-  'group-hover:shadow-[0_0_16px_4px_rgba(34,197,94,0.5)] group-hover:text-green-400',
-  'group-hover:shadow-[0_0_16px_4px_rgba(168,85,247,0.5)] group-hover:text-purple-400',
+  'group-hover:shadow-[0_0_16px_4px_rgba(59,130,246,0.5)]',
+  'group-hover:shadow-[0_0_16px_4px_rgba(34,197,94,0.5)]',
+  'group-hover:shadow-[0_0_16px_4px_rgba(168,85,247,0.5)]',
 ];
 
 const ArticleFeed = () => {
@@ -91,14 +91,17 @@ const ArticleFeed = () => {
                       </div>
                     </div>
 
+                    {/* Read Now Button */}
                     <div className="flex items-center justify-between pt-4">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className={`transition-shadow duration-300 ${buttonGlow[idx]}`}
+                        className={`transition-shadow duration-300 ${buttonGlow[idx]} hover:text-black group/button`}
                       >
-                        Read Now
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        <span className="transition-colors duration-300 group-hover/button:text-black">
+                          Read Now
+                        </span>
+                        <ArrowRight className="w-4 h-4 ml-2 transition-colors duration-300 group-hover/button:text-black group-hover/button:translate-x-1 transition-transform" />
                       </Button>
                     </div>
                   </div>

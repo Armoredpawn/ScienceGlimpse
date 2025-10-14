@@ -64,12 +64,12 @@ const HotSights = () => {
                     <span>{article.author}</span>
                   </div>
                   <Button
-                      variant="ghost"
-                      size="sm"
-                      className="group-hover:text-primary"
-                      onClick={() => (window.location.href = `#/article?id=${article.id}`)}
+                    variant="ghost"
+                    size="sm"
+                    className="transition-colors duration-300 hover:text-black"
+                    onClick={() => (window.location.href = `#/article?id=${article.id}`)}
                   >
-                      Read Now
+                    Read Now
                   </Button>
                 </div>
               </div>
