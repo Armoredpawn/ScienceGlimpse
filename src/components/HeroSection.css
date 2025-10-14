@@ -1,0 +1,44 @@
+.flowing-gradient-text {
+  background: linear-gradient(
+    90deg,
+    #a78bfa 0%,
+    #38bdf8 25%,
+    #34d399 50%,
+    #a78bfa 75%,
+    #a78bfa 100%
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: flowing-gradient 5s linear infinite;
+}
+
+@keyframes flowing-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Subtle purple glow for the first button */
+.glow-action-btn-purple {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.glow-action-btn-purple:hover, .glow-action-btn-purple:focus {
+  box-shadow: 0 0 8px 2px #a78bfa;
+  transform: scale(1.03);
+  z-index: 10;
+}
+
+/* Subtle green glow for the second button */
+.glow-action-btn-green {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.glow-action-btn-green:hover, .glow-action-btn-green:focus {
+  box-shadow: 0 0 8px 2px #34d399;
+  transform: scale(1.03);
+  z-index: 10;
+}

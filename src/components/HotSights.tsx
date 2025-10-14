@@ -3,7 +3,6 @@ import { Button } from './ui/button';
 import { Heart, X, Clock, User } from 'lucide-react';
 import articles from '../data/articles.json';  // Import articles JSON
 
-
 const HotSights = () => {
   const [preference, setPreference] = useState<'like' | 'dislike' | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<number | null>(null);
@@ -18,7 +17,7 @@ const HotSights = () => {
   };
 
   // Select which article IDs to show here:
-  const hotArticleIds = [1, 2, 3, 4];
+  const hotArticleIds = [3, 5, 7, 11];
   const hotArticles = articles.filter(article => hotArticleIds.includes(article.id));
 
   return (
@@ -38,7 +37,7 @@ const HotSights = () => {
           {hotArticles.map((article) => (
             <div
               key={article.id}
-              className="group bg-card/60 backdrop-blur-sm border border-border rounded-lg p-6 hover:bg-card/80 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10 relative"
+              className="group bg-card/60 backdrop-blur-sm border border-border rounded-lg p-6 transition-all duration-300 hover:bg-card/80 hover:scale-105 hover:shadow-lg hover:shadow-[0_0_32px_8px_rgba(251,146,60,0.5)] hover:ring-2 hover:ring-orange-400 relative"
             >
               <div className="text-4xl mb-4 transition-all duration-300 group-hover:animate-bounce">
                 {/* Show emoji or fallback */}
@@ -46,16 +45,17 @@ const HotSights = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <span className="bg-primary/20 text-primary px-2 py-1 rounded-full font-medium">
-                    {article.category || 'Science'}
+                    {Array.isArray(article.category)
+                      ? article.category.join(', ')
+                      : article.category || 'Science'}
                   </span>
                   <Clock className="w-3 h-3" />
                   <span>{article.readTime || '5 min'}</span>
                 </div>
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                <h3 className="font-semibold text-foreground group-hover:text-orange-400 group-hover:drop-shadow-[0_0_12px_rgb(251,146,60)] transition-colors transition-shadow duration-300">
                   {article.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {/* HERE: Use the excerpt from your JSON */}
                   {article.excerpt}
                 </p>
                 <div className="flex items-center justify-between gap-2 text-xs text-muted-foreground pt-2 border-t border-border">

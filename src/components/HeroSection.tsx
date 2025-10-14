@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Button } from './ui/button';
+import './HeroSection.css'; // Import the CSS for animation
 
 const HeroSection = () => {
   return (
@@ -8,7 +9,7 @@ const HeroSection = () => {
       <div className="max-w-6xl mx-auto text-center space-y-8">
         {/* Main Brand */}
         <div className="space-y-6">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold flowing-gradient-text bg-clip-text text-transparent leading-tight">
             ScienceGlimpse
           </h1>
           <h2 className="text-2xl md:text-4xl text-foreground/90 leading-tight font-extralight lg:text-4xl">
@@ -27,7 +28,7 @@ const HeroSection = () => {
               variant="default"
               size="lg"
               onClick={() => (window.location.href = '#/submission')}
-              className="bg-purple-600 hover:bg-purple-700 text-white text-lg py-4"
+              className="glow-action-btn-purple bg-purple-600 hover:bg-purple-700 text-white text-lg py-4 transition-all duration-300 border border-black"
             >
               Submit Your Article →
             </Button>
@@ -35,7 +36,7 @@ const HeroSection = () => {
               variant="outline"
               size="lg"
               onClick={() => (window.location.href = '#/themes')}
-              className="text-lg py-4"
+              className="glow-action-btn-green text-lg py-4 transition-all duration-300"
             >
               Themes
             </Button>

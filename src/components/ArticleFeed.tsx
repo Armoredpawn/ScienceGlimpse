@@ -7,12 +7,30 @@ interface Article {
   id: string | number;
   title: string;
   emoji: string;
-  category: string;
+  category: string | string[];
   readTime: string;
   author: string;
   excerpt: string;
   gradient: string;
 }
+
+const glowStyles = [
+  'hover:shadow-[0_0_48px_12px_rgba(59,130,246,0.7)]',   // Brighter Blue
+  'hover:shadow-[0_0_48px_12px_rgba(34,197,94,0.7)]',    // Brighter Green
+  'hover:shadow-[0_0_48px_12px_rgba(168,85,247,0.7)]',   // Brighter Purple
+];
+
+const titleGlow = [
+  'group-hover:text-blue-400 group-hover:drop-shadow-[0_0_18px_rgb(59,130,246)]',
+  'group-hover:text-green-400 group-hover:drop-shadow-[0_0_18px_rgb(34,197,94)]',
+  'group-hover:text-purple-400 group-hover:drop-shadow-[0_0_18px_rgb(168,85,247)]',
+];
+
+const buttonGlow = [
+  'group-hover:shadow-[0_0_16px_4px_rgba(59,130,246,0.5)] group-hover:text-blue-400',
+  'group-hover:shadow-[0_0_16px_4px_rgba(34,197,94,0.5)] group-hover:text-green-400',
+  'group-hover:shadow-[0_0_16px_4px_rgba(168,85,247,0.5)] group-hover:text-purple-400',
+];
 
 const ArticleFeed = () => {
   return (
@@ -30,14 +48,14 @@ const ArticleFeed = () => {
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3] // Your chosen article IDs
+          {[1, 2, 6]
             .map(id => articles.find(article => article.id === id))
             .filter(Boolean)
-            .map((article) => (
+            .map((article, idx) => (
               <a
                 key={article.id}
                 href={`#/article?id=${article.id}`}
-                className="group block"
+                className={`group block ${glowStyles[idx]}`}
               >
                 <div className="card-glow h-full p-6 rounded-xl relative overflow-hidden">
                   <div
@@ -46,14 +64,16 @@ const ArticleFeed = () => {
                   <div className="relative z-10 space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                        {article.category}
+                        {Array.isArray(article.category)
+                          ? article.category.join(', ')
+                          : article.category}
                       </span>
                       <span className="text-3xl group-hover:animate-bounce hover:scale-110 transition-transform duration-300">
                         {article.emoji}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold transition-colors duration-300 text-slate-50">
+                    <h3 className={`text-xl font-bold transition-colors duration-300 text-slate-50 ${titleGlow[idx]}`}>
                       {article.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -75,7 +95,7 @@ const ArticleFeed = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="group-hover:text-primary"
+                        className={`transition-shadow duration-300 ${buttonGlow[idx]}`}
                       >
                         Read Now
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
