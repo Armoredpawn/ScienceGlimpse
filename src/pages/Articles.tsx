@@ -95,7 +95,9 @@ const Articles = () => {
     Medicine: 'Medicine',
     Technology: 'Technology',
     Engineering: 'Engineering',
-    'Earth-science': 'Earth Science'
+    'Earth-science': 'Earth Science',
+    Psychology: 'Psychology',
+    Math: 'Math'
   };
 
   return (
