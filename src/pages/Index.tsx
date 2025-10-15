@@ -30,7 +30,7 @@ const Index = () => {
             <h2 className="text-3xl bg-gradient-to-r from-quantum to-cosmic bg-clip-text mb-8 py-[15px] px-0 text-[#5910d9] md:text-4xl font-bold">
               What's YOUR Obsession?
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 mb-8">
               {[
                 { field: 'Physics', icon: '⚛️', tag: 'Physics' },
                 { field: 'Biology', icon: '🧬', tag: 'Biology' },
@@ -40,6 +40,8 @@ const Index = () => {
                 { field: 'Technology', icon: '💻', tag: 'Technology' },
                 { field: 'Earth Science', icon: '🌍', tag: 'Earth-science' },
                 { field: 'Engineering', icon: '⚙️', tag: 'Engineering' },
+                { field: 'Psychology', icon: '💭', tag: 'Psychology' },
+                { field: 'Math', icon: '🔢', tag: 'Math' },
               ].map((item) => (
                 <button
                   key={item.tag}
