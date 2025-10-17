@@ -6,24 +6,31 @@ import HotSights from '@/components/HotSights';
 import ArticleFeed from '@/components/ArticleFeed';
 import FoundersSection from '@/components/FoundersSection';
 
-const Index = () => {
+type Category = {
+  field: string;
+  icon: string;
+  tag: string;
+  className: string;
+};
+
+const Index: React.FC = () => {
   // Function to handle category click
   const goToCategory = (tag: string) => {
     // Navigate using hash and clean parsing
-    window.location.href = `#/articles?category=${tag}`;
+    window.location.href = `#/articles?category=${encodeURIComponent(tag)}`;
   };
 
-  const categories = [
-    { field: 'Physics', icon: '⚛️', tag: 'Physics' },
-    { field: 'Biology', icon: '🧬', tag: 'Biology' },
-    { field: 'Chemistry', icon: '🧪', tag: 'Chemistry' },
-    { field: 'Astronomy', icon: '🌌', tag: 'Astronomy' },
-    { field: 'Medicine', icon: '🩺', tag: 'Medicine' },
-    { field: 'Technology', icon: '💻', tag: 'Technology' },
-    { field: 'Earth Science', icon: '🌍', tag: 'Earth-science' },
-    { field: 'Engineering', icon: '⚙️', tag: 'Engineering' },
-    { field: 'Psychology', icon: '💭', tag: 'Psychology' },
-    { field: 'Math', icon: '🔢', tag: 'Math' },
+  const categories: Category[] = [
+    { field: 'Physics', icon: '⚛️', tag: 'Physics', className: 'category-physics' },
+    { field: 'Biology', icon: '🧬', tag: 'Biology', className: 'category-biology' },
+    { field: 'Chemistry', icon: '🧪', tag: 'Chemistry', className: 'category-chemistry' },
+    { field: 'Astronomy', icon: '🌌', tag: 'Astronomy', className: 'category-astronomy' },
+    { field: 'Medicine', icon: '🩺', tag: 'Medicine', className: 'category-medicine' },
+    { field: 'Technology', icon: '💻', tag: 'Technology', className: 'category-technology' },
+    { field: 'Earth Science', icon: '🌍', tag: 'Earth-science', className: 'category-earth' },
+    { field: 'Engineering', icon: '⚙️', tag: 'Engineering', className: 'category-engineering' },
+    { field: 'Psychology', icon: '💭', tag: 'Psychology', className: 'category-psychology' },
+    { field: 'Math', icon: '🔢', tag: 'Math', className: 'category-math' },
   ];
 
   return (
@@ -56,7 +63,8 @@ const Index = () => {
                 <button
                   key={item.tag}
                   onClick={() => goToCategory(item.tag)}
-                  className="aspect-square flex flex-col items-center justify-center bg-card/60 border border-border backdrop-blur-md rounded-2xl p-4 text-center hover:bg-card/80 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.05] transition-all duration-300 group"
+                  className={`${item.className} aspect-square flex flex-col items-center justify-center bg-card/60 border border-border backdrop-blur-md rounded-2xl p-4 text-center transition-all duration-300 group`}
+                  aria-label={item.field}
                 >
                   <div className="text-4xl mb-2 group-hover:animate-bounce">{item.icon}</div>
                   <div className="text-sm font-semibold text-foreground bg-gray-700 rounded-full px-4 py-1">
@@ -68,7 +76,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Founders Section */}
+        {/* Founders Section (optional) */}
         {/* <FoundersSection /> */}
 
         {/* Footer */}
