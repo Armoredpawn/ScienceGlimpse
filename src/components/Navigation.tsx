@@ -27,7 +27,9 @@ const Navigation = () => {
     { label: 'Home', href: '#/' },
     { label: 'GlimpseArticles', href: '#/articles' },
     { label: 'About', href: '#/about' },
-    { label: 'Themes', href: '#/themes' }
+    { label: 'Themes', href: '#/themes' },
+    { label: 'Publish', href: '#/submission' },
+    { label: 'Contact', href: '#/contact' }
   ];
 
   return (
@@ -49,31 +51,6 @@ const Navigation = () => {
                 {item.label}
               </a>
             ))}
-
-            {/* Get Involved Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={handleMouseEnter} // Use the new handler
-              onMouseLeave={handleMouseLeave} // Use the new handler
-            >
-              <button className="text-foreground hover:text-primary transition-colors duration-300 hover:scale-105 transform flex items-center gap-1">
-                Get Involved
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              {showGetInvolvedDropdown && (
-                <div className="absolute top-full mt-2 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[120px] z-50">
-                  <a href="#/submission" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
-                    Publish
-                  </a>
-                  {/* <a href="#/donate" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
-                    Donate
-                  </a> */}
-                  <a href="#/contact" className="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors">
-                    Contact
-                  </a>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Mobile menu button */}
