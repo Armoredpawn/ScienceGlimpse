@@ -5,32 +5,11 @@ import { Button } from './ui/button';
 const WhatIsScienceGlimpse = () => {
   return (
     <section className="relative py-20 md:py-24 overflow-hidden text-gray-100">
-      {/* 
-      // TODO: Uncomment these once image files are added to /public/assets/
-      <img
-        src="/assets/brain.png"
-        alt="Brain"
-        className="absolute top-6 left-6 w-28 opacity-90 animate-pulse"
-      />
-
-      <img
-        src="/assets/planet.png"
-        alt="Planet"
-        className="absolute top-20 left-1/2 transform -translate-x-1/2 w-32 rotate-12 animate-spin-slow"
-      />
-
-      <img
-        src="/assets/pendulum.png"
-        alt="Pendulum"
-        className="absolute bottom-8 right-8 w-28 animate-bounce"
-      />
-      */}
 
       {/* Transparent backdrop (lets animated background show through) */}
       <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 px-6">
-        {/* Text Section */}
         <div className="flex-1 text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
             WHAT IS{' '}
@@ -53,7 +32,6 @@ const WhatIsScienceGlimpse = () => {
             — all in an engaging and meaningful way.
           </p>
           
-          {/* Learn More Button */}
           <div className="text-left mt-12">
           <Button
             variant="outline"
@@ -66,8 +44,6 @@ const WhatIsScienceGlimpse = () => {
         </div>
         </div>
 
-        {/* Video Placeholder */}
-        {/* YouTube Shorts Embed */}
         <div className="flex-1 flex justify-center">
           <div className="w-80 h-[450px] rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(147,51,234,0.5)] border-4 border-purple-500/70">
             <iframe
@@ -82,7 +58,6 @@ const WhatIsScienceGlimpse = () => {
         </div>
       </div>
 
-      {/* Subtle animated gradient overlay (still visible) */}
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-purple-500/10 to-transparent animate-pulse pointer-events-none" />
     </section>
   );
