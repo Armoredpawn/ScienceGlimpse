@@ -5,6 +5,7 @@ import HeroSection from '@/components/HeroSection';
 import HotSights from '@/components/HotSights';
 import ArticleFeed from '@/components/ArticleFeed';
 import FoundersSection from '@/components/FoundersSection';
+import WhatIsScienceGlimpse from '@/components/WhatIsScienceGlimpse';
 
 type Category = {
   field: string;
@@ -45,6 +46,9 @@ const Index: React.FC = () => {
       <main className="relative z-10">
         {/* Hero Section */}
         <HeroSection />
+
+        {/* Hero Section */}
+        <WhatIsScienceGlimpse />
 
         {/* Hot Sights */}
         <HotSights />
