@@ -51,7 +51,13 @@ const Contact = () => {
                 <Users className="w-6 h-6 text-primary" />
                 <h2 className="text-2xl font-bold text-foreground">Follow Us</h2>
               </div>
+              <div><h4><b>Check out the links below!</b></h4></div>
+              <div> <h4>‎ </h4></div>
               <div className="space-y-3">
+                <a href="https://www.youtube.com/channel/UChziIqWZasnGmBC1TrA1jNQ" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
+                  <span>🎥</span>
+                  <span><u>YouTube (ScienceGlimpse Shorts)</u></span>
+                </a>
                 <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
                   <span>📧</span>
                   <span>TikTok (Weekly Science Glimpses)</span>
@@ -59,10 +65,6 @@ const Contact = () => {
                 <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
                   <span>📸</span>
                   <span>Instagram (@ScienceGlimpse)</span>
-                </a>
-                <a href="https://www.youtube.com/channel/UChziIqWZasnGmBC1TrA1jNQ" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
-                  <span>🎥</span>
-                  <span>YouTube (ScienceGlimpse Shorts)</span>
                 </a>
               </div>
             </div>
@@ -86,7 +88,7 @@ const Contact = () => {
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-lg p-6">
                 <h3 className="text-lg font-bold text-foreground mb-3">Is ScienceGlimpse completely free?</h3>
                 <p className="text-muted-foreground">
-                  Yes!!! And if you are from the North Allegheny district and would like to author articles, please consider joining our club!
+                  Yes!!! And if you are from the North Allegheny district and would like to author articles, please consider joining our club! If you are from a different school district, don't hesitate to reach out to us through email to establish a ScienceGlimpse district at your school!
                 </p>
               </div>
               
@@ -96,6 +98,24 @@ const Contact = () => {
                   We welcome articles on any science topic written by students. They should be 800–1500 words, accessible to high school students, and properly cited. We love unique perspectives and engaging writing!
                 </p>
               </div>
+
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-lg p-6">
+                <h3 className="text-lg font-bold text-foreground mb-3">Do I need any prior qualifications to be an article writer?</h3>
+                <p className="text-muted-foreground">
+                  As long as you are passionate in spreading scientific knowledge, you are qualified to be an article writer! We do not require any prior experience, just a willingness to learn and share your insights with others.
+                </p>
+              </div>
+
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-lg p-6">
+                <h3 className="text-lg font-bold text-foreground mb-3">How is article accuracy monitored?</h3>
+                <p className="text-muted-foreground">
+                  Our editorial team will cross-check your information with your listed cited sources, and will check for any AI or plagarism. We want to see your voice shine, not a regurgitation of other sources!
+                </p>
+              </div>
+
+
+
+
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ const Index: React.FC = () => {
                   aria-label={item.field}
                 >
                   <div className="text-4xl mb-2 group-hover:animate-bounce">{item.icon}</div>
-                  <div className="text-sm font-semibold text-foreground bg-gray-700 rounded-full px-4 py-1">
+                  <div className="text-sm font-semibold text-foreground bg-gray-500 rounded-full px-4 py-1">
                     {item.field}
                   </div>
                 </button>

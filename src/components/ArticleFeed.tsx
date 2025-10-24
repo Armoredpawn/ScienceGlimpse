@@ -73,7 +73,7 @@ const ArticleFeed = () => {
                       </span>
                     </div>
 
-                    <h3 className={`text-xl font-bold transition-colors duration-300 text-slate-50 ${titleGlow[idx]}`}>
+                    <h3 className={`text-xl font-bold transition-colors duration-300 text-slate-0 ${titleGlow[idx]}`}>
                       {article.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">

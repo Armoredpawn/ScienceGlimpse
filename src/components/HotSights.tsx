@@ -21,7 +21,7 @@ const HotSights = () => {
   const hotArticles = articles.filter(article => hotArticleIds.includes(article.id));
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-r from-indigo-800/50 via-purple-800/50 to-indigo-900/50 ring-1 ring-orange-400/50 shadow-[0_0_20px_rgba(255,99,71,0.3)]">
+    <section className="py-20 px-4 bg-gradient-to-r from-indigo-500/50 via-purple-800/50 to-indigo-900/50 ring-1 ring-orange-400/50 shadow-[0_0_20px_rgba(255,99,71,0.3)]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4 flex items-center justify-center gap-2">
@@ -29,7 +29,7 @@ const HotSights = () => {
             Hot Sights
           </h2>
           <p className="text-lg text-pink-200 max-w-2xl mx-auto">
-            Today's most fascinating discoveries, handpicked for curious minds
+            Today's most fascinating discoveries, handpicked for curious minds:
           </p>
         </div>
 

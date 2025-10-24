@@ -42,7 +42,7 @@ const FoundersSection = () => {
     role: 'Co-Founder: Head Developer & Lead Science Content Advisor',
     mission: 'To fuse elegant design with clear information & talented members and channel a universe of scientific innovation.',
     favoriteFields: ['🧬', '💻', '🩺'],
-    quote: 'Every great team needs a great leader and developer to bring their vision to life & build towards the future of scientific collaboration.',
+    quote: 'Every great team needs a great developer at its core to bring their vision to life & build towards the future of scientific collaboration.',
     gradient: 'from-quantum to-molecule'
   }, {
     name: 'Saanvi Palagani',
@@ -53,10 +53,10 @@ const FoundersSection = () => {
     gradient: 'from-molecule to-neuron'
   },{
     name: 'Mihir Harinath',
-    role: 'Lead Advisor & Event Organizer',
+    role: 'Co-Founder: Lead Advisor & Event Organizer',
     mission: 'To orchestrate spaces where people connect and visions take teams with passion to create meaningful experiences.',
     favoriteFields: ['⚙️', '💻', '🌎'],
-    quote: 'STEM is the key to the future.',
+    quote: 'seeeegma?',
     gradient: 'from-neuron to-cosmic'    
   }
 

@@ -23,12 +23,15 @@ const WhatIsScienceGlimpse = () => {
           </h2>
 
           <p className="text-lg leading-relaxed text-gray-200 max-w-2xl">
-            ScienceGlimpse is a student-led exploration site designed for anyone
+            <b>ScienceGlimpse</b> is a student-led exploration site designed for anyone
             interested in learning more about a scientific topic or writing a
             science article. Our mission is to do the opposite of what every
             other scientific article does by providing a concise 5-minute
             article that conveys the main information, current applications in
-            the scientific community, and the key breakthroughs we have observed
+            the scientific community, and the key breakthroughs we have observed. By
+            uniting the voices of passionate students across the world, we aim to 
+            present unique and diverse scientific perspectives for readers of all 
+            experience and interest levels
             — all in an engaging and meaningful way.
           </p>
           
