@@ -90,6 +90,7 @@ const Articles = () => {
     'Data-science': "Data Science"
   };
 
+  
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       <AnimatedBackground />
