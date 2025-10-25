@@ -25,7 +25,14 @@ const Articles = () => {
       ? article.category
       : [article.category];
 
-    const matchesCategory = !category || articleCategories.includes(category);
+    const matchesCategory =
+      !category ||
+      articleCategories.some(
+        c =>
+          c.toLowerCase().replace(/\s+/g, '-').trim() ===
+          category.toLowerCase().trim()
+      );
+
     const matchesSearch =
       !searchTerm ||
       article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -78,7 +85,9 @@ const Articles = () => {
     Engineering: 'Engineering',
     'Earth-science': 'Earth Science',
     Psychology: 'Psychology',
-    Math: 'Math'
+    Math: 'Math',
+    'Artificial-intelligence': 'Artificial Intelligence',
+    'Data-science': "Data Science"
   };
 
   return (

@@ -14,7 +14,7 @@
         "id": 2,
         "title": "Machine Learning: The Best Data Analyzer",
         "excerpt": "Machine learning (ML) is a subset of artificial intelligence that is able to learn patterns and correlations in data.",
-        "category": "Technology",
+        "category": ["Technology", "Artificial Intelligence"],
         "author": "Ayush Srivastava",
         "readTime": "5 min",
         "thumbnail": "https://images.scienceglimpse.org/image2.jpg",

@@ -20,6 +20,7 @@ import WhatifArticles from "./pages/Whatifarticles";
 import Whatif from "./pages/Whatif";
 import JuniorArticles from "./pages/Juniorarticles";
 import Junior from "./pages/Junior";
+import Videos from "./pages/Videos";
 import AnalyticsTracker from "./AnalyticsTracker"
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/whatif" element={<Whatif />} />
           <Route path="/juniorarticles" element={<JuniorArticles />} />
           <Route path="/junior" element={<Junior />} />
+          <Route path="/videos" element={<Videos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

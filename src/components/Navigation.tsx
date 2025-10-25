@@ -12,6 +12,7 @@ const Navigation: React.FC = () => {
     { label: 'GlimpseArticles', href: '#/articles' },
     { label: 'About', href: '#/about' },
     { label: 'Themes', href: '#/themes' },
+    { label: 'Videos', href: '#/videos' },
     { label: 'Publish', href: '#/submission' },
     { label: 'Contact', href: '#/contact' }
   ];
@@ -27,7 +28,7 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center space-x-8 mx-auto">
+          <div className="hidden md:flex items-center space-x-7 mx-auto">
             {navItems.map(item => (
               <a
                 key={item.label}
