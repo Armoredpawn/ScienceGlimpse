@@ -20,12 +20,12 @@ const FoundersSection = () => {
     name: 'Ansh Sharma',
     role: 'Co-Founder: Director of Strategy & Lead Task Manager',
     mission: 'Blending storytelling with clarity to make research irresistible.',
-    favoriteFields: ['⚛️', '🌌', '🔬'],
+    favoriteFields: ['🔬', '🌌', '⚛️'],
     quote: 'We don\'t simplify science. We clarify it. There\'s a huge difference between the two — and it changes everything.',
-    gradient: 'from-molecule to-neuron'
+    gradient: 'from-quantum to-neuron'
   }, {
     name: 'Aarav Madan',
-    role: 'Co-Founder: Director of Media & Creative Innovation',
+    role: 'Co-Founder: Director of Media & Creative Innovation Outreach',
     mission: 'To craft visual and narrative experiences that bring science to life—capturing wonder, curiosity, and design in every frame.',
     favoriteFields: ['⚙️', '💻', '🌍'],
     quote: 'Creativity is the science of seeing differently than your peers—then actually making it real.',
@@ -33,17 +33,17 @@ const FoundersSection = () => {
   }, {
     name: 'Ayush Srivastava',
     role: 'Co-Founder: Head Programmer & Lead Technical Coder',
-    mission: 'The future belongs to those who question the present and construct the programming of tomorrow.',
+    mission: 'To structure the backbone of the voices of tomorrow and facilitate the science of today.',
     favoriteFields: ['⚙️', '💻', '🧪'],
     quote: 'Good code is what makes a website clear and functional. Great code is what makes a website unforgettable.',
     gradient: 'from-cosmic to-quantum'
   }, {
     name: 'Kavin Puri',
-    role: 'Co-Founder: Head Developer & Lead Science Content Advisor',
+    role: 'Co-Founder: Head Developer & Director of Content & Design',
     mission: 'To fuse elegant design with clear information & talented members and channel a universe of scientific innovation.',
     favoriteFields: ['🧬', '💻', '🩺'],
     quote: 'Every great team needs a great developer at its core to bring their vision to life & build towards the future of scientific collaboration.',
-    gradient: 'from-quantum to-molecule'
+    gradient: 'from-molecule to-neuron'
   }, {
     name: 'Saanvi Palagani',
     role: 'Co-Founder: Chief Editor & Publicity Director',
@@ -57,7 +57,7 @@ const FoundersSection = () => {
     mission: 'To orchestrate spaces where people connect and visions take teams with passion to create meaningful experiences.',
     favoriteFields: ['⚙️', '💻', '🌎'],
     quote: 'seeeegma?',
-    gradient: 'from-neuron to-cosmic'    
+    gradient: 'from-cosmic to-cosmic'    
   }
 
 ];
@@ -141,7 +141,7 @@ const FoundersSection = () => {
                 Apply to Write
               </button>
               <button 
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                className="bg-purple-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
                 onClick={() => window.location.href = '#/contact'}
               >
                 Get Involved

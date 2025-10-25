@@ -32,8 +32,7 @@ const WhatIsScienceGlimpse = () => {
             the scientific community, and the key breakthroughs we have observed. By
             uniting the voices of passionate students across the world, we aim to 
             present unique and diverse scientific perspectives for readers of all 
-            experience and interest levels
-            — all in an engaging and meaningful way.
+            experience and interest levels — all in an engaging and meaningful way.
           </p>
           
           <div className="text-left mt-12">

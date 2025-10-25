@@ -14,29 +14,29 @@ const Index = () => {
     {
       id: 'creature',
       field: 'Creature Profile',
-      emoji: '⚛️',
+      emoji: '🐯',
       to: '/creatureprofile',
-      gradient: 'from-blue-500 to-indigo-600',
+      gradient: 'from-red-300 to-orange-700 saturate-600',
       category: 'Living Beings',
-      readTime: '5 min',
+      readTime: '4-6 min',
       excerpt: 'Fascinating facts about real-life animals, past and present.',
     },
     {
       id: 'junior',
       field: 'Junior',
-      emoji: '🧬',
+      emoji: '😄',
       to: '/juniorarticles',
-      gradient: 'from-blue-500 to-indigo-600',
+      gradient: 'from-green-200 to-yellow-600',
       category: 'Junior Education',
-      readTime: '5 min',
-      excerpt: 'Fun, kid-friendly science stories made easy to understand.',
+      readTime: '3-5 min',
+      excerpt: 'Fun, kid-friendly science stories tailored to the growing mind.',
     },
     {
       id: 'debunked',
       field: 'Debunked',
-      emoji: '🧪',
+      emoji: '🕵️‍♂️',
       to: '/debunkedarticles',
-      gradient: 'from-blue-500 to-indigo-600',
+      gradient: 'from-indigo-500 to-purple-600',
       category: 'Myth Busting',
       readTime: '5 min',
       excerpt: 'Unraveling popular science myths with real facts and evidence.',
@@ -46,14 +46,14 @@ const Index = () => {
       field: 'What If?',
       emoji: '🤔',
       to: '/whatifarticles',
-      gradient: 'from-blue-500 to-indigo-600',
+      gradient: 'from-black-500 to-white-600',
       category: 'Curiosity',
       readTime: '5 min',
-      excerpt: 'Exploring wild science questions and imaginative scenarios.',
+      excerpt: 'Exploring wild science questions and imaginative scenarios in our world.',
     },
   ];
 
-  return (
+  return (  
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       {/* Animated Science Background */}
       <AnimatedBackground />

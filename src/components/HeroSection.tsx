@@ -29,7 +29,7 @@ const HeroSection = () => {
               variant="default"
               size="lg"
               onClick={() => (window.location.href = '#/submission')}
-              className="glow-action-btn-purple bg-purple-600 hover:bg-purple-700 text-white text-lg py-4 transition-all duration-300 border border-black"
+              className="glow-action-btn-purple bg-blue-700 hover:bg-purple-700 text-white text-lg py-4 transition-all duration-300 border border-black"
             >
               Submit Your Article →
             </Button>
@@ -37,7 +37,7 @@ const HeroSection = () => {
               variant="outline"
               size="lg"
               onClick={() => (window.location.href = '#/themes')}
-              className="glow-action-btn-green text-lg py-4 transition-all duration-300"
+              className="glow-action-btn-green bg-green-700 text-lg py-4 transition-all duration-300"
             >
               Themes
             </Button>

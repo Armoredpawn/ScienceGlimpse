@@ -250,9 +250,7 @@
     transform: scale(1.05);
   }
 
-  .btn-allignment {
-    @apply flex items-center justify-center gap-2;
-  }
+
 
   /* Center article categories inside article cards */
   /* This selector targets the small category/readtime row inside each article card and centers it */
