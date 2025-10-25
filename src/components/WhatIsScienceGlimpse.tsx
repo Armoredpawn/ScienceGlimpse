@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from './ui/button';
 
@@ -39,11 +40,16 @@ const WhatIsScienceGlimpse = () => {
           <Button
             variant="outline"
             size="lg"
-            className="px-8glow-action-btn-green text-lg py-4 transition-all duration-300"
+            className="
+              glow-action-btn-green
+              text-black dark:text-white
+              text-lg py-4 transition-all duration-300
+            "
             onClick={() => (window.location.href = '#/about')}
           >
-            Learn More
+          Learn More
           </Button>
+
         </div>
         </div>
 
