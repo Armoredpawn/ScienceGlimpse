@@ -66,6 +66,10 @@ const Contact = () => {
                   <span>📸</span>
                   <span>Instagram (@ScienceGlimpse)</span>
                 </a>
+                <a href="https://www.linkedin.com/company/scienceglimpse/" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
+                  <span>🌐</span>
+                  <span>LinkedIn (ScienceGlimpse)</span>
+                </a>
               </div>
             </div>
           </div>
