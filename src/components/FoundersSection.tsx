@@ -56,7 +56,7 @@ const FoundersSection = () => {
     role: 'Co-Founder: Lead Advisor & Event Organizer',
     mission: 'To orchestrate spaces where people connect and visions take teams with passion to create meaningful experiences.',
     favoriteFields: ['⚙️', '💻', '🌎'],
-    quote: 'seeeegma?',
+    quote: 'STEM is the key to the future.',
     gradient: 'from-cosmic to-cosmic'    
   }
 
