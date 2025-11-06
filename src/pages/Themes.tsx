@@ -51,6 +51,16 @@ const Index = () => {
       readTime: '5 min',
       excerpt: 'Exploring wild science questions and imaginative scenarios in our world.',
     },
+    {
+      id: 'how',
+      field: 'How???',
+      emoji: '😕',
+      to: '/howarticles',
+      gradient: 'from-black-500 to-white-600',
+      category: 'Explanation',
+      readTime: '5 min',
+      excerpt: 'Explaining how insane science concepts and topics work.',
+    },
   ];
 
   return (  

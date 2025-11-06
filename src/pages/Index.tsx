@@ -30,9 +30,9 @@ const Index: React.FC = () => {
     { field: 'Technology', icon: '💻', tag: 'Technology', className: 'category-technology' },
     { field: 'Earth Science', icon: '🌍', tag: 'Earth-science', className: 'category-earth' },
     { field: 'Engineering', icon: '⚙️', tag: 'Engineering', className: 'category-engineering' },
-    { field: 'Psychology', icon: '💭', tag: 'Psychology', className: 'category-psychology' },
+    { field: 'Psychology', icon: '🧠', tag: 'Psychology', className: 'category-psychology' },
     { field: 'Math', icon: '🔢', tag: 'Math', className: 'category-math' },
-    { field: 'Artificial Intelligence', icon: '🧠', tag: 'Artificial-intelligence', className: 'category-ai' },
+    { field: 'Artificial Intelligence', icon: '🤖', tag: 'Artificial-intelligence', className: 'category-ai' },
     { field: 'Data Science', icon: '📊', tag: 'Data-science', className: 'category-data' },
   ];
 
