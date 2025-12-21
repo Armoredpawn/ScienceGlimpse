@@ -62,7 +62,7 @@ const Contact = () => {
                   <span>📧</span>
                   <span>TikTok (Weekly Science Glimpses)</span>
                 </a>
-                <a href="#" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
+                <a href="https://www.instagram.com/science.glimpse__/" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted">
                   <span>📸</span>
                   <span>Instagram (@ScienceGlimpse)</span>
                 </a>
