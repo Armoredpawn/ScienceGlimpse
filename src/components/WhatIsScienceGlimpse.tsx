@@ -56,7 +56,7 @@ const WhatIsScienceGlimpse = () => {
           <div className="w-80 h-[450px] rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(147,51,234,0.5)] border-4 border-purple-500/70">
             <iframe
               className="w-full h-full"
-              src="https://www.youtube.com/embed/b8bBDGtRftU"
+              src="https://www.youtube.com/embed/kA6Fwy2Pfbo"
               title="ScienceGlimpse Shorts"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
