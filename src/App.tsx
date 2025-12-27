@@ -12,17 +12,17 @@ import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 import Article from './pages/Article';
 import Themes from "./pages/Themes";
-import CreatureProfile from "./pages/Creatureprofile";
-import CreatureArticle from "./pages/Creaturearticle";
-import DebunkedArticles from "./pages/Debunkedarticles";
-import Debunked from "./pages/Debunked";
-import WhatifArticles from "./pages/Whatifarticles";
-import Whatif from "./pages/Whatif";
-import JuniorArticles from "./pages/Juniorarticles";
-import Junior from "./pages/Junior";
+// import CreatureProfile from "./pages/Creatureprofile";
+// import CreatureArticle from "./pages/Creaturearticle";
+// import DebunkedArticles from "./pages/Debunkedarticles";
+// import Debunked from "./pages/Debunked";
+// import WhatifArticles from "./pages/Whatifarticles";
+// import Whatif from "./pages/Whatif";
+// import JuniorArticles from "./pages/Juniorarticles";
+// import Junior from "./pages/Junior";
 import Videos from "./pages/Videos";
-import HowArticles from "./pages/Howarticles";
-import How from "./pages/How";
+// import HowArticles from "./pages/Howarticles";
+// import How from "./pages/How";
 import AnalyticsTracker from "./AnalyticsTracker"
 
 const queryClient = new QueryClient();
@@ -43,17 +43,17 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/themes" element={<Themes />} />
-          <Route path="/creatureprofile" element={<CreatureProfile />} />
-          <Route path="/creaturearticle" element={<CreatureArticle />} />
-          <Route path="/debunkedarticles" element={<DebunkedArticles />} />
-          <Route path="/debunked" element={<Debunked />} />
-          <Route path="/whatifarticles" element={<WhatifArticles />} />
-          <Route path="/whatif" element={<Whatif />} />
-          <Route path="/juniorarticles" element={<JuniorArticles />} />
-          <Route path="/junior" element={<Junior />} />
+          {/* <Route path="/creatureprofile" element={<CreatureProfile />} /> */}
+          {/* <Route path="/creaturearticle" element={<CreatureArticle />} /> */}
+          {/* <Route path="/debunkedarticles" element={<DebunkedArticles />} /> */}
+          {/* <Route path="/debunked" element={<Debunked />} /> */}
+          {/* <Route path="/whatifarticles" element={<WhatifArticles />} /> */}
+          {/* <Route path="/whatif" element={<Whatif />} /> */}
+          {/* <Route path="/juniorarticles" element={<JuniorArticles />} /> */}
+          {/* <Route path="/junior" element={<Junior />} /> */}
           <Route path="/videos" element={<Videos />} />
-          <Route path="/howarticles" element={<HowArticles />} />
-          <Route path="/how" element={<How />} />
+          {/* <Route path="/howarticles" element={<HowArticles />} /> */}
+          {/* <Route path="/how" element={<How />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
