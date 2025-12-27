@@ -9,10 +9,9 @@ const Index = () => {
   useEffect(() => {
       window.scrollTo(0, 0);
   }, []);
-  // Define your themes data
   const themes = [
     {
-      id: 'creature',
+      id: 'creature-profile',
       field: 'Creature Profile',
       emoji: '🐯',
       to: '/creatureprofile',
@@ -113,7 +112,7 @@ const Index = () => {
                       </div>
 
                       <div className="flex items-center justify-between pt-4">
-                        <Link to={theme.to}>
+                        <Link to={`/articles?theme=${theme.id}`}>
                           <Button
                             variant="ghost"
                             size="sm"

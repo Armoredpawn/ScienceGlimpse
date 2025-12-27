@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ArrowLeft, Search, Clock, User, Tag } from 'lucide-react';
+import { ArrowLeft, Clock, User, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import articlesData from '@/data/articles.json';
@@ -15,33 +14,46 @@ const Articles = () => {
 
   const [searchParams] = useSearchParams();
   const category = searchParams.get('category');
+  const theme = searchParams.get('theme');
 
   const [searchTerm, setSearchTerm] = useState('');
 
   const allArticles = articlesData;
 
+  // =========================
+  // FILTERING LOGIC
+  // =========================
   const filteredArticles = allArticles.filter(article => {
     const articleCategories = Array.isArray(article.category)
       ? article.category
       : [article.category];
 
+    const normalizedCategories = articleCategories.map(c =>
+      c.toLowerCase().replace(/\s+/g, '-').trim()
+    );
+
+    // Subject/category filter (homepage)
     const matchesCategory =
       !category ||
-      articleCategories.some(
-        c =>
-          c.toLowerCase().replace(/\s+/g, '-').trim() ===
-          category.toLowerCase().trim()
-      );
+      normalizedCategories.includes(category.toLowerCase().trim());
 
+    // Theme filter (themes page)
+    const matchesTheme =
+      !theme ||
+      normalizedCategories.includes(theme.toLowerCase().trim());
+
+    // Search filter
     const matchesSearch =
       !searchTerm ||
       article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesTheme && matchesSearch;
   });
 
-  // Infinite scroll state
+  // =========================
+  // INFINITE SCROLL
+  // =========================
   const initialArticlesToLoad = 16;
   const articlesToLoadPerScroll = 9;
   const [articlesToShow, setArticlesToShow] = useState(initialArticlesToLoad);
@@ -54,19 +66,26 @@ const Articles = () => {
 
     setLoadingMore(true);
     setTimeout(() => {
-      setArticlesToShow(prev => Math.min(prev + articlesToLoadPerScroll, filteredArticles.length));
+      setArticlesToShow(prev =>
+        Math.min(prev + articlesToLoadPerScroll, filteredArticles.length)
+      );
       setLoadingMore(false);
     }, 500);
   }, [loadingMore, articlesToShow, filteredArticles.length]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && !loadingMore && articlesToShow < filteredArticles.length) {
-        loadMoreArticles();
-      }
-    }, {
-      rootMargin: '100px',
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        if (
+          entries[0].isIntersecting &&
+          !loadingMore &&
+          articlesToShow < filteredArticles.length
+        ) {
+          loadMoreArticles();
+        }
+      },
+      { rootMargin: '100px' }
+    );
 
     if (sentinelRef.current) observer.observe(sentinelRef.current);
 
@@ -75,22 +94,39 @@ const Articles = () => {
     };
   }, [loadingMore, articlesToShow, filteredArticles.length, loadMoreArticles]);
 
+  // =========================
+  // CATEGORY DISPLAY NAMES
+  // =========================
   const categoryNames: Record<string, string> = {
-    Physics: 'Physics',
-    Biology: 'Biology',
-    Chemistry: 'Chemistry',
-    Astronomy: 'Astronomy',
-    Medicine: 'Medicine',
-    Technology: 'Technology',
-    Engineering: 'Engineering',
-    'Earth-science': 'Earth Science',
-    Psychology: 'Psychology',
-    Math: 'Math',
-    'Artificial-intelligence': 'Artificial Intelligence',
-    'Data-science': "Data Science"
+    physics: 'Physics',
+    biology: 'Biology',
+    chemistry: 'Chemistry',
+    astronomy: 'Astronomy',
+    medicine: 'Medicine',
+    technology: 'Technology',
+    engineering: 'Engineering',
+    'earth-science': 'Earth Science',
+    psychology: 'Psychology',
+    math: 'Math',
+    'artificial-intelligence': 'Artificial Intelligence',
+    'data-science': 'Data Science',
+    junior: 'Junior',
+    creature: 'Creature Profile',
+    debunked: 'Debunked',
+    whatif: 'What If?',
+    how: 'How???',
   };
 
-  
+  const activeLabel =
+    theme
+      ? categoryNames[theme] || theme
+      : category
+      ? categoryNames[category] || category
+      : 'All Articles';
+
+  // =========================
+  // RENDER
+  // =========================
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
       <AnimatedBackground />
@@ -105,22 +141,12 @@ const Articles = () => {
             </Button>
 
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-4">
-              {category ? `${categoryNames[category]} Articles` : 'All Articles'}
+              {activeLabel} Articles
             </h1>
+
             <p className="text-xl text-muted-foreground mb-6">
               Discover the latest insights and breakthroughs in science
             </p>
-
-            {/* Search */}
-            {/*<div className="relative max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-              <Input
-                placeholder="Search articles..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>*/}
           </div>
 
           {/* Articles Grid */}
@@ -128,7 +154,7 @@ const Articles = () => {
             {filteredArticles.slice(0, articlesToShow).map(article => (
               <article
                 key={article.id}
-                onClick={() => window.location.href = `#/article?id=${article.id}`}
+                onClick={() => (window.location.href = `#/article?id=${article.id}`)}
                 className="group bg-card/60 backdrop-blur-sm border border-border rounded-lg overflow-hidden hover:bg-card/80 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10 cursor-pointer"
               >
                 <div className="aspect-video bg-muted overflow-hidden">
@@ -136,7 +162,10 @@ const Articles = () => {
                     src={article.thumbnail}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => { e.currentTarget.src = `https://placehold.co/400x225/2d3748/ffffff?text=No+Image`; }}
+                    onError={e => {
+                      e.currentTarget.src =
+                        'https://placehold.co/400x225/2d3748/ffffff?text=No+Image';
+                    }}
                   />
                 </div>
 
@@ -144,7 +173,9 @@ const Articles = () => {
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Tag className="w-3 h-3" />
                     <span className="bg-primary/20 text-primary px-2 py-1 rounded-full font-medium capitalize">
-                      {Array.isArray(article.category) ? article.category.join(', ') : article.category}
+                      {Array.isArray(article.category)
+                        ? article.category.join(', ')
+                        : article.category}
                     </span>
                     <Clock className="w-3 h-3 ml-2" />
                     <span>{article.readTime}</span>
@@ -189,7 +220,9 @@ const Articles = () => {
           {filteredArticles.length === 0 && (
             <div className="text-center py-12">
               <p className="text-xl text-muted-foreground mb-4">No articles found</p>
-              <p className="text-muted-foreground">Try adjusting your search or browse different categories</p>
+              <p className="text-muted-foreground">
+                Try adjusting your filters or browse different categories
+              </p>
             </div>
           )}
         </div>
