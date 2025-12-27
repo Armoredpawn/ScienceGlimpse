@@ -511,5 +511,73 @@
   }
 }
 
+/* ===== Articles page enhancements (banner gradient, card glows, button hover, read-more) ===== */
 
-/* ...existing code... */
+/* Banner: very dark purple-blue-green gradient */
+.counts-banner {
+  background-image: linear-gradient(120deg, rgba(18,12,40,0.95), rgba(25,20,55,0.96) 40%, rgba(12,40,45,0.95));
+  color: hsl(var(--foreground));
+  transition: transform 420ms cubic-bezier(.16,.84,.44,1), box-shadow 420ms cubic-bezier(.16,.84,.44,1), background-color 320ms ease;
+}
+
+/* smoother and more gradual hover lift */
+.counts-banner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 90px rgba(59,130,246,0.06), 0 12px 40px rgba(20,184,166,0.04);
+}
+
+/* spacing between the two bubbles */
+.counts-banner .flex.items-center {
+  gap: 2.5rem; /* increased gap between current & pending bubbles */
+}
+
+/* Pill typography slightly smaller already handled in JSX with text-base; numbers keep text-xl */
+
+/* Random native button: default purple-ish, hover stronger purple glow */
+.random-native-btn {
+  background-color: hsl(260 70% 55%); /* purple default */
+  color: white;
+  border: none;
+  box-shadow: 0 8px 22px rgba(99,102,241,0.14);
+  transition: transform 300ms cubic-bezier(.16,.84,.44,1), box-shadow 300ms cubic-bezier(.16,.84,.44,1), background-color 260ms ease;
+}
+.random-native-btn:hover:enabled {
+  transform: translateY(-6px);
+  background-color: hsl(260 65% 48%); /* slightly different purple on hover */
+  box-shadow: 0 26px 70px rgba(99,102,241,0.24), 0 10px 36px rgba(99,102,241,0.12);
+}
+
+/* Article card glow — uses per-card CSS var --article-glow (rgba color string) */
+.article-glow-card {
+  transition: box-shadow 420ms cubic-bezier(.16,.84,.44,1), transform 300ms cubic-bezier(.16,.84,.44,1);
+  /* base subtle outline to keep layout stable */
+  box-shadow: 0 4px 18px rgba(2,6,23,0.03);
+}
+.article-glow-card:hover {
+  transform: translateY(-3px);
+  /* apply the per-card glow --article-glow set inline on the element via style */
+  box-shadow:
+    0 8px 30px rgba(2,6,23,0.04),
+    0 22px 60px var(--article-glow);
+}
+
+/* Read More button inner hover: fill becomes soft green */
+.read-more-btn {
+  background-color: transparent;
+  transition: background-color 260ms cubic-bezier(.16,.84,.44,1), color 220ms;
+}
+.read-more-btn:hover {
+  background-color: rgba(34,197,94,0.12); /* soft green interior */
+  color: hsl(var(--foreground));
+  border-color: rgba(34,197,94,0.18);
+}
+
+/* Larger search input text and size (ensure your Input passes these styles through) */
+input.pl-14.py-4.w-full.text-lg {
+  font-size: 1.05rem;
+}
+
+/* ensure article hover title color transitions remain smooth */
+.group-hover\:text-primary {
+  transition: color 260ms cubic-bezier(.16,.84,.44,1);
+}
