@@ -93,7 +93,7 @@ const Articles: React.FC = () => {
   };
 
   const currentCount = filteredArticles.length;
-  const PENDING_COUNT = 25;
+  const PENDING_COUNT = 6;
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
