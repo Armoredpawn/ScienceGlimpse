@@ -41,6 +41,7 @@ const Articles: React.FC = () => {
 
   const [searchParams] = useSearchParams();
   const categoryQuery = searchParams.get('category') || '';
+  const authorQuery = searchParams.get('author') || '';
   const themeQuery = searchParams.get('theme') || '';
   const activeFilter = categoryQuery || themeQuery;
 
@@ -51,7 +52,8 @@ const Articles: React.FC = () => {
     const articleCategories = Array.isArray(article.category) ? article.category : [article.category];
     const matchesFilter = !activeFilter || articleCategories.some(cat => cat.toLowerCase() === activeFilter.toLowerCase());
     const matchesSearch = !searchTerm || article.title.toLowerCase().includes(searchTerm.toLowerCase()) || article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
+    const matchesAuthor = !authorQuery || (article.author && article.author.toLowerCase() === authorQuery.toLowerCase());
+    return matchesFilter && matchesSearch && matchesAuthor;
   });
 
   const [articlesToShow, setArticlesToShow] = useState(16);
