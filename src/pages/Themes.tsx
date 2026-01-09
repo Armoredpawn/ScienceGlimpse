@@ -66,9 +66,12 @@ const Themes = () => {
       <main className="relative z-10">
         <section className="py-20 px-4 bg-muted/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl bg-gradient-to-r from-quantum to-cosmic bg-clip-text mb-8 py-[15px] px-0 text-[#5910d9] md:text-4xl font-bold">
+            <h2 className="text-3xl bg-gradient-to-r from-quantum to-cosmic bg-clip-text mb-4 py-[15px] px-0 text-[#5910d9] md:text-4xl font-bold">
               Explore Our Themes!
             </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+              These curated themes dive into unique and offbeat subjects you won't typically find in standard article categories — hand-picked to spark curiosity and uncover surprising science.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {themes.map((theme) => (
                 <div key={theme.id} className="group">

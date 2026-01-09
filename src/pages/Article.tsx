@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import articles from '../data/articles.json'; // 👈 adjust path if needed
+import highlightContentWithGlossary from '@/lib/glossary'
 
 const Article = () => {
   // Add this useEffect hook
@@ -47,8 +48,10 @@ const Article = () => {
           <img src={article.thumbnail} alt={article.title} className="w-full h-full object-cover" />
         </div>
 
-        <div className="text-lg leading-relaxed text-foreground whitespace-pre-line">
-          {article.content}
+        <div className="text-lg leading-relaxed text-foreground">
+          <div className="whitespace-pre-line">
+            {highlightContentWithGlossary(article.content)}
+          </div>
         </div>
       </main>
     </div>

@@ -49,21 +49,19 @@ const Index: React.FC = () => {
         {/* Hero Section */}
         <HeroSection />
 
-        {/* Hero Section */}
-        <WhatIsScienceGlimpse />
+        {/* What is ScienceGlimpse (centered on home) */}
+        <WhatIsScienceGlimpse centerText={true} paragraphSize="normal" />
 
         {/* Hot Sights */}
         <HotSights />
 
-        {/* Article Feed */}
-        <ArticleFeed />
-
         {/* What's YOUR Obsession Section */}
-        <section className="py-20 px-4 bg-muted/20">
+        <section className="py-24 px-4 bg-muted/20">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl bg-gradient-to-r from-quantum to-cosmic bg-clip-text mb-8 py-[15px] px-0 text-[#5910d9] md:text-4xl font-bold">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neuron to-cosmic bg-clip-text text-transparent mb-4 py-[12px]">
               What's YOUR Obsession?
             </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">Explore focused topics across physics, biology, chemistry, astronomy, medicine, technology and more — concise articles and guides to spark your curiosity.</p>
             <div className="grid grid-cols-5 grid-rows-3 gap-6 mb-8">
               {categories.map((item) => (
                 <button
@@ -81,6 +79,9 @@ const Index: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Article Feed */}
+        <ArticleFeed />
 
         {/* Founders Section (optional) */}
         {/* <FoundersSection /> */}

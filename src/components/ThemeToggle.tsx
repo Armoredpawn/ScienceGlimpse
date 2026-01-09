@@ -34,7 +34,7 @@ const ThemeToggle: React.FC = () => {
       aria-pressed={isLight}
       title={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
     >
-      {isLight ? 'Dark Mode 🌙' : 'Light Mode (BETA)☀️'}
+      {isLight ? 'Dark Mode 🌙' : 'Light Mode ☀️'}
     </Button>
   );
 };

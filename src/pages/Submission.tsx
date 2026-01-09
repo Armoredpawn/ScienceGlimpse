@@ -26,11 +26,11 @@ const Submission = () => {
               Back
             </Button>
             
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-6 text-center">
               Submit Your Article
             </h1>
-            
-            <p className="text-xl text-muted-foreground mb-8">
+
+            <p className="text-xl text-muted-foreground mb-12 text-center">
               Ready to share your passion for science? Click the button below to submit your article through our Google Form.
             </p>
           </div>

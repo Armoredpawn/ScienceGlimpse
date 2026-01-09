@@ -46,14 +46,15 @@ const Articles: React.FC = () => {
   const activeFilter = categoryQuery || themeQuery;
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategories, setActiveCategories] = useState<string[]>(categoryQuery ? [categoryQuery] : []);
   const allArticles: Article[] = (articlesData as Article[]) ?? [];
 
   const filteredArticles = allArticles.filter((article) => {
     const articleCategories = Array.isArray(article.category) ? article.category : [article.category];
-    const matchesFilter = !activeFilter || articleCategories.some(cat => cat.toLowerCase() === activeFilter.toLowerCase());
+    const matchesCategory = activeCategories.length === 0 || articleCategories.some(cat => activeCategories.some(ac => ac.toLowerCase() === cat.toLowerCase()));
     const matchesSearch = !searchTerm || article.title.toLowerCase().includes(searchTerm.toLowerCase()) || article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesAuthor = !authorQuery || (article.author && article.author.toLowerCase() === authorQuery.toLowerCase());
-    return matchesFilter && matchesSearch && matchesAuthor;
+    return matchesCategory && matchesSearch && matchesAuthor;
   });
 
   const [articlesToShow, setArticlesToShow] = useState(16);
@@ -147,6 +148,44 @@ const Articles: React.FC = () => {
           <div className="relative mx-auto w-full md:w-[860px]">
             <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <Input placeholder="Search for your next read..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-14 py-4 w-full text-lg" />
+          </div>
+        </div>
+
+        {/* Compact category toggles (below search) */}
+        <div className="max-w-7xl mx-auto px-4 mb-8">
+          <div className="flex items-center justify-center gap-3 overflow-x-auto whitespace-nowrap px-2">
+            {[
+              { label: 'Physics', key: 'Physics', color: 'rgb(124,58,237)', lightColor: 'rgba(124,58,237,0.2)' },
+              { label: 'Biology', key: 'Biology', color: 'rgb(45,212,191)', lightColor: 'rgba(45,212,191,0.2)' },
+              { label: 'Chemistry', key: 'Chemistry', color: 'rgb(190,242,100)', lightColor: 'rgba(190,242,100,0.2)' },
+              { label: 'Astronomy', key: 'Astronomy', color: 'rgb(59,130,246)', lightColor: 'rgba(59,130,246,0.2)' },
+              { label: 'Medicine', key: 'Medicine', color: 'rgb(96,165,250)', lightColor: 'rgba(96,165,250,0.2)' },
+              { label: 'Technology', key: 'Technology', color: 'rgb(250,204,21)', lightColor: 'rgba(250,204,21,0.2)' },
+              { label: 'Earth Science', key: 'Earth Science', color: 'rgb(251,146,60)', lightColor: 'rgba(251,146,60,0.2)' },
+              { label: 'Engineering', key: 'Engineering', color: 'rgb(156,163,175)', lightColor: 'rgba(156,163,175,0.2)' },
+              { label: 'Psychology', key: 'Psychology', color: 'rgb(244,114,182)', lightColor: 'rgba(244,114,182,0.2)' },
+              { label: 'Math', key: 'Math', color: 'rgb(239,68,68)', lightColor: 'rgba(239,68,68,0.2)' },
+              { label: 'AI', key: 'Artificial Intelligence', color: 'rgb(140,80,200)', lightColor: 'rgba(140,80,200,0.2)' },
+              { label: 'Data Science', key: 'Data Science', color: 'rgb(14,165,164)', lightColor: 'rgba(14,165,164,0.2)' }
+            ].map(cat => {
+              const isActive = activeCategories.some(a => a.toLowerCase() === cat.key.toLowerCase());
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => {
+                    setActiveCategories(prev => prev.some(a => a.toLowerCase() === cat.key.toLowerCase()) ? prev.filter(a => a.toLowerCase() !== cat.key.toLowerCase()) : [...prev, cat.key]);
+                  }}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 border inline-block`}
+                  style={{
+                    backgroundColor: isActive ? cat.lightColor : 'transparent',
+                    borderColor: isActive ? cat.color : 'rgba(100,100,100,0.3)',
+                    color: isActive ? cat.color : 'inherit'
+                  }}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 

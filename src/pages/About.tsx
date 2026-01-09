@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
-import FoundersSection from '@/components/FoundersSection';
+import WhatIsScienceGlimpse from '@/components/WhatIsScienceGlimpse';
 const About = () => {
   useEffect(() => {
       window.scrollTo(0, 0);
@@ -15,14 +15,17 @@ const About = () => {
       
       {/* Main Content */}
       <main className="relative z-10 pt-20">
-        {/* Header */}
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-quantum to-cosmic bg-clip-text text-transparent mb-8">
-              About ScienceGlimpse:
-            </h1>
-          </div>
-        </section>
+        {/* What is ScienceGlimpse (About page — no video) */}
+        <WhatIsScienceGlimpse
+          showVideo={false}
+          showButton={false}
+          centerText={true}
+          paragraphSize="lg"
+          overrideParagraphs={[
+            `ScienceGlimpse is a student-led exploration site dedicated to making science accessible, engaging, and meaningful for students and science enthusiasts everywhere. We partner with passionate student writers who conduct independent research and translate complex scientific concepts into clear, compelling 5-minute articles that highlight core ideas, real-world applications, and breakthrough discoveries. Unlike traditional science writing, we focus on clarity and engagement, ensuring every reader—regardless of background—can understand and appreciate the science behind today's most exciting innovations. Our mission extends beyond content creation to fostering the next generation of science communicators and researchers.`,
+            `We specifically seek middle and high school student authors who are deeply interested in STEM and eager to develop their science communication skills. Through ScienceGlimpse, young writers gain hands-on experience in independent research, developing persuasive scientific arguments, and reaching a global audience. We provide comprehensive editorial support, publication opportunities, and mentorship to help students build portfolios and confidence in their abilities. By empowering youth to share their unique perspectives, we're not just publishing articles—we're cultivating future leaders, innovators, and science communicators who will shape our understanding of the world.`
+          ]}
+        />
 
         {/* Our Mission */}
         <section className="py-16 px-4 bg-muted/20">
@@ -77,8 +80,7 @@ const About = () => {
           </div>
         </section> */}
 
-        {/* Team Section */}
-        <FoundersSection />
+        
 
         {/* Footer */}
         <footer className="py-16 px-4 border-t border-border bg-card/30 backdrop-blur-sm">

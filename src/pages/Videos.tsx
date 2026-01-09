@@ -52,9 +52,12 @@ const Videos = () => {
               <ArrowLeft className="w-4 h-4 mr-2" /> Back
             </Button>
 
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neuron to-cosmic bg-clip-text text-transparent mb-6 text-center">
               ScienceGlimpse Shorts
             </h1>
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto text-center mb-8">
+              Our ScienceGlimpse Shorts are bite-sized video explainers that bring quick scientific insights to your screen. Watch concise, engaging clips that highlight discoveries, experiments, and explainers from our student creators.
+            </p>
           </div>
 
           {/* YouTube Shorts Grid */}

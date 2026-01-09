@@ -16,7 +16,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum to-cosmic bg-clip-text text-transparent mb-4">
               Contact Us!
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

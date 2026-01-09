@@ -11,6 +11,7 @@ const Navigation: React.FC = () => {
     { label: 'Home', href: '#/' },
     { label: 'GlimpseArticles', href: '#/articles' },
     { label: 'About', href: '#/about' },
+    { label: 'Members', href: '#/members' },
     { label: 'Themes', href: '#/themes' },
     { label: 'Videos', href: '#/videos' },
     { label: 'Publish', href: '#/submission' },
@@ -20,15 +21,15 @@ const Navigation: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="relative flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="absolute -left-4 flex items-center space-x-3 z-30">
             <ScienceEyeLogo className="w-10 h-10" />
             <h1 className="text-xl font-bold text-foreground select-none">ScienceGlimpse</h1>
           </div>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center space-x-7 mx-auto">
+          <div className="hidden md:flex absolute left-0 right-0 justify-center space-x-7 pointer-events-auto">
             {navItems.map(item => (
               <a
                 key={item.label}
@@ -41,7 +42,7 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Right-side controls */}
-          <div className="hidden md:flex items-center gap-3 ml-auto">
+          <div className="hidden md:flex items-center gap-3 z-30 absolute right-4">
             <ThemeToggle />
           </div>
 
