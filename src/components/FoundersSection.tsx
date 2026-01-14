@@ -179,7 +179,7 @@ const FoundersSection = () => {
               },
               {
                 title: 'Outreach',
-                director: 'Medhansh Garadala',
+                director: ['Medhansh Garadala', 'Mihir Harinath'],
                 mission: 'Build community connections and broaden our readership through partnerships and events.',
                 members: ['Vedika Kamble'],
                 gradient: 'from-quantum/90 to-molecule/95'
