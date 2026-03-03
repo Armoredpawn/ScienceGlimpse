@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation';
 // import AnimatedBackground from '@/components/AnimatedBackground';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import articles from '../data/articles.json'; // 👈 adjust path if needed
+import articles from '../data/Articles.json'; // 👈 adjust path if needed
 import highlightContentWithGlossary from '@/lib/glossary'
 
 const Article = () => {
