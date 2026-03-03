@@ -4,7 +4,7 @@ import { ArrowLeft, Search, Clock, User, Tag } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import articlesData from '@/data/articles.json';
+import articlesData from '../data/articles.json';
 
 type Article = {
   id: number | string;
