@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ArrowLeft, Search, Clock, User, Tag } from 'lucide-react';
+import { ArrowLeft, Search, Clock, User, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import articlesData from '../data/articles.json';
 
 type Article = {
   id: number | string;
@@ -34,6 +33,30 @@ const subjectGlowMap: Record<string, string> = {
   Debunked: 'rgba(99, 102, 241, 0.32)',
 };
 
+const ARTICLES_PER_PAGE = 9;
+const PENDING_COUNT = 6;
+
+const categoryNames: Record<string, string> = {
+  'Earth-science': 'Earth Science',
+  'Artificial Intelligence': 'Artificial Intelligence',
+  'Data Science': 'Data Science',
+};
+
+const CATEGORIES = [
+  { label: 'Physics', key: 'Physics', color: 'rgb(124,58,237)', lightColor: 'rgba(124,58,237,0.2)' },
+  { label: 'Biology', key: 'Biology', color: 'rgb(45,212,191)', lightColor: 'rgba(45,212,191,0.2)' },
+  { label: 'Chemistry', key: 'Chemistry', color: 'rgb(190,242,100)', lightColor: 'rgba(190,242,100,0.2)' },
+  { label: 'Astronomy', key: 'Astronomy', color: 'rgb(59,130,246)', lightColor: 'rgba(59,130,246,0.2)' },
+  { label: 'Medicine', key: 'Medicine', color: 'rgb(96,165,250)', lightColor: 'rgba(96,165,250,0.2)' },
+  { label: 'Technology', key: 'Technology', color: 'rgb(250,204,21)', lightColor: 'rgba(250,204,21,0.2)' },
+  { label: 'Earth Science', key: 'Earth Science', color: 'rgb(251,146,60)', lightColor: 'rgba(251,146,60,0.2)' },
+  { label: 'Engineering', key: 'Engineering', color: 'rgb(156,163,175)', lightColor: 'rgba(156,163,175,0.2)' },
+  { label: 'Psychology', key: 'Psychology', color: 'rgb(244,114,182)', lightColor: 'rgba(244,114,182,0.2)' },
+  { label: 'Math', key: 'Math', color: 'rgb(239,68,68)', lightColor: 'rgba(239,68,68,0.2)' },
+  { label: 'AI', key: 'Artificial Intelligence', color: 'rgb(140,80,200)', lightColor: 'rgba(140,80,200,0.2)' },
+  { label: 'Data Science', key: 'Data Science', color: 'rgb(14,165,164)', lightColor: 'rgba(14,165,164,0.2)' },
+];
+
 const Articles: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,36 +70,61 @@ const Articles: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategories, setActiveCategories] = useState<string[]>(categoryQuery ? [categoryQuery] : []);
-  const allArticles: Article[] = (articlesData as Article[]) ?? [];
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allArticles, setAllArticles] = useState<Article[]>([]);
+  const [articlesLoaded, setArticlesLoaded] = useState(false);
 
-  const filteredArticles = allArticles.filter((article) => {
-    const articleCategories = Array.isArray(article.category) ? article.category : [article.category];
-    const matchesCategory = activeCategories.length === 0 || articleCategories.some(cat => activeCategories.some(ac => ac.toLowerCase() === cat.toLowerCase()));
-    const matchesSearch = !searchTerm || article.title.toLowerCase().includes(searchTerm.toLowerCase()) || article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesAuthor = !authorQuery || (article.author && article.author.toLowerCase() === authorQuery.toLowerCase());
-    return matchesCategory && matchesSearch && matchesAuthor;
-  });
-
-  const [articlesToShow, setArticlesToShow] = useState(16);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
-
-  const loadMoreArticles = useCallback(() => {
-    if (loadingMore || articlesToShow >= filteredArticles.length) return;
-    setLoadingMore(true);
-    setTimeout(() => {
-      setArticlesToShow(prev => Math.min(prev + 9, filteredArticles.length));
-      setLoadingMore(false);
-    }, 500);
-  }, [loadingMore, articlesToShow, filteredArticles.length]);
-
+  // Lazy load the articles JSON only after the page renders
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !loadingMore && articlesToShow < filteredArticles.length) loadMoreArticles();
-    }, { rootMargin: '100px' });
-    if (sentinelRef.current) observer.observe(sentinelRef.current);
-    return () => observer.disconnect();
-  }, [loadingMore, articlesToShow, filteredArticles.length, loadMoreArticles]);
+    import('../data/articles.json').then((module) => {
+      setAllArticles(module.default as Article[]);
+      setArticlesLoaded(true);
+    });
+  }, []);
+
+  // Memoized filtering so it doesn't recompute on every render
+  const filteredArticles = useMemo(() => {
+    return allArticles.filter((article) => {
+      const articleCategories = Array.isArray(article.category) ? article.category : [article.category];
+      const matchesCategory =
+        activeCategories.length === 0 ||
+        articleCategories.some((cat) =>
+          activeCategories.some((ac) => ac.toLowerCase() === cat.toLowerCase())
+        );
+      const matchesSearch =
+        !searchTerm ||
+        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesAuthor =
+        !authorQuery ||
+        (article.author && article.author.toLowerCase() === authorQuery.toLowerCase());
+      return matchesCategory && matchesSearch && matchesAuthor;
+    });
+  }, [allArticles, activeCategories, searchTerm, authorQuery]);
+
+  // Reset to page 1 whenever filters or search change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, activeCategories, authorQuery]);
+
+  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+  const paginatedArticles = filteredArticles.slice(
+    (currentPage - 1) * ARTICLES_PER_PAGE,
+    currentPage * ARTICLES_PER_PAGE
+  );
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
+    .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2)
+    .reduce<(number | '...')[]>((acc, p, i, arr) => {
+      if (i > 0 && p - (arr[i - 1] as number) > 1) acc.push('...');
+      acc.push(p);
+      return acc;
+    }, []);
 
   const goToArticle = (id: string | number) => {
     window.location.href = `#/article?id=${encodeURIComponent(String(id))}`;
@@ -89,14 +137,13 @@ const Articles: React.FC = () => {
     goToArticle(pool[idx].id);
   };
 
-  const categoryNames: Record<string, string> = {
-    'Earth-science': 'Earth Science',
-    'Artificial Intelligence': 'Artificial Intelligence',
-    'Data Science': 'Data Science'
+  const toggleCategory = (key: string) => {
+    setActiveCategories((prev) =>
+      prev.some((a) => a.toLowerCase() === key.toLowerCase())
+        ? prev.filter((a) => a.toLowerCase() !== key.toLowerCase())
+        : [...prev, key]
+    );
   };
-
-  const currentCount = filteredArticles.length;
-  const PENDING_COUNT = 6;
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
@@ -104,37 +151,54 @@ const Articles: React.FC = () => {
       <Navigation />
 
       <main className="relative z-10 pt-20">
-        {/* Header Row - RESTORED */}
+        {/* Header Row */}
         <div className="max-w-7xl mx-auto px-4 mb-10">
           <div className="flex items-center justify-between gap-6">
             <div className="flex-1">
-              <button className="inline-flex items-center text-sm text-muted-foreground hover:text-primary" onClick={() => window.history.back()}>
+              <button
+                className="inline-flex items-center text-sm text-muted-foreground hover:text-primary"
+                onClick={() => window.history.back()}
+              >
                 <ArrowLeft className="w-4 h-4 mr-2" /> Back
               </button>
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mt-6 mb-4">
                 {activeFilter ? `${categoryNames[activeFilter] || activeFilter} Articles` : 'All Articles'}
               </h1>
-              <p className="text-lg text-muted-foreground">Discover the latest insights and breakthroughs in science</p>
+              <p className="text-lg text-muted-foreground">
+                Discover the latest insights and breakthroughs in science
+              </p>
             </div>
             <div className="flex-shrink-0">
-              <button onClick={goToRandomArticle} className="random-native-btn inline-flex items-center gap-2 px-6 py-3 rounded-md text-base font-semibold">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h7a4 4 0 0 1 0 8H3"></path><path d="M21 12h-7a4 4 0 0 0 0 8h7"></path></svg>
+              <button
+                onClick={goToRandomArticle}
+                className="random-native-btn inline-flex items-center gap-2 px-6 py-3 rounded-md text-base font-semibold"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M3 12h7a4 4 0 0 1 0 8H3"></path>
+                  <path d="M21 12h-7a4 4 0 0 0 0 8h7"></path>
+                </svg>
                 Random Article
               </button>
             </div>
           </div>
         </div>
 
-        {/* Banner - RESTORED */}
+        {/* Banner */}
         <div className="counts-banner-wrap w-full mb-12">
           <div className="counts-banner w-full">
             <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-center gap-10">
               <div className="flex items-center gap-10 flex-wrap">
-                <div className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base" style={{ backgroundColor: 'hsl(268 67% 50% / 0.10)', color: 'hsl(268 67% 50%)' }}>
+                <div
+                  className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base"
+                  style={{ backgroundColor: 'hsl(268 67% 50% / 0.10)', color: 'hsl(268 67% 50%)' }}
+                >
                   <span className="mr-4">Number of Current Articles:</span>
-                  <span className="text-xl">{currentCount}</span>
+                  <span className="text-xl">{filteredArticles.length}</span>
                 </div>
-                <div className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base" style={{ backgroundColor: 'hsl(150 60% 40% / 0.10)', color: 'hsl(150 60% 40%)' }}>
+                <div
+                  className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base"
+                  style={{ backgroundColor: 'hsl(150 60% 40% / 0.10)', color: 'hsl(150 60% 40%)' }}
+                >
                   <span className="mr-4">Number of Pending Articles:</span>
                   <span className="text-xl">{PENDING_COUNT}</span>
                 </div>
@@ -147,39 +211,29 @@ const Articles: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 mb-14">
           <div className="relative mx-auto w-full md:w-[860px]">
             <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-            <Input placeholder="Search for your next read..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-14 py-4 w-full text-lg" />
+            <Input
+              placeholder="Search for your next read..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-14 py-4 w-full text-lg"
+            />
           </div>
         </div>
 
-        {/* Compact category toggles (below search) */}
+        {/* Category Toggles */}
         <div className="max-w-7xl mx-auto px-4 mb-8">
           <div className="flex items-center justify-center gap-3 overflow-x-auto whitespace-nowrap px-2">
-            {[
-              { label: 'Physics', key: 'Physics', color: 'rgb(124,58,237)', lightColor: 'rgba(124,58,237,0.2)' },
-              { label: 'Biology', key: 'Biology', color: 'rgb(45,212,191)', lightColor: 'rgba(45,212,191,0.2)' },
-              { label: 'Chemistry', key: 'Chemistry', color: 'rgb(190,242,100)', lightColor: 'rgba(190,242,100,0.2)' },
-              { label: 'Astronomy', key: 'Astronomy', color: 'rgb(59,130,246)', lightColor: 'rgba(59,130,246,0.2)' },
-              { label: 'Medicine', key: 'Medicine', color: 'rgb(96,165,250)', lightColor: 'rgba(96,165,250,0.2)' },
-              { label: 'Technology', key: 'Technology', color: 'rgb(250,204,21)', lightColor: 'rgba(250,204,21,0.2)' },
-              { label: 'Earth Science', key: 'Earth Science', color: 'rgb(251,146,60)', lightColor: 'rgba(251,146,60,0.2)' },
-              { label: 'Engineering', key: 'Engineering', color: 'rgb(156,163,175)', lightColor: 'rgba(156,163,175,0.2)' },
-              { label: 'Psychology', key: 'Psychology', color: 'rgb(244,114,182)', lightColor: 'rgba(244,114,182,0.2)' },
-              { label: 'Math', key: 'Math', color: 'rgb(239,68,68)', lightColor: 'rgba(239,68,68,0.2)' },
-              { label: 'AI', key: 'Artificial Intelligence', color: 'rgb(140,80,200)', lightColor: 'rgba(140,80,200,0.2)' },
-              { label: 'Data Science', key: 'Data Science', color: 'rgb(14,165,164)', lightColor: 'rgba(14,165,164,0.2)' }
-            ].map(cat => {
-              const isActive = activeCategories.some(a => a.toLowerCase() === cat.key.toLowerCase());
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategories.some((a) => a.toLowerCase() === cat.key.toLowerCase());
               return (
                 <button
                   key={cat.key}
-                  onClick={() => {
-                    setActiveCategories(prev => prev.some(a => a.toLowerCase() === cat.key.toLowerCase()) ? prev.filter(a => a.toLowerCase() !== cat.key.toLowerCase()) : [...prev, cat.key]);
-                  }}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 border inline-block`}
+                  onClick={() => toggleCategory(cat.key)}
+                  className="px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 border inline-block"
                   style={{
                     backgroundColor: isActive ? cat.lightColor : 'transparent',
                     borderColor: isActive ? cat.color : 'rgba(100,100,100,0.3)',
-                    color: isActive ? cat.color : 'inherit'
+                    color: isActive ? cat.color : 'inherit',
                   }}
                 >
                   {cat.label}
@@ -191,36 +245,118 @@ const Articles: React.FC = () => {
 
         {/* Articles Grid */}
         <div className="max-w-7xl mx-auto px-4 pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {filteredArticles.slice(0, articlesToShow).map((article) => {
-              const primarySubject = Array.isArray(article.category) ? article.category[0] : article.category;
-              const glow = subjectGlowMap[primarySubject] ?? 'rgba(59,130,246,0.28)';
-              return (
-                <article key={article.id} onClick={() => goToArticle(article.id)} className="group article-glow-card bg-card/60 backdrop-blur-sm border border-border rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-pointer" style={{ ['--article-glow' as any]: glow }}>
-                  <div className="aspect-video bg-muted overflow-hidden">
-                    <img src={article.thumbnail} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Tag className="w-3 h-3" />
-                      <span className="bg-primary/20 text-primary px-2 py-1 rounded-full font-medium">
-                        {Array.isArray(article.category) ? article.category.join(', ') : article.category}
+          {!articlesLoaded ? (
+            <div className="flex items-center justify-center py-32 text-muted-foreground text-lg">
+              Loading articles...
+            </div>
+          ) : paginatedArticles.length === 0 ? (
+            <div className="flex items-center justify-center py-32 text-muted-foreground text-lg">
+              No articles found.
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {paginatedArticles.map((article) => {
+                  const primarySubject = Array.isArray(article.category)
+                    ? article.category[0]
+                    : article.category;
+                  const glow = subjectGlowMap[primarySubject] ?? 'rgba(59,130,246,0.28)';
+                  return (
+                    <article
+                      key={article.id}
+                      onClick={() => goToArticle(article.id)}
+                      className="group article-glow-card bg-card/60 backdrop-blur-sm border border-border rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                      style={{ ['--article-glow' as any]: glow }}
+                    >
+                      <div className="aspect-video bg-muted overflow-hidden">
+                        <img
+                          src={article.thumbnail}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="p-6 space-y-4">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Tag className="w-3 h-3" />
+                          <span className="bg-primary/20 text-primary px-2 py-1 rounded-full font-medium">
+                            {Array.isArray(article.category)
+                              ? article.category.join(', ')
+                              : article.category}
+                          </span>
+                          <Clock className="w-3 h-3 ml-2" />
+                          <span>{article.readTime}</span>
+                        </div>
+                        <h2 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                          {article.title}
+                        </h2>
+                        <p className="text-muted-foreground line-clamp-3 leading-relaxed">
+                          {article.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between pt-4 border-t border-border">
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <User className="w-4 h-4" />
+                            <span>{article.author}</span>
+                          </div>
+                          <button className="read-more-btn px-3 py-1 rounded-md border border-border text-sm font-medium">
+                            Read More →
+                          </button>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-14">
+                  <button
+                    onClick={() => goToPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="p-2 rounded-md border border-border text-sm font-medium disabled:opacity-30 hover:border-primary/50 transition-colors"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+
+                  {pageNumbers.map((p, i) =>
+                    p === '...' ? (
+                      <span key={`ellipsis-${i}`} className="px-2 text-muted-foreground">
+                        ...
                       </span>
-                      <Clock className="w-3 h-3 ml-2" />
-                      <span>{article.readTime}</span>
-                    </div>
-                    <h2 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-2">{article.title}</h2>
-                    <p className="text-muted-foreground line-clamp-3 leading-relaxed">{article.excerpt}</p>
-                    <div className="flex items-center justify-between pt-4 border-t border-border">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground"><User className="w-4 h-4" /><span>{article.author}</span></div>
-                      <button className="read-more-btn px-3 py-1 rounded-md border border-border text-sm font-medium">Read More →</button>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-          {filteredArticles.length > articlesToShow && <div ref={sentinelRef} className="py-8 text-center text-muted-foreground">Loading more articles...</div>}
+                    ) : (
+                      <button
+                        key={p}
+                        onClick={() => goToPage(p as number)}
+                        className="w-9 h-9 rounded-md border text-sm font-medium transition-colors"
+                        style={{
+                          backgroundColor:
+                            currentPage === p ? 'hsl(268 67% 50% / 0.2)' : 'transparent',
+                          borderColor:
+                            currentPage === p ? 'hsl(268 67% 50%)' : 'rgba(100,100,100,0.3)',
+                          color: currentPage === p ? 'hsl(268 67% 50%)' : 'inherit',
+                        }}
+                      >
+                        {p}
+                      </button>
+                    )
+                  )}
+
+                  <button
+                    onClick={() => goToPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="p-2 rounded-md border border-border text-sm font-medium disabled:opacity-30 hover:border-primary/50 transition-colors"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+
+              {/* Page info */}
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                Page {currentPage} of {totalPages} · {filteredArticles.length} articles
+              </p>
+            </>
+          )}
         </div>
       </main>
     </div>
