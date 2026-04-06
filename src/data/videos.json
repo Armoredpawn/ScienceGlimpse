@@ -1,26 +1,8 @@
 [
   {
-    "id": 1,
-    "youtubeId": "SIUz_7YMbpo",
-    "title": "A Pink Alien",
-    "author": "ScienceGlimpse"
-  },
-  {
-    "id": 2,
-    "youtubeId": "b8bBDGtRftU",
-    "title": "It's a bird, it's a penguin, it's a parrot...",
-    "author": "ScienceGlimpse"
-  },
-  {
     "id": 3,
     "youtubeId": "GhQPjrM0t2Y",
     "title": "Come Inside",
-    "author": "ScienceGlimpse"
-  },
-  {
-    "id": 4,
-    "youtubeId": "kA6Fwy2Pfbo",
-    "title": "Let It Snow!",
     "author": "ScienceGlimpse"
   }
 ]

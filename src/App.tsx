@@ -21,7 +21,6 @@ import Themes from "./pages/Themes";
 // import Whatif from "./pages/Whatif";
 // import JuniorArticles from "./pages/Juniorarticles";
 // import Junior from "./pages/Junior";
-import Videos from "./pages/Videos";
 // import HowArticles from "./pages/Howarticles";
 // import How from "./pages/How";
 import AnalyticsTracker from "./AnalyticsTracker"
@@ -53,7 +52,6 @@ const App = () => (
           {/* <Route path="/whatif" element={<Whatif />} /> */}
           {/* <Route path="/juniorarticles" element={<JuniorArticles />} /> */}
           {/* <Route path="/junior" element={<Junior />} /> */}
-          <Route path="/videos" element={<Videos />} />
           {/* <Route path="/howarticles" element={<HowArticles />} /> */}
           {/* <Route path="/how" element={<How />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
