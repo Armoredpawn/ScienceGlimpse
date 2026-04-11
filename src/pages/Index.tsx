@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
@@ -15,9 +15,14 @@ type Category = {
 };
 
 const Index: React.FC = () => {
-  // Function to handle category click
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsPopupOpen(true), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   const goToCategory = (tag: string) => {
-    // Navigate using hash and clean parsing
     window.location.href = `#/articles?category=${encodeURIComponent(tag)}`;
   };
 
@@ -38,30 +43,27 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
-      {/* Animated Science Background */}
+
       <AnimatedBackground />
 
-      {/* Navigation */}
       <Navigation />
 
-      {/* Main Content */}
       <main className="relative z-10">
-        {/* Hero Section */}
+
         <HeroSection />
 
-        {/* What is ScienceGlimpse (centered on home) */}
         <WhatIsScienceGlimpse centerText={true} paragraphSize="normal" />
 
-        {/* Hot Sights */}
         <HotSights />
 
-        {/* What's YOUR Obsession Section */}
         <section className="py-24 px-4 bg-muted/20">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neuron to-cosmic bg-clip-text text-transparent mb-4 py-[12px]">
               What's YOUR Obsession?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">Explore focused topics across physics, biology, chemistry, astronomy, medicine, technology and more — concise articles and guides to spark your curiosity.</p>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+              Explore focused topics across physics, biology, chemistry, astronomy, medicine, technology and more — concise articles and guides to spark your curiosity.
+            </p>
             <div className="grid grid-cols-5 grid-rows-3 gap-6 mb-8">
               {categories.map((item) => (
                 <button
@@ -80,13 +82,10 @@ const Index: React.FC = () => {
           </div>
         </section>
 
-        {/* Article Feed */}
         <ArticleFeed />
 
-        {/* Founders Section (optional) */}
         {/* <FoundersSection /> */}
 
-        {/* Footer */}
         <footer className="py-16 px-4 border-t border-border bg-card/30 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
             <p className="text-muted-foreground">
@@ -99,7 +98,56 @@ const Index: React.FC = () => {
             </div>
           </div>
         </footer>
+
       </main>
+
+      {isPopupOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+          onClick={() => setIsPopupOpen(false)}
+        />
+      )}
+
+      {isPopupOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 pointer-events-none">
+          <div className="relative w-full max-w-md bg-card border border-border rounded-2xl p-8 pointer-events-auto">
+            <button
+              onClick={() => setIsPopupOpen(false)}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-muted hover:bg-muted/80 text-muted-foreground transition-colors"
+            >
+              ✕
+            </button>
+            <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4">
+              Upcoming Event
+            </div>
+            <h2 className="text-2xl font-bold text-foreground mb-2">
+              ScienceGlimpse Event at Northland Public Library!
+            </h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              June 20, 2026 &nbsp;·&nbsp; Northland Public Library
+            </p>
+            <p className="text-base text-muted-foreground leading-relaxed mb-6">
+              The purpose of this event is to spread the love of science, get kids interested in the field of science, spread the message of ScienceGlimpse, and allow for people to make donations to an amazing cause.
+            </p>
+            
+            <a href="#about"
+              className="block w-full text-center bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity"
+            >
+              Learn More!
+            </a>
+          </div>
+        </div>
+      )}
+
+      {!isPopupOpen && (
+        <button
+          onClick={() => setIsPopupOpen(true)}
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-primary text-primary-foreground text-sm font-semibold px-4 py-3 rounded-full shadow-lg hover:opacity-90 transition-all"
+        >
+          Upcoming Event!
+        </button>
+      )}
+
     </div>
   );
 };
