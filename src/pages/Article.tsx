@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
-// import AnimatedBackground from '@/components/AnimatedBackground';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import articles from '../data/articles.json';
@@ -27,7 +26,6 @@ const Article = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
-      {/* <AnimatedBackground /> */}
       <Navigation />
 
       <main className="relative z-10 pt-20 max-w-3xl mx-auto px-4 py-8">
@@ -52,6 +50,27 @@ const Article = () => {
             {highlightContentWithGlossary(article.content)}
           </div>
         </div>
+
+        {/* // "references": [{ "author": "Kip Thorne", "title": "The Science of Interstellar", "url": "https://example.com" }, { "author": "NASA", "title": "Gravity Assist", "url": "https://example.com" }], */}
+        {article.references && article.references.length > 0 && (
+          <div className="mt-12 border-t pt-8">
+            <h2 className="text-2xl font-bold mb-4">References</h2>
+            <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+              {article.references.map((ref, i) => (
+                <li key={i}>
+                  {ref.author && <span>{ref.author}, </span>}
+                  {ref.url ? (
+                    <a href={ref.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">
+                      {ref.title}
+                    </a>
+                  ) : (
+                    <span>{ref.title}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </main>
     </div>
   );
