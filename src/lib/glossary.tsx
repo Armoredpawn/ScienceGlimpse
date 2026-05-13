@@ -22,6 +22,7 @@ export function highlightContentWithGlossary(content: string): React.ReactNode[]
   const re = new RegExp(`\\b(${pattern})\\b`, 'gi')
 
   const nodes: React.ReactNode[] = []
+  const seen = new Set<string>()
   let lastIndex = 0
   let match: RegExpExecArray | null
 
@@ -31,8 +32,10 @@ export function highlightContentWithGlossary(content: string): React.ReactNode[]
       nodes.push(content.slice(lastIndex, idx))
     }
     const matched = match[0]
-    const def = glossaryMap[matched.toLowerCase()] || glossaryMap[matched.toLowerCase().replace(/’/g, "'")]
-    if (def) {
+    const key = matched.toLowerCase()
+    const def = glossaryMap[key] || glossaryMap[key.replace(/'/g, "'")]
+    if (def && !seen.has(key)) {
+      seen.add(key)
       nodes.push(<GlossaryTooltip key={idx + '-' + matched} term={matched} definition={def} />)
     } else {
       nodes.push(matched)

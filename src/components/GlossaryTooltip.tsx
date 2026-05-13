@@ -12,7 +12,7 @@ const GlossaryTooltip: React.FC<Props> = ({ term, definition }) => {
         {term}
       </span>
 
-      <div className="pointer-events-none absolute left-0 bottom-full mb-2 w-80 max-w-full transform -translate-y-1/2 opacity-0 invisible transition-all duration-150 ease-in-out glossary-tooltip z-50">
+      <div className="pointer-events-none absolute left-0 bottom-full mb-2 w-80 transform -translate-y-1/2 opacity-0 invisible transition-all duration-150 ease-in-out glossary-tooltip z-50">
         <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm p-3 rounded-lg shadow-lg border">
           <div className="font-semibold mb-1">{term}</div>
           <div className="text-sm leading-snug">{definition}</div>
