@@ -130,7 +130,7 @@ const Index: React.FC = () => {
               The purpose of this event is to spread the love of science, get kids interested in the field of science, spread the message of ScienceGlimpse, and allow for people to make donations to an amazing cause.
             </p>
             
-            <a href="#about"
+            <a href="#events"
               className="block w-full text-center bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity"
             >
               Learn More!
