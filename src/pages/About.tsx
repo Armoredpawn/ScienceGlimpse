@@ -7,15 +7,9 @@ const About = () => {
       window.scrollTo(0, 0);
   }, []);
   return <div className="min-h-screen bg-background relative overflow-x-hidden">
-      {/* Animated Science Background */}
       <AnimatedBackground />
-      
-      {/* Navigation */}
       <Navigation />
-      
-      {/* Main Content */}
       <main className="relative z-10 pt-20">
-        {/* What is ScienceGlimpse (About page — no video) */}
         <WhatIsScienceGlimpse
           showVideo={false}
           showButton={false}

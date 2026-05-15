@@ -200,13 +200,13 @@ const Articles: React.FC = () => {
                   <span className="mr-4">Number of Current Articles:</span>
                   <span className="text-xl">{filteredArticles.length}</span>
                 </div>
-                <div
+                {/*<div
                   className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base"
                   style={{ backgroundColor: 'hsl(150 60% 40% / 0.10)', color: 'hsl(150 60% 40%)' }}
                 >
                   <span className="mr-4">Number of Pending Articles:</span>
                   <span className="text-xl">{PENDING_COUNT}</span>
-                </div>
+                </div>*/}
               </div>
             </div>
           </div>
