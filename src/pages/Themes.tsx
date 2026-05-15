@@ -102,7 +102,7 @@ const Themes = () => {
                           <Clock className="w-4 h-4" />
                           <span>{theme.readTime}</span>
                         </div>
-                        <Link to={`/articles?theme=${encodeURIComponent(theme.id)}`}>
+                        <Link to={`/articles?category=${encodeURIComponent(theme.id)}`}>
                           <Button variant="ghost" size="sm" className="group-hover:text-primary">
                             Explore Now
                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />

@@ -55,6 +55,11 @@ const CATEGORIES = [
   { label: 'Math', key: 'Math', color: 'rgb(239,68,68)', lightColor: 'rgba(239,68,68,0.2)' },
   { label: 'AI', key: 'Artificial Intelligence', color: 'rgb(140,80,200)', lightColor: 'rgba(140,80,200,0.2)' },
   { label: 'Data Science', key: 'Data Science', color: 'rgb(14,165,164)', lightColor: 'rgba(14,165,164,0.2)' },
+  { label: 'Junior', key: 'Junior', color: 'rgb(234,88,12)', lightColor: 'rgba(234,88,12,0.2)' },
+  { label: 'Creature Profile', key: 'Creature Profile', color: 'rgb(168,85,247)', lightColor: 'rgba(168,85,247,0.2)' },
+  { label: 'Debunked', key: 'Debunked', color: 'rgb(34,197,94)', lightColor: 'rgba(34,197,94,0.2)' },
+  { label: 'What If', key: 'What If', color: 'rgb(236,72,153)', lightColor: 'rgba(236,72,153,0.2)' },
+  { label: 'How???', key: 'How???', color: 'rgb(20,184,166)', lightColor: 'rgba(20,184,166,0.2)' },
 ];
 
 const Articles: React.FC = () => {
@@ -222,7 +227,7 @@ const Articles: React.FC = () => {
 
         {/* Category Toggles */}
         <div className="max-w-7xl mx-auto px-4 mb-8">
-          <div className="flex items-center justify-center gap-3 overflow-x-auto whitespace-nowrap px-2">
+          <div className="flex items-center justify-center gap-3 flex-wrap px-2">
             {CATEGORIES.map((cat) => {
               const isActive = activeCategories.some((a) => a.toLowerCase() === cat.key.toLowerCase());
               return (
