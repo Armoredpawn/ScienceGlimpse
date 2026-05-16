@@ -4,31 +4,26 @@ import Navigation from '@/components/Navigation';
 
 const eventHighlights = [
   {
-    icon: "🔬",
     label: "Hands-On Stalls",
     color: "text-quantum",
     desc: "Interactive science experiments and DIY crafts for kids and families to explore together."
   },
   {
-    icon: "🎤",
     label: "Live Speaker",
     color: "text-neuron",
     desc: "A science professional giving a short, engaging live demonstration open to all attendees."
   },
   {
-    icon: "🍕",
     label: "Food & Fun",
     color: "text-cosmic",
     desc: "Snacks and refreshments available, with all proceeds supporting our charity partner."
   },
   {
-    icon: "✍️",
     label: "Writing Competition",
     color: "text-quantum",
     desc: "Sign up to write a science article for ScienceGlimpse with cash prizes up for grabs."
   },
   {
-    icon: "📸",
     label: "Photo Booth",
     color: "text-neuron",
     desc: "Dress up in lab coats and goggles for a fun science-themed photo moment."
@@ -79,7 +74,6 @@ const Events = () => {
                   key={item.label}
                   className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-300"
                 >
-                  <div className="text-4xl mb-4">{item.icon}</div>
                   <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>{item.label}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                 </div>
@@ -93,7 +87,6 @@ const Events = () => {
                   key={item.label}
                   className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-300"
                 >
-                  <div className="text-4xl mb-4">{item.icon}</div>
                   <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>{item.label}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                 </div>
@@ -110,14 +103,14 @@ const Events = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8">
-                <h3 className="text-quantum font-semibold text-lg mb-3">📍 Location</h3>
+                <h3 className="text-quantum font-semibold text-lg mb-3">Location</h3>
                 <p className="text-foreground font-medium">Northland Library</p>
                 <p className="text-muted-foreground text-sm mt-1">
                   Stalls set up indoors and under the main awning. Exact floor layout to be confirmed.
                 </p>
               </div>
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8">
-                <h3 className="text-cosmic font-semibold text-lg mb-3">👨‍👩‍👧 Who It's For</h3>
+                <h3 className="text-cosmic font-semibold text-lg mb-3">Who It's For</h3>
                 <p className="text-foreground font-medium">Children, Families & Science Enthusiasts</p>
                 <p className="text-muted-foreground text-sm mt-1">
                   All ages welcome. Most activities are designed for kids and young teens, but everyone will find something to enjoy.
@@ -131,7 +124,6 @@ const Events = () => {
         <section className="py-16 px-4 bg-muted/20">
           <div className="max-w-3xl mx-auto text-center">
             <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-10">
-              <div className="text-5xl mb-4">✍️</div>
               <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neuron to-quantum bg-clip-text text-transparent mb-4">
                 Writing Competition
               </h2>
@@ -156,11 +148,11 @@ const Events = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6">
-                <h3 className="text-neuron font-semibold text-lg mb-2">🙋 Volunteer</h3>
+                <h3 className="text-neuron font-semibold text-lg mb-2">Volunteer</h3>
                 <p className="text-muted-foreground text-sm">Help run stalls, set up, or assist on the day. Reach out through our contact page to express interest.</p>
               </div>
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6">
-                <h3 className="text-quantum font-semibold text-lg mb-2">📣 Spread the Word</h3>
+                <h3 className="text-quantum font-semibold text-lg mb-2">Spread the Word</h3>
                 <p className="text-muted-foreground text-sm">Share the event with your school, community, or family. Follow us on Instagram and TikTok for updates.</p>
               </div>
             </div>
