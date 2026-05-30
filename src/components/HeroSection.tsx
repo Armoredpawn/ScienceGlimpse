@@ -1,10 +1,53 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Button } from './ui/button';
 import './HeroSection.css'; // Import the CSS for animation
 
 const HeroSection = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const eventDate = new Date("2026-06-20T11:00:00-04:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance <= 0) {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        minutes: Math.floor(
+          (distance % (1000 * 60 * 60)) / (1000 * 60)
+        ),
+        seconds: Math.floor(
+          (distance % (1000 * 60)) / 1000
+        ),
+      });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 pt-24">
       <div className="max-w-6xl mx-auto text-center space-y-8">
@@ -45,7 +88,66 @@ const HeroSection = () => {
         </div>
 
         {/* Stats or Quote */}
-        <div className="pt-8"></div>
+        <div className="pt-8">
+          <div className="max-w-xl mx-auto pt-8">
+            <p className="text-lg md:text-xl font-semibold bg-gradient-to-r from-neuron to-cosmic bg-clip-text text-transparent mb-4">
+              Northland Library Event Begins In
+            </p>
+
+            <div className="grid grid-cols-4 gap-3">
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-cosmic">
+                  {timeLeft.days}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  DAYS
+                </div>
+              </div>
+
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-cosmic">
+                  {String(timeLeft.hours).padStart(2, "0")}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  HOURS
+                </div>
+              </div>
+
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-cosmic">
+                  {String(timeLeft.minutes).padStart(2, "0")}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  MINUTES
+                </div>
+              </div>
+
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-cosmic">
+                  {String(timeLeft.seconds).padStart(2, "0")}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  SECONDS
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <p className="text-sm text-muted-foreground">
+                June 20, 2026 • 11:00 AM EDT
+              </p>
+
+              <Button
+                variant="default"
+                size="sm"
+                onClick={() => (window.location.href = '#/events')}
+                className="bg-purple-700 hover:bg-blue-700 text-white"
+              >
+                Learn more →
+              </Button>
+            </div>
+          </div>
+        </div>
 
         {/* Scroll indicator */}
         <div className="pt-12 animate-bounce">

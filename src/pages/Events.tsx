@@ -33,7 +33,49 @@ const eventHighlights = [
 const Events = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const eventDate = new Date("2026-06-20T11:00:00-04:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance <= 0) {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        minutes: Math.floor(
+          (distance % (1000 * 60 * 60)) / (1000 * 60)
+        ),
+        seconds: Math.floor(
+          (distance % (1000 * 60)) / 1000
+        ),
+      });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
   }, []);
+
+  const [timeLeft, setTimeLeft] = React.useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
@@ -51,9 +93,53 @@ const Events = () => {
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-quantum via-neuron to-cosmic bg-clip-text text-transparent mb-6 leading-tight">
               Northland Public Library<br />Event
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
               A free, student-run science event at the Northland Library — open to children, families, and anyone who loves science. Come explore, create, and be inspired.
             </p>
+
+            <div className="max-w-2xl mx-auto">
+              <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
+                Event Begins In
+              </div>
+
+              <div className="grid grid-cols-4 gap-4">
+                <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4">
+                  <div className="text-3xl md:text-4xl font-bold text-quantum">
+                    {timeLeft.days}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    DAYS
+                  </div>
+                </div>
+
+                <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4">
+                  <div className="text-3xl md:text-4xl font-bold text-neuron">
+                    {String(timeLeft.hours).padStart(2, "0")}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    HOURS
+                  </div>
+                </div>
+
+                <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4">
+                  <div className="text-3xl md:text-4xl font-bold text-cosmic">
+                    {String(timeLeft.minutes).padStart(2, "0")}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    MINUTES
+                  </div>
+                </div>
+
+                <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4">
+                  <div className="text-3xl md:text-4xl font-bold text-primary">
+                    {String(timeLeft.seconds).padStart(2, "0")}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    SECONDS
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

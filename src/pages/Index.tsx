@@ -17,10 +17,54 @@ type Category = {
 const Index: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
   useEffect(() => {
     const timer = setTimeout(() => setIsPopupOpen(true), 800);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+  const eventDate = new Date("2026-06-20T11:00:00").getTime();
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if (distance <= 0) {
+      setTimeLeft({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      });
+      return;
+    }
+
+    setTimeLeft({
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      ),
+      minutes: Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      ),
+      seconds: Math.floor(
+        (distance % (1000 * 60)) / 1000
+      ),
+    });
+  };
+
+  updateCountdown();
+  const interval = setInterval(updateCountdown, 1000);
+
+  return () => clearInterval(interval);
+}, []);
 
   const goToCategory = (tag: string) => {
     window.location.href = `#/articles?category=${encodeURIComponent(tag)}`;
@@ -126,8 +170,48 @@ const Index: React.FC = () => {
             <p className="text-sm text-muted-foreground mb-4">
               June 20, 2026 &nbsp;·&nbsp; Northland Public Library
             </p>
+            <div className="grid grid-cols-4 gap-2 mb-6">
+              <div className="bg-muted rounded-xl py-3 text-center">
+                <div className="text-2xl font-bold text-primary">
+                  {timeLeft.days}
+                </div>
+                <div className="text-[10px] font-medium text-muted-foreground">
+                  DAYS
+                </div>
+              </div>
+
+              <div className="bg-muted rounded-xl py-3 text-center">
+                <div className="text-2xl font-bold text-primary">
+                  {String(timeLeft.hours).padStart(2, "0")}
+                </div>
+                <div className="text-[10px] font-medium text-muted-foreground">
+                  HRS
+                </div>
+              </div>
+
+              <div className="bg-muted rounded-xl py-3 text-center">
+                <div className="text-2xl font-bold text-primary">
+                  {String(timeLeft.minutes).padStart(2, "0")}
+                </div>
+                <div className="text-[10px] font-medium text-muted-foreground">
+                  MIN
+                </div>
+              </div>
+
+              <div className="bg-muted rounded-xl py-3 text-center">
+                <div className="text-2xl font-bold text-primary">
+                  {String(timeLeft.seconds).padStart(2, "0")}
+                </div>
+                <div className="text-[10px] font-medium text-muted-foreground">
+                  SEC
+                </div>
+              </div>
+            </div>
+
             <p className="text-base text-muted-foreground leading-relaxed mb-6">
-              The purpose of this event is to spread the love of science, get kids interested in the field of science, spread the message of ScienceGlimpse, and allow for people to make donations to an amazing cause.
+              The purpose of this event is to spread the love of science, get kids interested
+              in the field of science, spread the message of ScienceGlimpse, and allow for
+              people to make donations to an amazing cause.
             </p>
             
             <a href="#events"
