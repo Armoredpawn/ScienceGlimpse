@@ -215,7 +215,11 @@ const Events = () => {
             <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
               This event is entirely student-run. Whether you want to volunteer, spread the word, or just show up — we'd love to have you.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6">
+                <h3 className="text-quantum font-semibold text-lg mb-2">Participate</h3>
+                <p className="text-muted-foreground text-sm">Through fun experiments, challenges, and games, participants will explore scientific concepts while learning and having fun. </p>
+              </div>
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6">
                 <h3 className="text-neuron font-semibold text-lg mb-2">Volunteer</h3>
                 <p className="text-muted-foreground text-sm">Help run stalls, set up, or assist on the day. Reach out through our contact page to express interest.</p>
