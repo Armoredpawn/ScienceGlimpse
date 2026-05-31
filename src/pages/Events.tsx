@@ -18,16 +18,6 @@ const eventHighlights = [
     color: "text-cosmic",
     desc: "Snacks and refreshments available, with all proceeds supporting our charity partner."
   },
-  {
-    label: "Writing Competition",
-    color: "text-quantum",
-    desc: "Sign up to write a science article for ScienceGlimpse with cash prizes up for grabs."
-  },
-  {
-    label: "Photo Booth",
-    color: "text-neuron",
-    desc: "Dress up in lab coats and goggles for a fun science-themed photo moment."
-  },
 ];
 
 const Events = () => {
@@ -153,28 +143,19 @@ const Events = () => {
               A 4–5 hour afternoon packed with science, creativity, and community. Here's a glimpse of what's in store.
             </p>
 
-            {/* Top row: 2 cards centered */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-6">
-              {eventHighlights.slice(0, 2).map((item) => (
+            {/* Single row of cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {eventHighlights.map((item) => (
                 <div
                   key={item.label}
                   className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-300"
                 >
-                  <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>{item.label}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom row: 3 cards full width */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {eventHighlights.slice(2).map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-300"
-                >
-                  <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>{item.label}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>
+                    {item.label}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
