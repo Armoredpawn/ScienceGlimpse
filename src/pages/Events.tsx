@@ -206,23 +206,6 @@ const Events = () => {
           </div>
         </section>
 
-        {/* Writing Competition Callout */}
-        <section className="py-16 px-4 bg-muted/20">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-10">
-              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neuron to-quantum bg-clip-text text-transparent mb-4">
-                Writing Competition
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Think you can explain science in a way that captivates the world? Sign up at the event to submit a science article to ScienceGlimpse. The most-viewed articles compete for <span className="text-neuron font-semibold">cash prizes</span> — $50, $100, and $150+. Entry is $2, with all proceeds supporting our charity mission.
-              </p>
-              <span className="inline-block text-sm text-quantum border border-quantum/40 rounded-full px-4 py-1.5 font-medium">
-                Competition runs beyond the event day
-              </span>
-            </div>
-          </div>
-        </section>
-
         {/* Get Involved — 2 cards, centered */}
         <section className="py-16 px-4">
           <div className="max-w-4xl mx-auto text-center">
