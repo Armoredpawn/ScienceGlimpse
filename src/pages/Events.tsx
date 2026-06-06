@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
+import Image1 from '@/assets/foodandfun.png';
+import Image2 from '@/assets/livespeaker.png';
+import Image3 from '@/assets/handsonstalls.png';
+import Image4 from '@/assets/location.png';
+import Image5 from '@/assets/whoitsfor.png';
 
 const eventHighlights = [
   {
@@ -78,13 +83,13 @@ const Events = () => {
         <section className="py-24 px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <p className="text-sm uppercase tracking-widest text-quantum font-semibold mb-4">
-              Coming Soon · June 20, 2025
+              Coming Soon · June 20, 2026, 11 AM - 3 PM
             </p>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-quantum via-neuron to-cosmic bg-clip-text text-transparent mb-6 leading-tight">
               Northland Public Library<br />Event
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10">
-              A free, student-run science event at the Northland Library — open to children, families, and anyone who loves science. Come explore, create, and be inspired.
+              A free, student-run science event at the Northland Public Library — open to children, families, and anyone who loves science. Come explore, create, and be inspired.
             </p>
 
             <div className="max-w-2xl mx-auto">
@@ -140,7 +145,7 @@ const Events = () => {
               What to Expect
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              A 4–5 hour afternoon packed with science, creativity, and community. Here's a glimpse of what's in store.
+              A 4 hour afternoon packed with science, creativity, and community. Here's a glimpse of what's in store.
             </p>
 
             {/* Single row of cards */}
@@ -148,14 +153,41 @@ const Events = () => {
               {eventHighlights.map((item) => (
                 <div
                   key={item.label}
-                  className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-300"
+                  className="bg-card/60 backdrop-blur-sm border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-300"
                 >
-                  <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>
-                    {item.label}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
+                  {item.label === "Hands-On Stalls" && (
+                    <img
+                      src={Image3}
+                      alt="Hands-on stalls"
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+
+                  {item.label === "Live Speaker" && (
+                    <img
+                      src={Image2}
+                      alt="Live science speaker"
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+
+                  {item.label === "Food & Fun" && (
+                    <img
+                      src={Image1}
+                      alt="Foodandfun"
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+
+                  <div className="p-6">
+                    <h3 className={`text-lg font-semibold mb-2 ${item.color}`}>
+                      {item.label}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -169,19 +201,58 @@ const Events = () => {
               Event Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8">
-                <h3 className="text-quantum font-semibold text-lg mb-3">Location</h3>
-                <p className="text-foreground font-medium">Northland Library</p>
-                <p className="text-muted-foreground text-sm mt-1">
-                  Stalls set up indoors and under the main awning. Exact floor layout to be confirmed.
-                </p>
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl overflow-hidden">
+                <img
+                  src={Image4}
+                  alt="Northland Public Library"
+                  className="w-full h-56 object-cover"
+                />
+
+                <div className="p-8">
+                  <h3 className="text-quantum font-semibold text-lg mb-3">
+                    Location
+                  </h3>
+
+                  <div className="space-y-2">
+                    <p className="text-foreground font-medium">
+                      Northland Public Library
+                    </p>
+
+                    <p className="text-sm text-quantum font-medium">
+                      300 Cumberland Rd, Pittsburgh, PA 15237
+                    </p>
+
+                    <p className="text-sm text-cosmic font-medium">
+                      June 20, 2026 • 11:00 AM – 3:00 PM
+                    </p>
+
+                    <p className="text-muted-foreground text-sm">
+                      Stalls set up indoors and under the main awning. Exact floor layout to be confirmed.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8">
-                <h3 className="text-cosmic font-semibold text-lg mb-3">Who It's For</h3>
-                <p className="text-foreground font-medium">Children, Families & Science Enthusiasts</p>
-                <p className="text-muted-foreground text-sm mt-1">
-                  All ages welcome. Most activities are designed for kids and young teens, but everyone will find something to enjoy.
-                </p>
+              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl overflow-hidden">
+                <img
+                  src={Image5}
+                  alt="Children and families enjoying science activities"
+                  className="w-full h-56 object-cover"
+                />
+
+                <div className="p-8">
+                  <h3 className="text-cosmic font-semibold text-lg mb-3">
+                    Who It's For
+                  </h3>
+
+                  <p className="text-foreground font-medium">
+                    Children, Families & Science Enthusiasts
+                  </p>
+
+                  <p className="text-muted-foreground text-sm mt-2">
+                    All ages welcome. Most activities are designed for kids and young teens,
+                    but everyone will find something to enjoy.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
