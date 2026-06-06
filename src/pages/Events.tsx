@@ -273,8 +273,22 @@ const Events = () => {
                 <p className="text-muted-foreground text-sm">Through fun experiments, challenges, and games, participants will explore scientific concepts while learning and having fun. </p>
               </div>
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6">
-                <h3 className="text-neuron font-semibold text-lg mb-2">Volunteer</h3>
-                <p className="text-muted-foreground text-sm">Help run stalls, set up, or assist on the day. Reach out through our contact page to express interest.</p>
+                <h3 className="text-neuron font-semibold text-lg mb-2">
+                  Volunteer
+                </h3>
+
+                <p className="text-muted-foreground text-sm mb-4">
+                  Help run stalls, assist visitors, set up activities, and support the event throughout the day.
+                </p>
+
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdR2sM-bsAH6IDjLuhzaDeYOx-_JJKrRNg-oA5MQUgOQ2b2cQ/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-primary-foreground font-medium hover:opacity-90 transition-all"
+                >
+                  Apply to Volunteer
+                </a>
               </div>
               <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6">
                 <h3 className="text-quantum font-semibold text-lg mb-2">Spread the Word</h3>
