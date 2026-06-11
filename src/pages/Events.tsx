@@ -282,7 +282,7 @@ const Events = () => {
                 </p>
 
                 <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdR2sM-bsAH6IDjLuhzaDeYOx-_JJKrRNg-oA5MQUgOQ2b2cQ/viewform"
+                  href="https://www.signupgenius.com/go/10C0448AFAF2DA4FAC43-64460378-scienceglimpse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-primary-foreground font-medium hover:opacity-90 transition-all"
