@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Search, Clock, User, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
@@ -69,13 +69,16 @@ const Articles: React.FC = () => {
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
   const categoryQuery = searchParams.get('category') || '';
   const authorQuery = searchParams.get('author') || '';
   const themeQuery = searchParams.get('theme') || '';
   const activeFilter = categoryQuery || themeQuery;
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategories, setActiveCategories] = useState<string[]>(categoryQuery ? [categoryQuery] : []);
+  const [activeCategories, setActiveCategories] = useState<string[]>(
+    categoryQuery ? [categoryQuery] : []
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [allArticles, setAllArticles] = useState<Article[]>([]);
   const [articlesLoaded, setArticlesLoaded] = useState(false);
@@ -91,19 +94,29 @@ const Articles: React.FC = () => {
   // Memoized filtering so it doesn't recompute on every render
   const filteredArticles = useMemo(() => {
     return allArticles.filter((article) => {
-      const articleCategories = Array.isArray(article.category) ? article.category : [article.category];
+      const articleCategories = Array.isArray(article.category)
+        ? article.category
+        : [article.category];
+
       const matchesCategory =
         activeCategories.length === 0 ||
         articleCategories.some((cat) =>
-          activeCategories.some((ac) => ac.toLowerCase() === cat.toLowerCase())
+          activeCategories.some(
+            (activeCategory) =>
+              activeCategory.toLowerCase() === cat.toLowerCase()
+          )
         );
+
       const matchesSearch =
         !searchTerm ||
         article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+
       const matchesAuthor =
         !authorQuery ||
-        (article.author && article.author.toLowerCase() === authorQuery.toLowerCase());
+        (article.author &&
+          article.author.toLowerCase() === authorQuery.toLowerCase());
+
       return matchesCategory && matchesSearch && matchesAuthor;
     });
   }, [allArticles, activeCategories, searchTerm, authorQuery]);
@@ -113,7 +126,10 @@ const Articles: React.FC = () => {
     setCurrentPage(1);
   }, [searchTerm, activeCategories, authorQuery]);
 
-  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+  const totalPages = Math.ceil(
+    filteredArticles.length / ARTICLES_PER_PAGE
+  );
+
   const paginatedArticles = filteredArticles.slice(
     (currentPage - 1) * ARTICLES_PER_PAGE,
     currentPage * ARTICLES_PER_PAGE
@@ -124,30 +140,57 @@ const Articles: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
-    .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2)
-    .reduce<(number | '...')[]>((acc, p, i, arr) => {
-      if (i > 0 && p - (arr[i - 1] as number) > 1) acc.push('...');
-      acc.push(p);
-      return acc;
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  )
+    .filter(
+      (page) =>
+        page === 1 ||
+        page === totalPages ||
+        Math.abs(page - currentPage) <= 2
+    )
+    .reduce<(number | '...')[]>((accumulator, page, index, pages) => {
+      if (
+        index > 0 &&
+        page - (pages[index - 1] as number) > 1
+      ) {
+        accumulator.push('...');
+      }
+
+      accumulator.push(page);
+      return accumulator;
     }, []);
 
   const goToArticle = (id: string | number) => {
-    navigate(`/article?id=${encodeURIComponent(String(id))}`);
+    navigate(
+      `/article?id=${encodeURIComponent(String(id))}`
+    );
   };
 
   const goToRandomArticle = () => {
-    const pool = filteredArticles.length > 0 ? filteredArticles : allArticles;
+    const pool =
+      filteredArticles.length > 0
+        ? filteredArticles
+        : allArticles;
+
     if (pool.length === 0) return;
-    const idx = Math.floor(Math.random() * pool.length);
-    goToArticle(pool[idx].id);
+
+    const index = Math.floor(Math.random() * pool.length);
+    goToArticle(pool[index].id);
   };
 
   const toggleCategory = (key: string) => {
-    setActiveCategories((prev) =>
-      prev.some((a) => a.toLowerCase() === key.toLowerCase())
-        ? prev.filter((a) => a.toLowerCase() !== key.toLowerCase())
-        : [...prev, key]
+    setActiveCategories((previousCategories) =>
+      previousCategories.some(
+        (category) =>
+          category.toLowerCase() === key.toLowerCase()
+      )
+        ? previousCategories.filter(
+            (category) =>
+              category.toLowerCase() !== key.toLowerCase()
+          )
+        : [...previousCategories, key]
     );
   };
 
@@ -165,24 +208,36 @@ const Articles: React.FC = () => {
                 className="inline-flex items-center text-sm text-muted-foreground hover:text-primary"
                 onClick={() => window.history.back()}
               >
-                <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back
               </button>
+
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-quantum via-molecule to-neuron bg-clip-text text-transparent mt-6 mb-4">
-                {activeFilter ? `${categoryNames[activeFilter] || activeFilter} Articles` : 'All Articles'}
+                {activeFilter
+                  ? `${categoryNames[activeFilter] || activeFilter} Articles`
+                  : 'All Articles'}
               </h1>
+
               <p className="text-lg text-muted-foreground">
                 Discover the latest insights and breakthroughs in science
               </p>
             </div>
+
             <div className="flex-shrink-0">
               <button
                 onClick={goToRandomArticle}
                 className="random-native-btn inline-flex items-center gap-2 px-6 py-3 rounded-md text-base font-semibold"
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M3 12h7a4 4 0 0 1 0 8H3"></path>
-                  <path d="M21 12h-7a4 4 0 0 0 0 8h7"></path>
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M3 12h7a4 4 0 0 1 0 8H3" />
+                  <path d="M21 12h-7a4 4 0 0 0 0 8h7" />
                 </svg>
+
                 Random Article
               </button>
             </div>
@@ -196,11 +251,20 @@ const Articles: React.FC = () => {
               <div className="flex items-center gap-10 flex-wrap">
                 <div
                   className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base"
-                  style={{ backgroundColor: 'hsl(268 67% 50% / 0.10)', color: 'hsl(268 67% 50%)' }}
+                  style={{
+                    backgroundColor: 'hsl(268 67% 50% / 0.10)',
+                    color: 'hsl(268 67% 50%)',
+                  }}
                 >
-                  <span className="mr-4">Number of Current Articles:</span>
-                  <span className="text-xl">{filteredArticles.length}</span>
+                  <span className="mr-4">
+                    Number of Current Articles:
+                  </span>
+
+                  <span className="text-xl">
+                    {filteredArticles.length}
+                  </span>
                 </div>
+
                 {/*<div
                   className="inline-flex items-center rounded-full px-5 py-3 font-semibold text-base"
                   style={{ backgroundColor: 'hsl(150 60% 40% / 0.10)', color: 'hsl(150 60% 40%)' }}
@@ -217,10 +281,13 @@ const Articles: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 mb-14">
           <div className="relative mx-auto w-full md:w-[860px]">
             <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+
             <Input
               placeholder="Search for your next read..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(event) =>
+                setSearchTerm(event.target.value)
+              }
               className="pl-14 py-4 w-full text-lg"
             />
           </div>
@@ -229,20 +296,33 @@ const Articles: React.FC = () => {
         {/* Category Toggles */}
         <div className="max-w-7xl mx-auto px-4 mb-8">
           <div className="flex items-center justify-center gap-3 flex-wrap px-2">
-            {CATEGORIES.map((cat) => {
-              const isActive = activeCategories.some((a) => a.toLowerCase() === cat.key.toLowerCase());
+            {CATEGORIES.map((category) => {
+              const isActive = activeCategories.some(
+                (activeCategory) =>
+                  activeCategory.toLowerCase() ===
+                  category.key.toLowerCase()
+              );
+
               return (
                 <button
-                  key={cat.key}
-                  onClick={() => toggleCategory(cat.key)}
+                  key={category.key}
+                  onClick={() =>
+                    toggleCategory(category.key)
+                  }
                   className="px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 border inline-block"
                   style={{
-                    backgroundColor: isActive ? cat.lightColor : 'transparent',
-                    borderColor: isActive ? cat.color : 'rgba(100,100,100,0.3)',
-                    color: isActive ? cat.color : 'inherit',
+                    backgroundColor: isActive
+                      ? category.lightColor
+                      : 'transparent',
+                    borderColor: isActive
+                      ? category.color
+                      : 'rgba(100,100,100,0.3)',
+                    color: isActive
+                      ? category.color
+                      : 'inherit',
                   }}
                 >
-                  {cat.label}
+                  {category.label}
                 </button>
               );
             })}
@@ -263,52 +343,74 @@ const Articles: React.FC = () => {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {paginatedArticles.map((article) => {
-                  const primarySubject = Array.isArray(article.category)
+                  const primarySubject = Array.isArray(
+                    article.category
+                  )
                     ? article.category[0]
                     : article.category;
-                  const glow = subjectGlowMap[primarySubject] ?? 'rgba(59,130,246,0.28)';
+
+                  const glow =
+                    subjectGlowMap[primarySubject] ??
+                    'rgba(59,130,246,0.28)';
+
                   return (
-                    <article
+                    <Link
                       key={article.id}
-                      onClick={() => goToArticle(article.id)}
-                      className="group article-glow-card bg-card/60 backdrop-blur-sm border border-border rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                      style={{ ['--article-glow' as any]: glow }}
+                      to={`/article?id=${encodeURIComponent(
+                        String(article.id)
+                      )}`}
+                      className="block"
+                      aria-label={`Read ${article.title}`}
                     >
-                      <div className="aspect-video bg-muted overflow-hidden">
-                        <img
-                          src={article.thumbnail}
-                          alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      <div className="p-6 space-y-4">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Tag className="w-3 h-3" />
-                          <span className="bg-primary/20 text-primary px-2 py-1 rounded-full font-medium">
-                            {Array.isArray(article.category)
-                              ? article.category.join(', ')
-                              : article.category}
-                          </span>
-                          <Clock className="w-3 h-3 ml-2" />
-                          <span>{article.readTime}</span>
+                      <article
+                        className="group article-glow-card bg-card/60 backdrop-blur-sm border border-border rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-pointer h-full"
+                        style={{
+                          ['--article-glow' as any]: glow,
+                        }}
+                      >
+                        <div className="aspect-video bg-muted overflow-hidden">
+                          <img
+                            src={article.thumbnail}
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
-                        <h2 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-2">
-                          {article.title}
-                        </h2>
-                        <p className="text-muted-foreground line-clamp-3 leading-relaxed">
-                          {article.excerpt}
-                        </p>
-                        <div className="flex items-center justify-between pt-4 border-t border-border">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <User className="w-4 h-4" />
-                            <span>{article.author}</span>
+
+                        <div className="p-6 space-y-4">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <Tag className="w-3 h-3" />
+
+                            <span className="bg-primary/20 text-primary px-2 py-1 rounded-full font-medium">
+                              {Array.isArray(article.category)
+                                ? article.category.join(', ')
+                                : article.category}
+                            </span>
+
+                            <Clock className="w-3 h-3 ml-2" />
+                            <span>{article.readTime}</span>
                           </div>
-                          <button className="read-more-btn px-3 py-1 rounded-md border border-border text-sm font-medium">
-                            Read More →
-                          </button>
+
+                          <h2 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                            {article.title}
+                          </h2>
+
+                          <p className="text-muted-foreground line-clamp-3 leading-relaxed">
+                            {article.excerpt}
+                          </p>
+
+                          <div className="flex items-center justify-between pt-4 border-t border-border">
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <User className="w-4 h-4" />
+                              <span>{article.author}</span>
+                            </div>
+
+                            <span className="read-more-btn px-3 py-1 rounded-md border border-border text-sm font-medium">
+                              Read More →
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </article>
+                      </article>
+                    </Link>
                   );
                 })}
               </div>
@@ -317,38 +419,54 @@ const Articles: React.FC = () => {
               {totalPages > 1 && (
                 <div className="flex items-center justify-center gap-2 mt-14">
                   <button
-                    onClick={() => goToPage(currentPage - 1)}
+                    onClick={() =>
+                      goToPage(currentPage - 1)
+                    }
                     disabled={currentPage === 1}
                     className="p-2 rounded-md border border-border text-sm font-medium disabled:opacity-30 hover:border-primary/50 transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
 
-                  {pageNumbers.map((p, i) =>
-                    p === '...' ? (
-                      <span key={`ellipsis-${i}`} className="px-2 text-muted-foreground">
+                  {pageNumbers.map((page, index) =>
+                    page === '...' ? (
+                      <span
+                        key={`ellipsis-${index}`}
+                        className="px-2 text-muted-foreground"
+                      >
                         ...
                       </span>
                     ) : (
                       <button
-                        key={p}
-                        onClick={() => goToPage(p as number)}
+                        key={page}
+                        onClick={() =>
+                          goToPage(page as number)
+                        }
                         className="w-9 h-9 rounded-md border text-sm font-medium transition-colors"
                         style={{
                           backgroundColor:
-                            currentPage === p ? 'hsl(268 67% 50% / 0.2)' : 'transparent',
+                            currentPage === page
+                              ? 'hsl(268 67% 50% / 0.2)'
+                              : 'transparent',
                           borderColor:
-                            currentPage === p ? 'hsl(268 67% 50%)' : 'rgba(100,100,100,0.3)',
-                          color: currentPage === p ? 'hsl(268 67% 50%)' : 'inherit',
+                            currentPage === page
+                              ? 'hsl(268 67% 50%)'
+                              : 'rgba(100,100,100,0.3)',
+                          color:
+                            currentPage === page
+                              ? 'hsl(268 67% 50%)'
+                              : 'inherit',
                         }}
                       >
-                        {p}
+                        {page}
                       </button>
                     )
                   )}
 
                   <button
-                    onClick={() => goToPage(currentPage + 1)}
+                    onClick={() =>
+                      goToPage(currentPage + 1)
+                    }
                     disabled={currentPage === totalPages}
                     className="p-2 rounded-md border border-border text-sm font-medium disabled:opacity-30 hover:border-primary/50 transition-colors"
                   >
@@ -359,7 +477,8 @@ const Articles: React.FC = () => {
 
               {/* Page info */}
               <p className="text-center text-sm text-muted-foreground mt-4">
-                Page {currentPage} of {totalPages} · {filteredArticles.length} articles
+                Page {currentPage} of {totalPages} ·{' '}
+                {filteredArticles.length} articles
               </p>
             </>
           )}

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Heart, X, Clock, User } from 'lucide-react';
 import articles from '../data/articles.json';
 
 const HotSights = () => {
-  const navigate = useNavigate();
-
   const [preference, setPreference] = useState<'like' | 'dislike' | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<number | null>(null);
 
@@ -76,14 +74,18 @@ const HotSights = () => {
                   </div>
 
                   <Button
+                    asChild
                     variant="ghost"
                     size="sm"
                     className="transition-colors duration-300 hover:text-black"
-                    onClick={() =>
-                      navigate(`/article?id=${encodeURIComponent(String(article.id))}`)
-                    }
                   >
-                    Read Now
+                    <Link
+                      to={`/article?id=${encodeURIComponent(
+                        String(article.id)
+                      )}`}
+                    >
+                      Read Now
+                    </Link>
                   </Button>
                 </div>
               </div>
