@@ -7,9 +7,8 @@ export default function AnalyticsTracker() {
 
   useEffect(() => {
     if (typeof window.gtag === "function") {
-      // Get the actual route after the hash
-      const hashPath = window.location.hash.replace(/^#/, ""); // removes leading #
-      const pagePath = hashPath || "/";
+      // Get the current browser route and query string
+      const pagePath = `${location.pathname}${location.search}`;
 
       // Send standard GA4 page_view event
       window.gtag("event", "page_view", {
@@ -20,10 +19,13 @@ export default function AnalyticsTracker() {
 
       // Optional: send a custom article_view event if the route is /article?id=...
       const match = pagePath.match(/^\/article\?id=(\d+)$/);
+
       if (match) {
         const articleId = match[1];
-        const articleElement = document.querySelector("h1"); // assuming <h1> is article title
-        const articleTitle = articleElement ? articleElement.textContent : `Article ${articleId}`;
+        const articleElement = document.querySelector("h1");
+        const articleTitle = articleElement
+          ? articleElement.textContent
+          : `Article ${articleId}`;
 
         window.gtag("event", "article_view", {
           article_id: articleId,

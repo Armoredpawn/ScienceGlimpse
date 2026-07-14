@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 
 type Props = {
@@ -10,7 +10,15 @@ type Props = {
   overrideParagraphs?: string[];
 };
 
-const WhatIsScienceGlimpse: React.FC<Props> = ({ showVideo = true, showButton = true, centerText = false, paragraphSize = 'normal', overrideParagraphs }) => {
+const WhatIsScienceGlimpse: React.FC<Props> = ({
+  showVideo = true,
+  showButton = true,
+  centerText = false,
+  paragraphSize = 'normal',
+  overrideParagraphs
+}) => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative py-20 md:py-24 overflow-hidden text-gray-100">
 
@@ -31,27 +39,44 @@ const WhatIsScienceGlimpse: React.FC<Props> = ({ showVideo = true, showButton = 
           </h2>
 
           {overrideParagraphs ? (
-            <div className={`${centerText ? 'max-w-4xl mx-auto' : ''} mt-6` }>
+            <div className={`${centerText ? 'max-w-4xl mx-auto' : ''} mt-6`}>
               {overrideParagraphs.map((p, i) => (
-                <p key={i} className={`${centerText ? 'text-center' : ''} ${paragraphSize === 'large' ? 'text-xl md:text-2xl' : paragraphSize === 'lg' ? 'text-lg md:text-xl' : 'text-lg'} leading-relaxed text-gray-200 ${i === 0 ? '' : 'mt-4'}`}>
+                <p
+                  key={i}
+                  className={`${centerText ? 'text-center' : ''} ${
+                    paragraphSize === 'large'
+                      ? 'text-xl md:text-2xl'
+                      : paragraphSize === 'lg'
+                        ? 'text-lg md:text-xl'
+                        : 'text-lg'
+                  } leading-relaxed text-gray-200 ${i === 0 ? '' : 'mt-4'}`}
+                >
                   {p}
                 </p>
               ))}
             </div>
           ) : (
-            <p className={`${centerText ? 'text-center max-w-4xl mx-auto' : ''} ${paragraphSize === 'large' ? 'text-xl md:text-2xl' : paragraphSize === 'lg' ? 'text-lg md:text-xl' : 'text-lg'} leading-relaxed text-gray-200 mt-6` }>
+            <p
+              className={`${centerText ? 'text-center max-w-4xl mx-auto' : ''} ${
+                paragraphSize === 'large'
+                  ? 'text-xl md:text-2xl'
+                  : paragraphSize === 'lg'
+                    ? 'text-lg md:text-xl'
+                    : 'text-lg'
+              } leading-relaxed text-gray-200 mt-6`}
+            >
               <b>ScienceGlimpse</b> is a student-led exploration site designed for anyone
               interested in learning more about a scientific topic or writing a
               science article. Our mission is to do the opposite of what every
               other scientific article does by providing a concise 5-minute
               article that conveys the main information, current applications in
               the scientific community, and the key breakthroughs we have observed. By
-              uniting the voices of passionate students across the world, we aim to 
-              present unique and diverse scientific perspectives for readers of all 
+              uniting the voices of passionate students across the world, we aim to
+              present unique and diverse scientific perspectives for readers of all
               experience and interest levels — all in an engaging and meaningful way.
             </p>
           )}
-          
+
           {showButton && (
             <div className={`${centerText ? 'text-center' : 'text-left'} mt-12`}>
               <Button
@@ -62,7 +87,7 @@ const WhatIsScienceGlimpse: React.FC<Props> = ({ showVideo = true, showButton = 
                   text-black dark:text-white
                   text-lg py-4 transition-all duration-300
                 "
-                onClick={() => (window.location.href = '#/about')}
+                onClick={() => navigate('/about')}
               >
                 Learn More
               </Button>

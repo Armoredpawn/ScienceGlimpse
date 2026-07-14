@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
 import FoundersSection from '@/components/FoundersSection';
@@ -20,11 +21,31 @@ const Members: React.FC = () => {
 
         <footer className="py-16 px-4 border-t border-border bg-card/30 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
-            <p className="text-muted-foreground">© 2025 ScienceGlimpse. Made with curiosity by students, for students.</p>
+            <p className="text-muted-foreground">
+              © 2025 ScienceGlimpse. Made with curiosity by students, for students.
+            </p>
+
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
-              <a href="#/about" className="hover:text-primary transition-colors">About</a>
-              <a href="#/submission" className="hover:text-primary transition-colors">Apply to Write</a>
-              <a href="#/contact" className="hover:text-primary transition-colors">Contact</a>
+              <Link
+                to="/about"
+                className="hover:text-primary transition-colors"
+              >
+                About
+              </Link>
+
+              <Link
+                to="/submission"
+                className="hover:text-primary transition-colors"
+              >
+                Apply to Write
+              </Link>
+
+              <Link
+                to="/contact"
+                className="hover:text-primary transition-colors"
+              >
+                Contact
+              </Link>
             </div>
           </div>
         </footer>

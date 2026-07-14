@@ -1,10 +1,12 @@
-
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowDown } from 'lucide-react';
 import { Button } from './ui/button';
 import './HeroSection.css'; // Import the CSS for animation
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -48,6 +50,7 @@ const HeroSection = () => {
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 pt-24">
       <div className="max-w-6xl mx-auto text-center space-y-8">
@@ -71,7 +74,7 @@ const HeroSection = () => {
             <Button
               variant="default"
               size="lg"
-              onClick={() => (window.location.href = '#/submission')}
+              onClick={() => navigate('/submission')}
               className="glow-action-btn-purple bg-blue-700 hover:bg-purple-700 text-white text-lg py-4 transition-all duration-300 border border-black"
             >
               Submit Your Article →
@@ -79,7 +82,7 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => (window.location.href = '#/themes')}
+              onClick={() => navigate('/themes')}
               className="glow-action-btn-green bg-green-700 text-lg py-4 transition-all duration-300"
             >
               Themes
@@ -140,7 +143,7 @@ const HeroSection = () => {
               <Button
                 variant="default"
                 size="sm"
-                onClick={() => (window.location.href = '#/events')}
+                onClick={() => navigate('/events')}
                 className="bg-purple-700 hover:bg-blue-700 text-white"
               >
                 Learn more →

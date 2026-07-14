@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Search, Clock, User, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import Navigation from '@/components/Navigation';
@@ -67,6 +67,7 @@ const Articles: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const categoryQuery = searchParams.get('category') || '';
   const authorQuery = searchParams.get('author') || '';
@@ -132,7 +133,7 @@ const Articles: React.FC = () => {
     }, []);
 
   const goToArticle = (id: string | number) => {
-    window.location.href = `#/article?id=${encodeURIComponent(String(id))}`;
+    navigate(`/article?id=${encodeURIComponent(String(id))}`);
   };
 
   const goToRandomArticle = () => {

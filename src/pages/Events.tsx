@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
 import Image1 from '@/assets/foodandfun.png';
@@ -307,8 +308,12 @@ const Events = () => {
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
               <a href="#" className="hover:text-primary transition-colors">Newsletter</a>
               <a href="#" className="hover:text-primary transition-colors">Workshops</a>
-              <a href="#/submission" className="hover:text-primary transition-colors">Apply to Write</a>
-              <a href="#/contact" className="hover:text-primary transition-colors">Contact</a>
+              <Link to="/submission" className="hover:text-primary transition-colors">
+                Apply to Write
+              </Link>
+              <Link to="/contact" className="hover:text-primary transition-colors">
+                Contact
+              </Link>
             </div>
           </div>
         </footer>

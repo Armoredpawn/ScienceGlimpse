@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import articles from '../data/articles.json';
 import { Button } from './ui/button';
 import { Clock, User, ArrowRight } from 'lucide-react';
+
 
 interface Article {
   id: string | number;
@@ -39,6 +41,7 @@ function getRandomArticles<T>(array: T[], count: number): T[] {
 
 const ArticleFeed = () => {
   const [randomArticles] = useState(() => getRandomArticles(articles, 3));
+  const navigate = useNavigate();
 
   return (
     <section className="py-20 px-4" id="discover">
@@ -56,9 +59,9 @@ const ArticleFeed = () => {
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {randomArticles.map((article, idx) => (
-            <a
+            <Link
               key={article.id}
-              href={`#/article?id=${article.id}`}
+              to={`/article?id=${article.id}`}
               className={`group block ${glowStyles[idx]}`}
             >
               <div className="card-glow h-full p-6 rounded-xl relative overflow-hidden">
@@ -110,7 +113,7 @@ const ArticleFeed = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -120,7 +123,7 @@ const ArticleFeed = () => {
             variant="quantum"
             size="lg"
             className="px-8"
-            onClick={() => (window.location.href = '#/articles')}
+            onClick={() => navigate('/articles')}
           >
             Explore More Articles
             <ArrowRight className="w-5 h-5 ml-2" />

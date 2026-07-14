@@ -3,19 +3,20 @@ import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import ScienceEyeLogo from './ScienceEyeLogo';
 import ThemeToggle from './ThemeToggle';
+import { Link } from "react-router-dom";
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', href: '#/' },
-    { label: 'GlimpseArticles', href: '#/articles' },
-    { label: 'About', href: '#/about' },
-    { label: 'Members', href: '#/members' },
-    { label: 'Events', href: '#/events' },
-    { label: 'Themes', href: '#/themes' },
-    { label: 'Publish', href: '#/submission' },
-    { label: 'Contact', href: '#/contact' }
+    { label: "Home", to: "/" },
+    { label: "GlimpseArticles", to: "/articles" },
+    { label: "About", to: "/about" },
+    { label: "Members", to: "/members" },
+    { label: "Events", to: "/events" },
+    { label: "Themes", to: "/themes" },
+    { label: "Publish", to: "/submission" },
+    { label: "Contact", to: "/contact" },
   ];
 
   return (
@@ -31,13 +32,13 @@ const Navigation: React.FC = () => {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex absolute left-0 right-0 justify-center space-x-7 pointer-events-auto">
             {navItems.map(item => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.to}
                 className="text-foreground hover:text-primary transition-colors duration-300 hover:scale-105 transform py-2 px-1"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -59,14 +60,14 @@ const Navigation: React.FC = () => {
           <div className="md:hidden bg-card/95 backdrop-blur-sm border border-border rounded-lg mt-2 p-4 mb-4">
             <div className="flex flex-col space-y-3">
               {navItems.map(item => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.to}
                   className="text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
 
               <div className="pt-3 border-t border-border mt-3">

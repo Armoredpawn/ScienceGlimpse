@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
@@ -15,6 +16,7 @@ type Category = {
 };
 
 const Index: React.FC = () => {
+  const navigate = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [timeLeft, setTimeLeft] = useState({
@@ -30,44 +32,44 @@ const Index: React.FC = () => {
   }, []);
 
   useEffect(() => {
-  const eventDate = new Date("2026-06-20T11:00:00").getTime();
+    const eventDate = new Date("2026-06-20T11:00:00").getTime();
 
-  const updateCountdown = () => {
-    const now = new Date().getTime();
-    const distance = eventDate - now;
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
 
-    if (distance <= 0) {
+      if (distance <= 0) {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+        return;
+      }
+
       setTimeLeft({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        minutes: Math.floor(
+          (distance % (1000 * 60 * 60)) / (1000 * 60)
+        ),
+        seconds: Math.floor(
+          (distance % (1000 * 60)) / 1000
+        ),
       });
-      return;
-    }
+    };
 
-    setTimeLeft({
-      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-      hours: Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      ),
-      minutes: Math.floor(
-        (distance % (1000 * 60 * 60)) / (1000 * 60)
-      ),
-      seconds: Math.floor(
-        (distance % (1000 * 60)) / 1000
-      ),
-    });
-  };
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
 
-  updateCountdown();
-  const interval = setInterval(updateCountdown, 1000);
-
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   const goToCategory = (tag: string) => {
-    window.location.href = `#/articles?category=${encodeURIComponent(tag)}`;
+    navigate(`/articles?category=${encodeURIComponent(tag)}`);
   };
 
   const categories: Category[] = [
@@ -136,9 +138,9 @@ const Index: React.FC = () => {
               © 2025 ScienceGlimpse. Made with curiosity by students, for everyone.
             </p>
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
-              <a href="#/about" className="hover:text-primary transition-colors">About</a>
-              <a href="#/submission" className="hover:text-primary transition-colors">Apply to Write</a>
-              <a href="#/contact" className="hover:text-primary transition-colors">Contact</a>
+              <Link to="/about" className="hover:text-primary transition-colors">About</Link>
+              <Link to="/submission" className="hover:text-primary transition-colors">Apply to Write</Link>
+              <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
             </div>
           </div>
         </footer>
@@ -214,11 +216,12 @@ const Index: React.FC = () => {
               people to make donations to an amazing cause.
             </p>
             
-            <a href="#events"
+            <Link
+              to="/events"
               className="block w-full text-center bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity"
             >
               Learn More!
-            </a>
+            </Link>
           </div>
         </div>
       )}
