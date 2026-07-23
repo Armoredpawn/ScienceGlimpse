@@ -10,6 +10,7 @@ import { useAuth } from "../context/AuthContext";
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, loading } = useAuth();
+  const accountPath = user ? "/profile" : "/login";
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -57,7 +58,7 @@ const Navigation: React.FC = () => {
 
             {!loading && (
               <Button asChild variant={user ? "outline" : "default"} size="sm">
-                <Link to="/login" className="flex items-center gap-2">
+                <Link to={accountPath} className="flex items-center gap-2">
                   <UserRound className="h-4 w-4" />
 
                   {user ? "Profile" : "Log in"}
@@ -101,7 +102,7 @@ const Navigation: React.FC = () => {
 
               {!loading && (
                 <Link
-                  to="/login"
+                  to={accountPath}
                   className="flex items-center gap-2 rounded-md px-3 py-2 font-medium text-primary transition-colors hover:bg-muted"
                   onClick={() => setIsMenuOpen(false)}
                 >
