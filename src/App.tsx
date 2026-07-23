@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Article from './pages/Article';
 import Themes from "./pages/Themes";
 import Events from "./pages/Events";
+import Login from "./pages/Login";
 // import CreatureProfile from "./pages/Creatureprofile";
 // import CreatureArticle from "./pages/Creaturearticle";
 // import DebunkedArticles from "./pages/Debunkedarticles";
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/donate" element={<Donate />} />
           <Route path="/themes" element={<Themes />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/login" element={<Login />} />
           {/* <Route path="/creatureprofile" element={<CreatureProfile />} /> */}
           {/* <Route path="/creaturearticle" element={<CreatureArticle />} /> */}
           {/* <Route path="/debunkedarticles" element={<DebunkedArticles />} /> */}

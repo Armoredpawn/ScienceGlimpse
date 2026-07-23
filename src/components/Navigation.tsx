@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
-import ScienceEyeLogo from './ScienceEyeLogo';
-import ThemeToggle from './ThemeToggle';
+import React, { useState } from "react";
+import { Button } from "./ui/button";
+import { Menu, UserRound, X } from "lucide-react";
 import { Link } from "react-router-dom";
+
+import ScienceEyeLogo from "./ScienceEyeLogo";
+import ThemeToggle from "./ThemeToggle";
+import { useAuth } from "../context/AuthContext";
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, loading } = useAuth();
 
   const navItems = [
     { label: "Home", to: "/" },
@@ -20,58 +23,95 @@ const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex justify-between items-center h-16">
+    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="absolute -left-4 flex items-center space-x-3 z-30">
-            <ScienceEyeLogo className="w-10 h-10" />
-            <h1 className="text-xl font-bold text-foreground select-none">ScienceGlimpse</h1>
-          </div>
+          <Link
+            to="/"
+            className="absolute -left-4 z-30 flex items-center space-x-3"
+          >
+            <ScienceEyeLogo className="h-10 w-10" />
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex absolute left-0 right-0 justify-center space-x-7 pointer-events-auto">
-            {navItems.map(item => (
+            <h1 className="select-none text-xl font-bold text-foreground">
+              ScienceGlimpse
+            </h1>
+          </Link>
+
+          {/* Desktop navigation */}
+          <div className="pointer-events-auto absolute left-0 right-0 hidden justify-center space-x-7 md:flex">
+            {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
-                className="text-foreground hover:text-primary transition-colors duration-300 hover:scale-105 transform py-2 px-1"
+                className="transform px-1 py-2 text-foreground transition-all duration-300 hover:scale-105 hover:text-primary"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* Right-side controls */}
-          <div className="hidden md:flex items-center gap-3 z-30 absolute right-4">
+          {/* Desktop right-side controls */}
+          <div className="absolute right-4 z-30 hidden items-center gap-2 md:flex">
             <ThemeToggle />
+
+            {!loading && (
+              <Button asChild variant={user ? "outline" : "default"} size="sm">
+                <Link to="/login" className="flex items-center gap-2">
+                  <UserRound className="h-4 w-4" />
+
+                  {user ? "Profile" : "Log in"}
+                </Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden ml-auto">
-            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-              {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          <div className="ml-auto md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMenuOpen((current) => !current)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile navigation menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-card/95 backdrop-blur-sm border border-border rounded-lg mt-2 p-4 mb-4">
+          <div className="mb-4 mt-2 rounded-lg border border-border bg-card/95 p-4 backdrop-blur-sm md:hidden">
             <div className="flex flex-col space-y-3">
-              {navItems.map(item => (
+              {navItems.map((item) => (
                 <Link
                   key={item.label}
                   to={item.to}
-                  className="text-foreground hover:text-primary transition-colors duration-300 py-2 px-3 rounded-md hover:bg-muted"
+                  className="rounded-md px-3 py-2 text-foreground transition-colors duration-300 hover:bg-muted hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
 
-              <div className="pt-3 border-t border-border mt-3">
-                {/* Theme toggle in mobile menu */}
+              {!loading && (
+                <Link
+                  to="/login"
+                  className="flex items-center gap-2 rounded-md px-3 py-2 font-medium text-primary transition-colors hover:bg-muted"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <UserRound className="h-4 w-4" />
+
+                  {user ? "Profile" : "Log in"}
+                </Link>
+              )}
+
+              <div className="mt-3 border-t border-border pt-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Theme</span>
                   <ThemeToggle />
