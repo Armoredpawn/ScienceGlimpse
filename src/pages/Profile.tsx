@@ -1,12 +1,14 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  collection,
   doc,
   getDoc,
+  onSnapshot,
   runTransaction,
   serverTimestamp,
 } from "firebase/firestore";
-import { UserRound } from "lucide-react";
+import { Coins, UserRound } from "lucide-react";
 
 import { db } from "../lib/firebase";
 import { useAuth } from "../context/AuthContext";
@@ -27,6 +29,7 @@ const Profile = () => {
 
   const [username, setUsername] = useState("");
   const [savedUsername, setSavedUsername] = useState("");
+  const [tokens, setTokens] = useState(0);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -63,6 +66,43 @@ const Profile = () => {
 
     void loadProfile();
   }, [loading, navigate, user]);
+
+  useEffect(() => {
+    if (loading || !user) {
+      setTokens(0);
+      return;
+    }
+
+    const tokenLedgerReference = collection(
+      db,
+      "users",
+      user.uid,
+      "tokenLedger",
+    );
+
+    const unsubscribe = onSnapshot(
+      tokenLedgerReference,
+      (snapshot) => {
+        const totalTokens = snapshot.docs.reduce(
+          (total, currentDocument) => {
+            const amount = currentDocument.data().amount;
+
+            return total + (
+              typeof amount === "number" ? amount : 0
+            );
+          },
+          0,
+        );
+
+        setTokens(totalTokens);
+      },
+      (error) => {
+        console.error("Could not load token balance:", error);
+      },
+    );
+
+    return unsubscribe;
+  }, [loading, user]);
 
   const handleUsernameChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -230,6 +270,14 @@ const Profile = () => {
           <p className="mt-1 text-sm text-muted-foreground">
             {user.email}
           </p>
+
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-2">
+            <Coins className="h-5 w-5 text-primary" />
+
+            <span className="font-semibold">
+              {tokens} {tokens === 1 ? "token" : "tokens"}
+            </span>
+          </div>
         </div>
 
         <form onSubmit={handleSave} className="mt-8 space-y-4">

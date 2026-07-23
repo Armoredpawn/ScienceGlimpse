@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Coins } from 'lucide-react';
 import articles from '../data/articles.json';
 import highlightContentWithGlossary from '@/lib/glossary';
+import { useArticleReadingReward } from '@/hooks/useArticleReadingReward';
 
 const SITE_NAME = 'ScienceGlimpse';
 const SITE_URL = 'https://scienceglimpse.org';
@@ -47,6 +48,17 @@ const Article = () => {
 
   const article = articles.find(
     (currentArticle) => Number(currentArticle.id) === id
+  );
+
+  const {
+    articleRef,
+    rewarded,
+    isActivelyReading,
+    loading: readingLoading,
+    errorMessage: readingError,
+    signedIn,
+  } = useArticleReadingReward(
+    article ? String(article.id) : null
   );
 
   useEffect(() => {
@@ -198,7 +210,7 @@ const Article = () => {
           Back
         </Button>
 
-        <article>
+        <article ref={articleRef}>
           <header>
             <h1 className="text-4xl font-bold mb-4">
               {article.title}
@@ -207,6 +219,84 @@ const Article = () => {
             <p className="text-muted-foreground mb-4">
               By {article.author} • {article.date}
             </p>
+
+            <div className="mb-6 rounded-xl border border-border bg-card p-4">
+              {!signedIn ? (
+                <div className="flex items-start gap-3">
+                  <Coins className="mt-0.5 h-5 w-5 text-primary" />
+
+                  <p className="text-sm text-muted-foreground">
+                    <Link
+                      to="/login"
+                      className="font-medium text-primary hover:underline"
+                    >
+                      Log in
+                    </Link>{' '}
+                    and actively read for four minutes to earn 10
+                    tokens.
+                  </p>
+                </div>
+              ) : readingLoading ? (
+                <p className="text-sm text-muted-foreground">
+                  Loading reading progress...
+                </p>
+              ) : rewarded ? (
+                <div
+                  className="flex items-center gap-3"
+                  aria-live="polite"
+                >
+                  <Coins className="h-6 w-6 text-primary" />
+
+                  <div>
+                    <p className="font-semibold">
+                      10 tokens earned
+                    </p>
+
+                    <p className="text-sm text-muted-foreground">
+                      You completed this article&apos;s reading
+                      reward.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div aria-live="polite">
+                  <div className="flex items-start gap-3">
+                    <Coins className="mt-0.5 h-5 w-5 text-primary" />
+
+                    <div>
+                      <p className="font-medium">
+                        Earn 10 tokens
+                      </p>
+
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        Actively read this article for four minutes to earn
+                        the reward.
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    {isActivelyReading
+                      ? 'Your active reading time is being counted.'
+                      : 'Reading is paused — return to the article and interact with the page.'}
+                  </p>
+
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Reading pauses when this tab is hidden or after 60
+                    seconds without activity.
+                  </p>
+
+                  {readingError && (
+                    <p
+                      role="alert"
+                      className="mt-2 text-sm text-destructive"
+                    >
+                      {readingError}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
 
             <div className="aspect-video mb-6 rounded-lg overflow-hidden">
               <img
