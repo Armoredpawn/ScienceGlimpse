@@ -124,7 +124,7 @@ export function useArticleReadingReward(
 
   const userId = user?.uid ?? null;
 
-  // Load previously confirmed progress.
+  // Load previously confirmed reading progress.
   useEffect(() => {
     pendingSecondsRef.current = 0;
     confirmedSecondsRef.current = 0;
@@ -208,7 +208,7 @@ export function useArticleReadingReward(
     };
   }, [articleId, authLoading, userId]);
 
-  // Determine whether the article itself is on screen.
+  // Check whether any portion of the article is visible.
   useEffect(() => {
     const articleElement = articleRef.current;
 
@@ -233,27 +233,38 @@ export function useArticleReadingReward(
     };
   }, [articleId]);
 
-  // Track recent interaction so an abandoned page pauses.
+  // Track real interaction and pause when the user leaves.
   useEffect(() => {
     const markActivity = () => {
       lastActivityRef.current = Date.now();
     };
 
+    const pauseUntilNextInteraction = () => {
+      lastActivityRef.current = 0;
+      setIsActivelyReading(false);
+    };
+
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        markActivity();
+      if (document.visibilityState !== "visible") {
+        pauseUntilNextInteraction();
       }
     };
 
     window.addEventListener("scroll", markActivity, {
       passive: true,
     });
+
     window.addEventListener("pointerdown", markActivity);
     window.addEventListener("keydown", markActivity);
+
     window.addEventListener("touchstart", markActivity, {
       passive: true,
     });
-    window.addEventListener("focus", markActivity);
+
+    window.addEventListener(
+      "blur",
+      pauseUntilNextInteraction,
+    );
 
     document.addEventListener(
       "visibilitychange",
@@ -271,7 +282,10 @@ export function useArticleReadingReward(
         "touchstart",
         markActivity,
       );
-      window.removeEventListener("focus", markActivity);
+      window.removeEventListener(
+        "blur",
+        pauseUntilNextInteraction,
+      );
 
       document.removeEventListener(
         "visibilitychange",
@@ -287,8 +301,7 @@ export function useArticleReadingReward(
       loading ||
       !userId ||
       !articleId ||
-      rewarded ||
-      errorMessage
+      rewarded
     ) {
       setIsActivelyReading(false);
       return;
@@ -345,7 +358,7 @@ export function useArticleReadingReward(
           );
 
           setErrorMessage(
-            "Reading progress could not be saved. Reload the page to retry.",
+            "Reading progress could not be saved yet. Retrying automatically.",
           );
         })
         .finally(() => {
@@ -360,7 +373,6 @@ export function useArticleReadingReward(
   }, [
     articleId,
     authLoading,
-    errorMessage,
     loading,
     rewarded,
     userId,
