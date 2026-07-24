@@ -73,35 +73,79 @@ const Profile = () => {
       return;
     }
 
-    const tokenLedgerReference = collection(
-      db,
-      "users",
-      user.uid,
-      "tokenLedger",
-    );
+    let automaticTokens = 0;
+    let adjustmentTokens = 0;
 
-    const unsubscribe = onSnapshot(
-      tokenLedgerReference,
+    const updateDisplayedBalance = () => {
+      setTokens(
+        Math.max(0, automaticTokens + adjustmentTokens),
+      );
+    };
+
+    const unsubscribeRewards = onSnapshot(
+      collection(
+        db,
+        "users",
+        user.uid,
+        "tokenLedger",
+      ),
       (snapshot) => {
-        const totalTokens = snapshot.docs.reduce(
+        automaticTokens = snapshot.docs.reduce(
           (total, currentDocument) => {
             const amount = currentDocument.data().amount;
 
-            return total + (
-              typeof amount === "number" ? amount : 0
+            return (
+              total +
+              (typeof amount === "number" ? amount : 0)
             );
           },
           0,
         );
 
-        setTokens(totalTokens);
+        updateDisplayedBalance();
       },
       (error) => {
-        console.error("Could not load token balance:", error);
+        console.error(
+          "Could not load article tokens:",
+          error,
+        );
       },
     );
 
-    return unsubscribe;
+    const unsubscribeAdjustments = onSnapshot(
+      collection(
+        db,
+        "users",
+        user.uid,
+        "tokenAdjustments",
+      ),
+      (snapshot) => {
+        adjustmentTokens = snapshot.docs.reduce(
+          (total, currentDocument) => {
+            const amount = currentDocument.data().amount;
+
+            return (
+              total +
+              (typeof amount === "number" ? amount : 0)
+            );
+          },
+          0,
+        );
+
+        updateDisplayedBalance();
+      },
+      (error) => {
+        console.error(
+          "Could not load token adjustments:",
+          error,
+        );
+      },
+    );
+
+    return () => {
+      unsubscribeRewards();
+      unsubscribeAdjustments();
+    };
   }, [loading, user]);
 
   const handleUsernameChange = (
@@ -116,14 +160,17 @@ const Profile = () => {
     setErrorMessage("");
   };
 
-  const handleSave = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSave = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
 
     if (!user) {
       return;
     }
 
-    const normalizedUsername = username.trim().toLowerCase();
+    const normalizedUsername =
+      username.trim().toLowerCase();
 
     if (!USERNAME_PATTERN.test(normalizedUsername)) {
       setErrorMessage(
@@ -137,7 +184,12 @@ const Profile = () => {
     setErrorMessage("");
 
     try {
-      const profileReference = doc(db, "users", user.uid);
+      const profileReference = doc(
+        db,
+        "users",
+        user.uid,
+      );
+
       const usernameReference = doc(
         db,
         "usernames",
@@ -220,14 +272,18 @@ const Profile = () => {
       navigate("/");
     } catch (error) {
       console.error("Could not log out:", error);
-      setErrorMessage("Could not log out. Please try again.");
+      setErrorMessage(
+        "Could not log out. Please try again.",
+      );
     }
   };
 
   if (loading || loadingProfile) {
     return (
       <main className="flex min-h-screen items-center justify-center">
-        <p className="text-muted-foreground">Loading profile...</p>
+        <p className="text-muted-foreground">
+          Loading profile...
+        </p>
       </main>
     );
   }
@@ -275,19 +331,25 @@ const Profile = () => {
             <Coins className="h-5 w-5 text-primary" />
 
             <span className="font-semibold">
-              {tokens} {tokens === 1 ? "token" : "tokens"}
+              {tokens}{" "}
+              {tokens === 1 ? "token" : "tokens"}
             </span>
           </div>
         </div>
 
-        <form onSubmit={handleSave} className="mt-8 space-y-4">
+        <form
+          onSubmit={handleSave}
+          className="mt-8 space-y-4"
+        >
           <label className="block">
             <span className="mb-2 block text-sm font-medium">
               Username
             </span>
 
             <div className="flex items-center rounded-lg border border-input bg-background px-3">
-              <span className="text-muted-foreground">@</span>
+              <span className="text-muted-foreground">
+                @
+              </span>
 
               <input
                 type="text"
@@ -303,7 +365,8 @@ const Profile = () => {
           </label>
 
           <p className="text-xs text-muted-foreground">
-            Use 3–20 lowercase letters, numbers, or underscores.
+            Use 3–20 lowercase letters, numbers, or
+            underscores.
           </p>
 
           {message && (
@@ -329,7 +392,9 @@ const Profile = () => {
             disabled={saving}
             className="w-full"
           >
-            {saving ? "Saving..." : "Save profile"}
+            {saving
+              ? "Saving..."
+              : "Save profile"}
           </Button>
         </form>
 
