@@ -13,7 +13,6 @@ import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 import Article from './pages/Article';
 import Themes from "./pages/Themes";
-import Events from "./pages/Events";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Mod from "./pages/Mod";
@@ -48,7 +47,6 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/themes" element={<Themes />} />
-          <Route path="/events" element={<Events />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/mod" element={<Mod />} />

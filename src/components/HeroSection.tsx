@@ -49,29 +49,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Northland Event */}
-        <div className="pt-8">
-          <div className="max-w-xl mx-auto rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6">
-            <p className="text-lg md:text-xl font-semibold bg-gradient-to-r from-neuron to-cosmic bg-clip-text text-transparent">
-              Check Out Our Northland Event
-            </p>
-
-            <p className="mt-3 text-sm text-muted-foreground">
-              Learn more about ScienceGlimpse&apos;s community science event
-              at Northland Public Library.
-            </p>
-
-            <Button
-              variant="default"
-              size="lg"
-              onClick={() => navigate('/events')}
-              className="mt-5 bg-purple-700 hover:bg-blue-700 text-white"
-            >
-              Check It Out →
-            </Button>
-          </div>
-        </div>
-
         {/* Scroll indicator */}
         <div className="pt-12 animate-bounce">
           <ArrowDown className="w-6 h-6 text-muted-foreground mx-auto" />

@@ -17,7 +17,6 @@ const Navigation: React.FC = () => {
     { label: "GlimpseArticles", to: "/articles" },
     { label: "About", to: "/about" },
     { label: "Members", to: "/members" },
-    { label: "Events", to: "/events" },
     { label: "Themes", to: "/themes" },
     { label: "Publish", to: "/submission" },
     { label: "Contact", to: "/contact" },
