@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
@@ -17,56 +17,6 @@ type Category = {
 
 const Index: React.FC = () => {
   const navigate = useNavigate();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsPopupOpen(true), 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const eventDate = new Date("2026-06-20T11:00:00").getTime();
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      if (distance <= 0) {
-        setTimeLeft({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        ),
-        minutes: Math.floor(
-          (distance % (1000 * 60 * 60)) / (1000 * 60)
-        ),
-        seconds: Math.floor(
-          (distance % (1000 * 60)) / 1000
-        ),
-      });
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const goToCategory = (tag: string) => {
     navigate(`/articles?category=${encodeURIComponent(tag)}`);
@@ -89,16 +39,26 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-x-hidden">
-
       <AnimatedBackground />
 
       <Navigation />
 
       <main className="relative z-10">
-
         <HeroSection />
 
-        <WhatIsScienceGlimpse centerText={true} paragraphSize="normal" />
+        <WhatIsScienceGlimpse
+          centerText={true}
+          paragraphSize="normal"
+        />
+
+        <div className="flex justify-center px-4 pb-12">
+          <Link
+            to="/events"
+            className="bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity"
+          >
+            Check Out Northland Event
+          </Link>
+        </div>
 
         <HotSights />
 
@@ -107,9 +67,13 @@ const Index: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neuron to-cosmic bg-clip-text text-transparent mb-4 py-[12px]">
               What's YOUR Obsession?
             </h2>
+
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-              Explore focused topics across physics, biology, chemistry, astronomy, medicine, technology and more — concise articles and guides to spark your curiosity.
+              Explore focused topics across physics, biology, chemistry,
+              astronomy, medicine, technology and more — concise articles
+              and guides to spark your curiosity.
             </p>
+
             <div className="grid grid-cols-5 grid-rows-3 gap-6 mb-8">
               {categories.map((item) => (
                 <button
@@ -118,7 +82,10 @@ const Index: React.FC = () => {
                   className={`${item.className} aspect-square flex flex-col items-center justify-center bg-card/60 border border-border backdrop-blur-md rounded-2xl p-4 text-center transition-all duration-300 group`}
                   aria-label={item.field}
                 >
-                  <div className="text-4xl mb-2 group-hover:animate-bounce">{item.icon}</div>
+                  <div className="text-4xl mb-2 group-hover:animate-bounce">
+                    {item.icon}
+                  </div>
+
                   <div className="text-sm font-semibold text-foreground bg-gray-500 rounded-full px-4 py-1">
                     {item.field}
                   </div>
@@ -135,106 +102,35 @@ const Index: React.FC = () => {
         <footer className="py-16 px-4 border-t border-border bg-card/30 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto text-center">
             <p className="text-muted-foreground">
-              © 2025 ScienceGlimpse. Made with curiosity by students, for everyone.
+              © 2025 ScienceGlimpse. Made with curiosity by students,
+              for everyone.
             </p>
+
             <div className="mt-4 flex justify-center space-x-6 text-sm text-muted-foreground">
-              <Link to="/about" className="hover:text-primary transition-colors">About</Link>
-              <Link to="/submission" className="hover:text-primary transition-colors">Apply to Write</Link>
-              <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
+              <Link
+                to="/about"
+                className="hover:text-primary transition-colors"
+              >
+                About
+              </Link>
+
+              <Link
+                to="/submission"
+                className="hover:text-primary transition-colors"
+              >
+                Apply to Write
+              </Link>
+
+              <Link
+                to="/contact"
+                className="hover:text-primary transition-colors"
+              >
+                Contact
+              </Link>
             </div>
           </div>
         </footer>
-
       </main>
-
-      {isPopupOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-          onClick={() => setIsPopupOpen(false)}
-        />
-      )}
-
-      {isPopupOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 pointer-events-none">
-          <div className="relative w-full max-w-md bg-card border border-border rounded-2xl p-8 pointer-events-auto">
-            <button
-              onClick={() => setIsPopupOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-muted hover:bg-muted/80 text-muted-foreground transition-colors"
-            >
-              ✕
-            </button>
-            <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4">
-              Upcoming Event
-            </div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">
-              ScienceGlimpse Event at Northland Public Library!
-            </h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              June 20, 2026 &nbsp;·&nbsp; Northland Public Library
-            </p>
-            <div className="grid grid-cols-4 gap-2 mb-6">
-              <div className="bg-muted rounded-xl py-3 text-center">
-                <div className="text-2xl font-bold text-primary">
-                  {timeLeft.days}
-                </div>
-                <div className="text-[10px] font-medium text-muted-foreground">
-                  DAYS
-                </div>
-              </div>
-
-              <div className="bg-muted rounded-xl py-3 text-center">
-                <div className="text-2xl font-bold text-primary">
-                  {String(timeLeft.hours).padStart(2, "0")}
-                </div>
-                <div className="text-[10px] font-medium text-muted-foreground">
-                  HRS
-                </div>
-              </div>
-
-              <div className="bg-muted rounded-xl py-3 text-center">
-                <div className="text-2xl font-bold text-primary">
-                  {String(timeLeft.minutes).padStart(2, "0")}
-                </div>
-                <div className="text-[10px] font-medium text-muted-foreground">
-                  MIN
-                </div>
-              </div>
-
-              <div className="bg-muted rounded-xl py-3 text-center">
-                <div className="text-2xl font-bold text-primary">
-                  {String(timeLeft.seconds).padStart(2, "0")}
-                </div>
-                <div className="text-[10px] font-medium text-muted-foreground">
-                  SEC
-                </div>
-              </div>
-            </div>
-
-            <p className="text-base text-muted-foreground leading-relaxed mb-6">
-              The purpose of this event is to spread the love of science, get kids interested
-              in the field of science, spread the message of ScienceGlimpse, and allow for
-              people to make donations to an amazing cause.
-            </p>
-            
-            <Link
-              to="/events"
-              className="block w-full text-center bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity"
-            >
-              Learn More!
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {!isPopupOpen && (
-        <button
-          onClick={() => setIsPopupOpen(true)}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-primary text-primary-foreground text-sm font-semibold px-4 py-3 rounded-full shadow-lg hover:opacity-90 transition-all"
-        >
-          Upcoming Event!
-        </button>
-      )}
-
     </div>
   );
 };
